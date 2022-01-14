@@ -35,13 +35,19 @@ class _LoginState extends State<Login> {
               const SizedBox(height: 10),
               Flexible(
                 child: Center(
-                  child: Text(
-                    'Portolink',
-                    style: GoogleFonts.dancingScript(
-                      color: Colors.blue[700],
-                      fontSize: 60,
-                      fontWeight: FontWeight.w100
-                    )
+                  child: Column(
+                    children: [
+                      const Spacer(flex: 50),
+                      Text(
+                        'Portolink',
+                        style: GoogleFonts.dancingScript(
+                          color: Colors.blue[700],
+                          fontSize: 60,
+                          fontWeight: FontWeight.w100
+                        )
+                      ),
+                      const Spacer()
+                    ]
                   )
                 )
               ),
@@ -137,18 +143,23 @@ class _LoginState extends State<Login> {
                   )
                 )
               ),
-              Text(
-                '                                                             Forgot Password',
-                style: GoogleFonts.roboto(
-                  fontSize: 15,
-                  color: Colors.white
-                )
+              Row(
+                children: [
+                  const Spacer(flex: 10),
+                  Text(
+                    'Forgot Password',
+                    style: GoogleFonts.roboto(
+                      fontSize: 15,
+                      color: Colors.white
+                    )
+                  ),
+                  const Spacer()
+                ]
               ),
               const SizedBox(height: 20),
-              Container(
+              SizedBox(
                 height: 40,
-                width: 120,
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
+                width: 150,
                 child: ElevatedButton.icon(
                   onPressed: () {},
                   style: ButtonStyle(
@@ -157,12 +168,15 @@ class _LoginState extends State<Login> {
                     )
                   ),
                   icon: const Icon(Icons.login),
-                  label: Text(
-                    'LOGIN',
-                    style: GoogleFonts.bebasNeue(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w300
-                    )
+                  label: Row(
+                    children: [
+                      const Spacer(),
+                      Text(
+                        'LOGIN',
+                        style: GoogleFonts.prompt(fontSize: 20)
+                      ),
+                      const Spacer(flex: 2)
+                    ]
                   )
                 )
               ),
