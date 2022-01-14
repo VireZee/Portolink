@@ -6,7 +6,15 @@ class Login extends StatefulWidget {
   _LoginState createState() => _LoginState();
 }
 class _LoginState extends State<Login> {
+  final ctrlEmail = TextEditingController();
+  final ctrlPass = TextEditingController();
   bool on = true;
+  @override
+  void dispose() {
+    ctrlEmail.dispose();
+    ctrlPass.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -14,7 +22,7 @@ class _LoginState extends State<Login> {
         Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/login.jfif'),
+              image: AssetImage('assets/login_bg.jfif'),
               fit: BoxFit.cover,
               colorFilter: ColorFilter.mode(Colors.black54, BlendMode.darken)
             )
@@ -24,7 +32,7 @@ class _LoginState extends State<Login> {
           backgroundColor: Colors.transparent,
           body: Column(
             children: [
-              const SizedBox(height: 50),
+              const SizedBox(height: 10),
               Flexible(
                 child: Center(
                   child: Text(
@@ -37,7 +45,6 @@ class _LoginState extends State<Login> {
                   )
                 )
               ),
-              const SizedBox(height: 25),
               Flexible(
                 child: Center(
                   child: Text(
@@ -58,13 +65,13 @@ class _LoginState extends State<Login> {
                     color: Colors.grey[500]?.withOpacity(0.5),
                     borderRadius: BorderRadius.circular(50)
                   ),
-                  child: const Center(
+                  child: Center(
                     child: TextField(
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 25,
                         color: Colors.white
                       ),
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: InputBorder.none,
                         prefixIcon: Padding(
                           padding: EdgeInsets.symmetric(horizontal: 25),
@@ -76,6 +83,7 @@ class _LoginState extends State<Login> {
                         ),
                         hintText: 'Email'
                       ),
+                      controller: ctrlEmail,
                       keyboardType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next
                     )
@@ -122,13 +130,61 @@ class _LoginState extends State<Login> {
                         )
                       ),
                       obscureText: on,
+                      controller: ctrlPass,
                       keyboardType: TextInputType.text,
                       textInputAction: TextInputAction.done,
                     )
                   )
                 )
               ),
-              const SizedBox(height: 100)
+              Text(
+                '                                                             Forgot Password',
+                style: GoogleFonts.roboto(
+                  fontSize: 15,
+                  color: Colors.white
+                )
+              ),
+              const SizedBox(height: 20),
+              Container(
+                height: 40,
+                width: 120,
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
+                child: ElevatedButton.icon(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
+                    )
+                  ),
+                  icon: const Icon(Icons.login),
+                  label: Text(
+                    'LOGIN',
+                    style: GoogleFonts.bebasNeue(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w300
+                    )
+                  )
+                )
+              ),
+              const SizedBox(height: 30),
+              Container(
+                child: Text(
+                  'Create New Account',
+                  style: GoogleFonts.shadowsIntoLight(
+                    fontSize: 25,
+                    color: Colors.white
+                  )
+                ),
+                decoration: const BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      width: 1,
+                      color: Colors.white
+                    )
+                  )
+                )
+              ),
+              const SizedBox(height: 50)
             ]
           )
         )
