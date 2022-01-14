@@ -56,7 +56,6 @@ class _LoginState extends State<Login> {
                   child: Text(
                     'LOGIN',
                     style: GoogleFonts.oswald(
-                      color: Colors.white,
                       fontSize: 60,
                       fontWeight: FontWeight.w300
                     )
@@ -75,7 +74,6 @@ class _LoginState extends State<Login> {
                     child: TextField(
                       style: const TextStyle(
                         fontSize: 25,
-                        color: Colors.white
                       ),
                       decoration: const InputDecoration(
                         border: InputBorder.none,
@@ -84,7 +82,6 @@ class _LoginState extends State<Login> {
                           child: Icon(
                             FontAwesomeIcons.envelope,
                             size: 28,
-                            color: Colors.white
                           )
                         ),
                         hintText: 'Email'
@@ -108,7 +105,6 @@ class _LoginState extends State<Login> {
                     child: TextField(
                       style: const TextStyle(
                         fontSize: 25,
-                        color: Colors.white
                       ),
                       decoration: InputDecoration(
                         border: InputBorder.none,
@@ -117,7 +113,6 @@ class _LoginState extends State<Login> {
                           child: Icon(
                             FontAwesomeIcons.lock,
                             size: 28,
-                            color: Colors.white
                           )
                         ),
                         hintText: 'Password',
@@ -131,7 +126,6 @@ class _LoginState extends State<Login> {
                             on
                             ? Icons.visibility
                             : Icons.visibility_off,
-                            color: Colors.white
                           )
                         )
                       ),
@@ -150,7 +144,7 @@ class _LoginState extends State<Login> {
                     'Forgot Password',
                     style: GoogleFonts.roboto(
                       fontSize: 15,
-                      color: Colors.white
+                      fontWeight: FontWeight.w900
                     )
                   ),
                   const Spacer()
@@ -181,20 +175,14 @@ class _LoginState extends State<Login> {
                 )
               ),
               const SizedBox(height: 30),
-              Container(
-                child: Text(
-                  'Create New Account',
-                  style: GoogleFonts.shadowsIntoLight(
-                    fontSize: 25,
-                    color: Colors.white
-                  )
-                ),
-                decoration: const BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      width: 1,
-                      color: Colors.white
-                    )
+              Text(
+                'Create New Account',
+                style: GoogleFonts.mochiyPopOne(
+                  fontSize: 25,
+                  fontWeight: FontWeight.w900,
+                  textStyle: const TextStyle(
+                    decoration: TextDecoration.underline,
+                    decorationThickness: 3
                   )
                 )
               ),
