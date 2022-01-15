@@ -36,7 +36,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   fluttertoast: ^8.0.8
   lottie: ^1.2.1
-  google_fonts: ^2.2.0
   font_awesome_flutter: ^9.2.0
 
 dev_dependencies:

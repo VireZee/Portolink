@@ -2,6 +2,7 @@ part of 'views.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
+  static const String routeName = '/login';
   @override
   _LoginState createState() => _LoginState();
 }
@@ -32,18 +33,17 @@ class _LoginState extends State<Login> {
           backgroundColor: Colors.transparent,
           body: Column(
             children: [
-              const SizedBox(height: 10),
               Flexible(
                 child: Center(
                   child: Column(
                     children: const [
-                      Spacer(flex: 50),
+                      Spacer(flex: 10),
                       Text(
                         'Portolink',
                         style: TextStyle(
                           fontFamily: 'Dancing Script',
                           color: Color(0xFF0000FF),
-                          fontSize: 60  
+                          fontSize: 80
                         )
                       ),
                       Spacer()
@@ -72,16 +72,14 @@ class _LoginState extends State<Login> {
                   ),
                   child: Center(
                     child: TextField(
-                      style: const TextStyle(
-                        fontSize: 25,
-                      ),
+                      style: const TextStyle(fontSize: 25),
                       decoration: const InputDecoration(
                         border: InputBorder.none,
                         prefixIcon: Padding(
                           padding: EdgeInsets.symmetric(horizontal: 25),
                           child: Icon(
                             FontAwesomeIcons.envelope,
-                            size: 28,
+                            size: 28
                           )
                         ),
                         hintText: 'Email'
@@ -103,16 +101,14 @@ class _LoginState extends State<Login> {
                   ),
                   child: Center(
                     child: TextField(
-                      style: const TextStyle(
-                        fontSize: 25,
-                      ),
+                      style: const TextStyle(fontSize: 25),
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         prefixIcon: const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 25),
                           child: Icon(
                             FontAwesomeIcons.lock,
-                            size: 28,
+                            size: 28
                           )
                         ),
                         hintText: 'Password',
@@ -155,11 +151,18 @@ class _LoginState extends State<Login> {
                 height: 40,
                 width: 150,
                 child: ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: ctrlEmail != null && ctrlPass != null
+                  ? () {}
+                  : null,
                   style: ButtonStyle(
                     overlayColor: MaterialStateProperty.resolveWith((states) {
                       return states.contains(MaterialState.pressed)
                       ? Colors.blue
+                      : null;
+                    }),
+                    foregroundColor: MaterialStateProperty.resolveWith((states) {
+                      return states.contains(MaterialState.pressed)
+                      ? const Color(0xFF00FF00)
                       : null;
                     }),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -183,16 +186,21 @@ class _LoginState extends State<Login> {
                 )
               ),
               const SizedBox(height: 30),
-              const Text(
-                'Create New Account',
-                style: TextStyle(
-                  fontFamily: 'Flamenco',
-                  fontSize: 30,
-                  decoration: TextDecoration.underline,
-                  decorationThickness: 1
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, Register.routeName);
+                },
+                child: const Text(
+                  'Create New Account',
+                  style: TextStyle(
+                    fontFamily: 'Flamenco',
+                    fontSize: 30,
+                    decoration: TextDecoration.underline,
+                    decorationThickness: 1
+                  )
                 )
               ),
-              const SizedBox(height: 50)
+              const SizedBox(height: 20)
             ]
           )
         )
