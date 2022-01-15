@@ -19,7 +19,7 @@ class MyTheme{
         caption: TextStyle(),
         overline: TextStyle()
       ).apply(bodyColor: Colors.white),
-      elevatedButtonTheme: ElevatedButtonThemeData(style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.white70), foregroundColor: MaterialStateProperty.all(Colors.black))),
+      elevatedButtonTheme: ElevatedButtonThemeData(style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.white.withOpacity(0.6)), foregroundColor: MaterialStateProperty.all(Colors.black))),
       hintColor: Colors.white.withOpacity(0.2),
       visualDensity: VisualDensity.adaptivePlatformDensity,
       textSelectionTheme: const TextSelectionThemeData(cursorColor: Colors.white)
@@ -43,7 +43,7 @@ class MyTheme{
         caption: TextStyle(),
         overline: TextStyle()
       ).apply(bodyColor: Colors.black),
-      elevatedButtonTheme: ElevatedButtonThemeData(style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.black), foregroundColor: MaterialStateProperty.all(Colors.white))),
+      elevatedButtonTheme: ElevatedButtonThemeData(style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.black.withOpacity(0.6)), foregroundColor: MaterialStateProperty.all(Colors.white))),
       hintColor: Colors.black.withOpacity(0.2),
       visualDensity: VisualDensity.adaptivePlatformDensity,
       textSelectionTheme: const TextSelectionThemeData(cursorColor: Colors.black)

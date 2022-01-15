@@ -22,7 +22,7 @@ class _LoginState extends State<Login> {
         Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/login_bg.jfif'),
+              image: AssetImage('assets/images/login_bg.jfif'),
               fit: BoxFit.cover,
               colorFilter: ColorFilter.mode(Colors.black54, BlendMode.darken)
             )
@@ -36,28 +36,28 @@ class _LoginState extends State<Login> {
               Flexible(
                 child: Center(
                   child: Column(
-                    children: [
-                      const Spacer(flex: 50),
+                    children: const [
+                      Spacer(flex: 50),
                       Text(
                         'Portolink',
-                        style: GoogleFonts.dancingScript(
-                          color: Colors.blue[700],
-                          fontSize: 60,
-                          fontWeight: FontWeight.w100
+                        style: TextStyle(
+                          fontFamily: 'Dancing Script',
+                          color: Color(0xFF0000FF),
+                          fontSize: 60  
                         )
                       ),
-                      const Spacer()
+                      Spacer()
                     ]
                   )
                 )
               ),
-              Flexible(
+              const Flexible(
                 child: Center(
                   child: Text(
                     'LOGIN',
-                    style: GoogleFonts.oswald(
-                      fontSize: 60,
-                      fontWeight: FontWeight.w300
+                    style: TextStyle(
+                      fontFamily: 'Oswald',
+                      fontSize: 60
                     )
                   )
                 )
@@ -138,16 +138,16 @@ class _LoginState extends State<Login> {
                 )
               ),
               Row(
-                children: [
-                  const Spacer(flex: 10),
+                children: const [
+                  Spacer(flex: 10),
                   Text(
                     'Forgot Password',
-                    style: GoogleFonts.roboto(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w900
+                    style: TextStyle(
+                      fontFamily: 'Roboto',
+                      fontSize: 15
                     )
                   ),
-                  const Spacer()
+                  Spacer()
                 ]
               ),
               const SizedBox(height: 20),
@@ -157,33 +157,39 @@ class _LoginState extends State<Login> {
                 child: ElevatedButton.icon(
                   onPressed: () {},
                   style: ButtonStyle(
+                    overlayColor: MaterialStateProperty.resolveWith((states) {
+                      return states.contains(MaterialState.pressed)
+                      ? Colors.blue
+                      : null;
+                    }),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
                     )
                   ),
                   icon: const Icon(Icons.login),
                   label: Row(
-                    children: [
-                      const Spacer(),
+                    children: const [
+                      Spacer(),
                       Text(
                         'LOGIN',
-                        style: GoogleFonts.prompt(fontSize: 20)
+                        style: TextStyle(
+                          fontFamily: 'Prompt',
+                          fontSize: 20
+                        )
                       ),
-                      const Spacer(flex: 2)
+                      Spacer(flex: 2)
                     ]
                   )
                 )
               ),
               const SizedBox(height: 30),
-              Text(
+              const Text(
                 'Create New Account',
-                style: GoogleFonts.mochiyPopOne(
-                  fontSize: 25,
-                  fontWeight: FontWeight.w900,
-                  textStyle: const TextStyle(
-                    decoration: TextDecoration.underline,
-                    decorationThickness: 3
-                  )
+                style: TextStyle(
+                  fontFamily: 'Flamenco',
+                  fontSize: 30,
+                  decoration: TextDecoration.underline,
+                  decorationThickness: 1
                 )
               ),
               const SizedBox(height: 50)
