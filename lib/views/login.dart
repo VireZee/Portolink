@@ -23,7 +23,7 @@ class _LoginState extends State<Login> {
         Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/images/login_bg.jfif'),
+              image: AssetImage('assets/images/login_bg.jpg'),
               fit: BoxFit.cover,
               colorFilter: ColorFilter.mode(Colors.black54, BlendMode.darken)
             )
@@ -151,7 +151,7 @@ class _LoginState extends State<Login> {
                 height: 40,
                 width: 150,
                 child: ElevatedButton.icon(
-                  onPressed: ctrlEmail != null && ctrlPass != null
+                  onPressed: ctrlEmail.text.isNotEmpty && ctrlPass.text.isNotEmpty
                   ? () {}
                   : null,
                   style: ButtonStyle(
@@ -185,7 +185,7 @@ class _LoginState extends State<Login> {
                   )
                 )
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 20),
               GestureDetector(
                 onTap: () {
                   Navigator.pushReplacementNamed(context, Register.routeName);

@@ -31,7 +31,7 @@ class _RegisterState extends State<Register> {
             image: DecorationImage(
               image: AssetImage('assets/images/register_bg.jpg'),
               fit: BoxFit.cover,
-              colorFilter: ColorFilter.mode(Colors.black38, BlendMode.darken)
+              colorFilter: ColorFilter.mode(Colors.black54, BlendMode.darken)
             )
           )
         ),
@@ -39,6 +39,7 @@ class _RegisterState extends State<Register> {
           backgroundColor: Colors.transparent,
           body: Column(
             children: [
+              const Spacer(flex: 3),
               const Flexible(
                 child: Center(
                   child: Text(
@@ -50,8 +51,9 @@ class _RegisterState extends State<Register> {
                   )
                 )
               ),
+              const Spacer(),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 20),
                 child: Container(
                   height: 60,
                   decoration: BoxDecoration(
@@ -80,7 +82,7 @@ class _RegisterState extends State<Register> {
                 )
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 20),
                 child: Container(
                   height: 60,
                   decoration: BoxDecoration(
@@ -109,7 +111,7 @@ class _RegisterState extends State<Register> {
                 )
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 20),
                 child: Container(
                   height: 60,
                   decoration: BoxDecoration(
@@ -138,7 +140,7 @@ class _RegisterState extends State<Register> {
                 )
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 20),
                 child: Container(
                   height: 60,
                   decoration: BoxDecoration(
@@ -180,7 +182,7 @@ class _RegisterState extends State<Register> {
                 )
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 20),
                 child: Container(
                   height: 60,
                   decoration: BoxDecoration(
@@ -214,7 +216,9 @@ class _RegisterState extends State<Register> {
                 height: 40,
                 width: 170,
                 child: ElevatedButton.icon(
-                  onPressed: null,
+                  onPressed:  ctrlName.text.isNotEmpty && ctrlPhone.text.isNotEmpty && ctrlEmail.text.isNotEmpty && ctrlPass.text.isNotEmpty && ctrlCPass.text.isNotEmpty
+                  ? () {}
+                  : null,
                   style: ButtonStyle(
                     overlayColor: MaterialStateProperty.resolveWith((states) {
                       return states.contains(MaterialState.pressed)
@@ -226,16 +230,11 @@ class _RegisterState extends State<Register> {
                       ? const Color(0xFF00FF00)
                       : null;
                     }),
-                    backgroundColor: MaterialStateProperty.resolveWith((states) {
-                      return states.contains(MaterialState.disabled)
-                      ? Colors.grey.withOpacity(0.7)
-                      : null;
-                    }),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
                     )
                   ),
-                  icon: const Icon(Icons.child_care),
+                  icon: const Icon(Icons.verified_user),
                   label: Row(
                     children: const [
                       Spacer(),
@@ -251,7 +250,7 @@ class _RegisterState extends State<Register> {
                   )
                 )
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 20),
               GestureDetector(
                 onTap: () {
                   Navigator.pushReplacementNamed(context, Login.routeName);
