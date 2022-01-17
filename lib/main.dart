@@ -14,8 +14,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: MyTheme.darkTheme(),
-      initialRoute: '/login',
+      initialRoute: '/',
       routes: {
+        Splash.routeName: (context) => const Splash(),
         Login.routeName: (context) => const Login(),
         Register.routeName: (context) => const Register()
       }

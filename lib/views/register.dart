@@ -39,7 +39,6 @@ class _RegisterState extends State<Register> {
           backgroundColor: Colors.transparent,
           body: Column(
             children: [
-              const Spacer(flex: 3),
               const Flexible(
                 child: Center(
                   child: Text(
@@ -51,7 +50,6 @@ class _RegisterState extends State<Register> {
                   )
                 )
               ),
-              const Spacer(),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 20),
                 child: Container(

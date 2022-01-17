@@ -2,6 +2,7 @@ part of 'models.dart';
 
 class Users {
   final String uid;
+  final String photo;
   final String name;
   final String phone;
   final String email;
@@ -11,6 +12,7 @@ class Users {
   final String updateAt;
   const Users(
     this.uid,
+    this.photo,
     this.name,
     this.phone,
     this.email,
@@ -21,6 +23,7 @@ class Users {
   );
   List<Object> get props => [
     uid,
+    photo,
     name,
     phone,
     email,
