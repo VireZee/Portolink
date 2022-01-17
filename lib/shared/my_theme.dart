@@ -1,6 +1,6 @@
 part of 'shared.dart';
 
-class MyTheme{
+class MyTheme {
   static ThemeData lightTheme(){
     return ThemeData(
       colorScheme: ThemeData().colorScheme.copyWith(primary: Colors.white),

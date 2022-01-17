@@ -8,8 +8,10 @@ class Users {
   final String email;
   final String password;
   final String message;
-  final String createdAt;
-  final String updateAt;
+  final String created;
+  final String updated;
+  final String entered;
+  final String left;
   const Users(
     this.uid,
     this.photo,
@@ -18,8 +20,10 @@ class Users {
     this.email,
     this.password,
     this.message,
-    this.createdAt,
-    this.updateAt
+    this.created,
+    this.updated,
+    this.entered,
+    this.left
   );
   List<Object> get props => [
     uid,
@@ -29,7 +33,9 @@ class Users {
     email,
     password,
     message,
-    createdAt,
-    updateAt
+    created,
+    updated,
+    entered,
+    left
   ];
 }
