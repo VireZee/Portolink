@@ -7,14 +7,14 @@ class Auth {
     await Firebase.initializeApp();
     final String dateNow = Activity.dateNow();
     String msg = '';
-    final String? token;
-    final String? uid;
+    final String token;
+    final String uid;
     UserCredential uCredential = await auth.createUserWithEmailAndPassword(email: users.email, password: users.password);
-    uid = uCredential.user?.uid;
-    token = await FirebaseMessaging.instance.getToken();
+    uid = uCredential.user!.uid;
+    token = (await FirebaseMessaging.instance.getToken())!;
     await uCollection.doc(uid).set({
       'uid': uid,
-      'photo': users.photo,
+      'photo': '-',
       'name': users.name,
       'phone': users.phone,
       'email': users.email,
@@ -36,11 +36,11 @@ class Auth {
     await Firebase.initializeApp();
     final String dateNow = Activity.dateNow();
     String msg = '';
-    final String? token;
-    final String? uid;
+    final String token;
+    final String uid;
     UserCredential uCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
-    uid = uCredential.user?.uid;
-    token = await FirebaseMessaging.instance.getToken();
+    uid = uCredential.user!.uid;
+    token = (await FirebaseMessaging.instance.getToken())!;
     await uCollection.doc(uid).update({
       'isOn': '1',
       'token': token,
@@ -55,7 +55,7 @@ class Auth {
   static Future<bool> signOut() async {
     await Firebase.initializeApp();
     final String dateNow = Activity.dateNow();
-    final String? uid = auth.currentUser?.uid;
+    final String uid = auth.currentUser!.uid;
     await auth.signOut().whenComplete(() {
       uCollection.doc(uid).update({
         'isOn': '0',
