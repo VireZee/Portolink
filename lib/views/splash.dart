@@ -16,7 +16,12 @@ class _SplashState extends State<Splash> {
     var _duration = const Duration(seconds: 5);
     return Timer(_duration, checkAuth);
   }
-  void checkAuth() {
+  void checkAuth() async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    if (auth.currentUser != null) {
+      Navigator.pushReplacementNamed(context, MainMenu.routeName);
+      Activity.showToast('Welcome Back, ' + auth.currentUser!.email.toString(), Colors.blue);
+    }
     Navigator.pushReplacementNamed(context, Signin.routeName);
   }
   @override
