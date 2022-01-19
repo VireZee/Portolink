@@ -8,6 +8,7 @@ import 'package:lottie/lottie.dart';
 import 'package:portolink/models/models.dart';
 import 'package:portolink/services/services.dart';
 
+part 'help.dart';
 part 'mainmenu.dart';
 part 'profile.dart';
 part 'signin.dart';

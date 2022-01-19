@@ -165,7 +165,7 @@ class _SignInState extends State<SignIn> {
                             setState(() {
                               load = false;
                             });
-                            Activity.showToast(null.toString(), Colors.blue);
+                            Activity.showToast('', Colors.blue);
                             Navigator.pushReplacementNamed(context, MainMenu.routeName);
                           }
                           else if (msg == 'None') {

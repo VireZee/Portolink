@@ -10,7 +10,8 @@ class _MainMenuState extends State<MainMenu> {
   bool load = false;
   static int _selectedIntex = 0;
   final List<Widget> _widgetOptions = <Widget>[
-    const Profile()
+    const Profile(),
+    const Help()
   ];
   void _onItemTapped(int index) {
     setState(() {
@@ -24,7 +25,8 @@ class _MainMenuState extends State<MainMenu> {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Account')
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Account'),
+          BottomNavigationBarItem(icon: Icon(Icons.help), label: 'Help')
         ],
         currentIndex: _selectedIntex,
         onTap: _onItemTapped

@@ -20,9 +20,10 @@ class _SplashState extends State<Splash> {
     FirebaseAuth auth = FirebaseAuth.instance;
     if (auth.currentUser != null) {
       Navigator.pushReplacementNamed(context, MainMenu.routeName);
-      Activity.showToast('Welcome Back, ' + auth.currentUser!.email.toString(), Colors.blue);
+      Activity.showToast('Welcome Back', Colors.blue);
+    } else {
+      Navigator.pushReplacementNamed(context, SignIn.routeName);
     }
-    Navigator.pushReplacementNamed(context, SignIn.routeName);
   }
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class _SplashState extends State<Splash> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Lottie.asset('assets/images/loading.json')
+          Lottie.asset('assets/images/auth.json')
         ]
       )
     );
