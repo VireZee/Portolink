@@ -95,4 +95,10 @@ class Auth {
     });
     return true;
   }
+  static Future<bool> deleteAccount() async {
+    await Firebase.initializeApp();
+    uCollection.doc(auth.currentUser!.uid).delete();
+    auth.currentUser!.delete();
+    return true;
+  }
 }
