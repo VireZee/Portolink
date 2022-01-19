@@ -223,6 +223,9 @@ class _RegisterState extends State<Register> {
                         if (net == ConnectivityResult.none) {
                           Activity.showToast('No internet connection', const Color(0xFFFF0000));
                         }
+                        else if (ctrlName.text.isEmpty) {
+                          Activity.showToast('Name cannot be empty', const Color(0xFFFF0000));
+                        }
                         else if (ctrlPhone.text.length <= 7 || ctrlPhone.text.length >= 13) {
                           Activity.showToast('Phone number is invalid', const Color(0xFFFF0000));
                         }
