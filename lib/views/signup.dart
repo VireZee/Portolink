@@ -1,12 +1,12 @@
 part of 'views.dart';
 
-class Signup extends StatefulWidget {
-  const Signup({Key? key}) : super(key: key);
+class SignUp extends StatefulWidget {
+  const SignUp({Key? key}) : super(key: key);
   static const String routeName = '/up';
   @override
-  _SignupState createState() => _SignupState();
+  _SignUpState createState() => _SignUpState();
 }
-class _SignupState extends State<Signup> {
+class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
   final ctrlName = TextEditingController();
   final ctrlPhone = TextEditingController();
@@ -255,7 +255,7 @@ class _SignupState extends State<Signup> {
                                 load = false;
                               });
                               Activity.showToast('You can Sign In now', Colors.blue);
-                              Navigator.pushReplacementNamed(context, Signin.routeName);
+                              Navigator.pushReplacementNamed(context, SignIn.routeName);
                             }
                             else if (msg == 'Existed') {
                               setState(() {
@@ -319,7 +319,7 @@ class _SignupState extends State<Signup> {
                   const SizedBox(height: 20),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushReplacementNamed(context, Signin.routeName);
+                      Navigator.pushReplacementNamed(context, SignIn.routeName);
                     },
                     child: const Text(
                       'Already Have an Account',

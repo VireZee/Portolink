@@ -27,7 +27,7 @@ class _ProfileState extends State<Profile> {
                   load = false;
                 });
                 Activity.showToast('Signed out', Colors.blue);
-                Navigator.pushReplacementNamed(context, Signin.routeName);
+                Navigator.pushReplacementNamed(context, SignIn.routeName);
               } else {
                 setState(() {
                   load = false;
@@ -54,7 +54,7 @@ class _ProfileState extends State<Profile> {
                   load = false;
                 });
                 Activity.showToast('Goodbye', Colors.blue);
-                Navigator.pushReplacementNamed(context, Signin.routeName);
+                Navigator.pushReplacementNamed(context, SignIn.routeName);
               } else {
                 setState(() {
                   load = false;

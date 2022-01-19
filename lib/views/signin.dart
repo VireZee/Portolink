@@ -1,12 +1,12 @@
 part of 'views.dart';
 
-class Signin extends StatefulWidget {
-  const Signin({Key? key}) : super(key: key);
+class SignIn extends StatefulWidget {
+  const SignIn({Key? key}) : super(key: key);
   static const String routeName = '/in';
   @override
-  _SigninState createState() => _SigninState();
+  _SignInState createState() => _SignInState();
 }
-class _SigninState extends State<Signin> {
+class _SignInState extends State<SignIn> {
   final _formKey = GlobalKey<FormState>();
   final ctrlEmail = TextEditingController();
   final ctrlPass = TextEditingController();
@@ -229,7 +229,7 @@ class _SigninState extends State<Signin> {
                   const SizedBox(height: 20),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushReplacementNamed(context, Signup.routeName);
+                      Navigator.pushReplacementNamed(context, SignUp.routeName);
                     },
                     child: const Text(
                       'Create New Account',

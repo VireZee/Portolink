@@ -22,7 +22,7 @@ class _SplashState extends State<Splash> {
       Navigator.pushReplacementNamed(context, MainMenu.routeName);
       Activity.showToast('Welcome Back, ' + auth.currentUser!.email.toString(), Colors.blue);
     }
-    Navigator.pushReplacementNamed(context, Signin.routeName);
+    Navigator.pushReplacementNamed(context, SignIn.routeName);
   }
   @override
   Widget build(BuildContext context) {
