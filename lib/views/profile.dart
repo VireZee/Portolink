@@ -10,32 +10,63 @@ class _ProfileState extends State<Profile> {
   final CollectionReference uCollection = FirebaseFirestore.instance.collection('Users');
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton.icon(
-      onPressed: () async {
-        final net = await (Connectivity().checkConnectivity());
-        if (net == ConnectivityResult.none) {
-          Activity.showToast('No internet connection', const Color(0xFFFF0000));
-        }
-        setState(() {
-          load = true;
-        });
-        await Auth.signOut().then((value) {
-          if (value == true) {
+    return Column(
+      children: [
+        ElevatedButton.icon(
+          onPressed: () async {
+            final net = await (Connectivity().checkConnectivity());
+            if (net == ConnectivityResult.none) {
+              Activity.showToast('No internet connection', const Color(0xFFFF0000));
+            }
             setState(() {
-              load = false;
+              load = true;
             });
-            Activity.showToast('Signed out', Colors.blue);
-            Navigator.pushReplacementNamed(context, Login.routeName);
-          } else {
+            await Auth.signOut().then((value) {
+              if (value == true) {
+                setState(() {
+                  load = false;
+                });
+                Activity.showToast('Signed out', Colors.blue);
+                Navigator.pushReplacementNamed(context, Signin.routeName);
+              } else {
+                setState(() {
+                  load = false;
+                });
+                Activity.showToast('No internet connection', const Color(0xFFFF0000));
+              }
+            });
+          },
+          icon: const Icon(Icons.logout),
+          label: const Text('Sign Out')
+        ),
+        ElevatedButton.icon(
+          onPressed: () async {
+            final net = await (Connectivity().checkConnectivity());
+            if (net == ConnectivityResult.none) {
+              Activity.showToast('No internet connection', const Color(0xFFFF0000));
+            }
             setState(() {
-              load = false;
+              load = true;
             });
-            Activity.showToast('No internet connection', const Color(0xFFFF0000));
-          }
-        });
-      },
-      icon: const Icon(Icons.logout),
-      label: const Text('Sign out')
+            await Auth.deleteAccount().then((value) {
+              if (value == true) {
+                setState(() {
+                  load = false;
+                });
+                Activity.showToast('Goodbye', Colors.blue);
+                Navigator.pushReplacementNamed(context, Signin.routeName);
+              } else {
+                setState(() {
+                  load = false;
+                });
+                Activity.showToast('No internet connection', const Color(0xFFFF0000));
+              }
+            });
+          },
+          icon: const Icon(Icons.clear),
+          label: const Text('Delete Account')
+        )
+      ]
     );
   }
 }

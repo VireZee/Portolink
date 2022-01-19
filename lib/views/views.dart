@@ -8,7 +8,7 @@ import 'package:portolink/models/models.dart';
 import 'package:portolink/services/services.dart';
 
 part 'mainmenu.dart';
-part 'login.dart';
 part 'profile.dart';
-part 'register.dart';
+part 'signin.dart';
+part 'signup.dart';
 part 'splash.dart';

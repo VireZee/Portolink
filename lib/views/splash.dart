@@ -17,7 +17,7 @@ class _SplashState extends State<Splash> {
     return Timer(_duration, checkAuth);
   }
   void checkAuth() {
-    Navigator.pushReplacementNamed(context, Login.routeName);
+    Navigator.pushReplacementNamed(context, Signin.routeName);
   }
   @override
   Widget build(BuildContext context) {

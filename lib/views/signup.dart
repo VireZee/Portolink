@@ -1,12 +1,12 @@
 part of 'views.dart';
 
-class Register extends StatefulWidget {
-  const Register({Key? key}) : super(key: key);
-  static const String routeName = '/register';
+class Signup extends StatefulWidget {
+  const Signup({Key? key}) : super(key: key);
+  static const String routeName = '/up';
   @override
-  _RegisterState createState() => _RegisterState();
+  _SignupState createState() => _SignupState();
 }
-class _RegisterState extends State<Register> {
+class _SignupState extends State<Signup> {
   final _formKey = GlobalKey<FormState>();
   final ctrlName = TextEditingController();
   final ctrlPhone = TextEditingController();
@@ -33,7 +33,7 @@ class _RegisterState extends State<Register> {
           child: Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/register_bg.jpg'),
+                image: AssetImage('assets/images/signup_bg.jpg'),
                 fit: BoxFit.cover,
                 colorFilter: ColorFilter.mode(Colors.black54, BlendMode.darken)
               )
@@ -45,7 +45,7 @@ class _RegisterState extends State<Register> {
                   const Flexible(
                     child: Center(
                       child: Text(
-                        'REGISTER',
+                        'SIGN UP',
                         style: TextStyle(
                           fontFamily: 'Oswald',
                           fontSize: 60
@@ -215,7 +215,7 @@ class _RegisterState extends State<Register> {
                   const SizedBox(height: 20),
                   SizedBox(
                     height: 40,
-                    width: 170,
+                    width: 150,
                     child: ElevatedButton.icon(
                       onPressed: ctrlName.text.isNotEmpty && ctrlPhone.text.isNotEmpty && ctrlEmail.text.isNotEmpty && ctrlPass.text.isNotEmpty && ctrlCPass.text.isNotEmpty
                       ? () async {
@@ -254,8 +254,8 @@ class _RegisterState extends State<Register> {
                               setState(() {
                                 load = false;
                               });
-                              Activity.showToast('You can login now', Colors.blue);
-                              Navigator.pushReplacementNamed(context, Login.routeName);
+                              Activity.showToast('You can Sign In now', Colors.blue);
+                              Navigator.pushReplacementNamed(context, Signin.routeName);
                             }
                             else if (msg == 'Existed') {
                               setState(() {
@@ -300,7 +300,7 @@ class _RegisterState extends State<Register> {
                         children: const [
                           Spacer(),
                           Text(
-                            'REGISTER',
+                            'SIGN UP',
                             style: TextStyle(
                               fontFamily: 'Prompt',
                               fontSize: 20
@@ -314,7 +314,7 @@ class _RegisterState extends State<Register> {
                   const SizedBox(height: 20),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushReplacementNamed(context, Login.routeName);
+                      Navigator.pushReplacementNamed(context, Signin.routeName);
                     },
                     child: const Text(
                       'Already Have an Account',

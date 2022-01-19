@@ -20,8 +20,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         Splash.routeName: (context) => const Splash(),
-        Login.routeName: (context) => const Login(),
-        Register.routeName: (context) => const Register()
+        Signin.routeName: (context) => const Signin(),
+        Signup.routeName: (context) => const Signup()
       }
     );
   }

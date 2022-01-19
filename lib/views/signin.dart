@@ -1,12 +1,12 @@
 part of 'views.dart';
 
-class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
-  static const String routeName = '/login';
+class Signin extends StatefulWidget {
+  const Signin({Key? key}) : super(key: key);
+  static const String routeName = '/in';
   @override
-  _LoginState createState() => _LoginState();
+  _SigninState createState() => _SigninState();
 }
-class _LoginState extends State<Login> {
+class _SigninState extends State<Signin> {
   final ctrlEmail = TextEditingController();
   final ctrlPass = TextEditingController();
   bool on = true;
@@ -23,7 +23,7 @@ class _LoginState extends State<Login> {
         Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/images/login_bg.jpg'),
+              image: AssetImage('assets/images/signin_bg.jpg'),
               fit: BoxFit.cover,
               colorFilter: ColorFilter.mode(Colors.black54, BlendMode.darken)
             )
@@ -54,7 +54,7 @@ class _LoginState extends State<Login> {
               const Flexible(
                 child: Center(
                   child: Text(
-                    'LOGIN',
+                    'SIGN IN',
                     style: TextStyle(
                       fontFamily: 'Oswald',
                       fontSize: 60
@@ -174,7 +174,7 @@ class _LoginState extends State<Login> {
                     children: const [
                       Spacer(),
                       Text(
-                        'LOGIN',
+                        'SIGN IN',
                         style: TextStyle(
                           fontFamily: 'Prompt',
                           fontSize: 20
@@ -188,7 +188,7 @@ class _LoginState extends State<Login> {
               const SizedBox(height: 20),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushReplacementNamed(context, Register.routeName);
+                  Navigator.pushReplacementNamed(context, Signup.routeName);
                 },
                 child: const Text(
                   'Create New Account',
