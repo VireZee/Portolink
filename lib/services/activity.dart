@@ -10,6 +10,7 @@ class Activity {
   static void showToast(String msg, Color myColor) {
     Fluttertoast.showToast(
       msg: msg,
+      toastLength: Toast.LENGTH_LONG,
       backgroundColor: myColor,
       textColor: Colors.white,
       fontSize: 14

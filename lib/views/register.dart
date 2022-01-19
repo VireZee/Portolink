@@ -13,7 +13,7 @@ class _RegisterState extends State<Register> {
   final ctrlEmail = TextEditingController();
   final ctrlPass = TextEditingController();
   final ctrlCPass = TextEditingController();
-  bool on = true;
+  bool vis = true;
   bool load = false;
   @override
   void dispose() {
@@ -164,17 +164,17 @@ class _RegisterState extends State<Register> {
                             suffixIcon: GestureDetector(
                               onTap: () {
                                 setState(() {
-                                  on = !on;
+                                  vis = !vis;
                                 });
                               },
                               child: Icon(
-                                on
+                                vis
                                 ? Icons.visibility
                                 : Icons.visibility_off,
                               )
                             )
                           ),
-                          obscureText: on,
+                          obscureText: vis,
                           controller: ctrlPass,
                           keyboardType: TextInputType.text,
                           textInputAction: TextInputAction.next
@@ -204,7 +204,7 @@ class _RegisterState extends State<Register> {
                             ),
                             hintText: 'Confirm Pass'
                           ),
-                          obscureText: on,
+                          obscureText: vis,
                           controller: ctrlCPass,
                           keyboardType: TextInputType.text,
                           textInputAction: TextInputAction.done
@@ -226,12 +226,6 @@ class _RegisterState extends State<Register> {
                         else if (ctrlPhone.text.length <= 7 || ctrlPhone.text.length >= 13) {
                           Activity.showToast('Phone number is invalid', const Color(0xFFFF0000));
                         }
-                        else if (!EmailValidator.validate(ctrlEmail.text)) {
-                          Activity.showToast('Email is invalid', const Color(0xFFFF0000));
-                        }
-                        else if (ctrlPass.text.length <= 5) {
-                          Activity.showToast('Password must have at least 6 characters', const Color(0xFFFF0000));
-                        } 
                         else if (ctrlPass.text != ctrlCPass.text) {
                           Activity.showToast('Password is not match', const Color(0xFFFF0000));
                         } else {
@@ -257,13 +251,25 @@ class _RegisterState extends State<Register> {
                               setState(() {
                                 load = false;
                               });
-                              Activity.showToast('You can Login now', Colors.blue);
+                              Activity.showToast('You can login now', Colors.blue);
                               Navigator.pushReplacementNamed(context, Login.routeName);
-                            } else {
+                            }
+                            else if (msg == 'Existed') {
                               setState(() {
                                 load = false;
                               });
-                              Activity.showToast('Register Failed', const Color(0xFFFF0000));
+                              Activity.showToast('Email is already taken', const Color(0xFFFF0000));
+                            }
+                            else if (msg == 'Invalid Email') {
+                              setState(() {
+                                load = false;
+                              });
+                              Activity.showToast('Email is invalid', const Color(0xFFFF0000));
+                            } else if (msg == 'Invalid Pass') {
+                              setState(() {
+                                load = false;
+                              });
+                              Activity.showToast('Password is too weak', const Color(0xFFFF0000));
                             }
                           } else {
                             Activity.showToast('Fill the form', const Color(0xFFFF0000));

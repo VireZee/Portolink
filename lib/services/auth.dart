@@ -9,27 +9,44 @@ class Auth {
     String msg = '';
     final String token;
     final String uid;
-    UserCredential uCredential = await auth.createUserWithEmailAndPassword(email: users.email, password: users.password);
-    uid = uCredential.user!.uid;
-    token = (await FirebaseMessaging.instance.getToken())!;
-    await uCollection.doc(uid).set({
-      'uid': uid,
-      'photo': '-',
-      'name': users.name,
-      'phone': users.phone,
-      'email': users.email,
-      'password': sha512.convert(utf8.encode(users.password)).toString(),
-      'message': '-',
-      'token': token,
-      'created': dateNow,
-      'updated': '-',
-      'entered': '-',
-      'left': '-'
-    }).then((value) {
-      msg = 'Signed';
-    }).catchError((onError) {
-      msg = onError;
-    });
+    try {
+      UserCredential uCredential = await auth.createUserWithEmailAndPassword(email: users.email, password: users.password);
+      uid = uCredential.user!.uid;
+      token = (await FirebaseMessaging.instance.getToken())!;
+      await uCollection.doc(uid).set({
+        'uid': uid,
+        'photo': '-',
+        'name': users.name,
+        'phone': users.phone,
+        'email': users.email,
+        'password': sha512.convert(utf8.encode(users.password)).toString(),
+        'message': '-',
+        'token': token,
+        'created': dateNow,
+        'updated': '-',
+        'entered': '-',
+        'left': '-'
+      }).then((value) {
+        msg = 'Signed';
+      });
+      return msg;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'email-already-in-use') {
+        msg = 'Existed';
+      }
+      else if (e.code == 'invalid-email') {
+        msg = 'Invalid Email';
+      }
+      else if (e.code == 'weak-password') {
+        msg = 'Invalid Pass';
+      }
+      else if (e.code == 'operation-not-allowed') {
+        msg = 'Disabled';
+      }
+      else {
+        print(e.code);
+      }
+    }
     return msg;
   }
   static Future<String> signIn(String email, String password) async {
