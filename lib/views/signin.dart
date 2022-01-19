@@ -246,7 +246,10 @@ class _SigninState extends State<Signin> {
               )
             )
           )
-        )
+        ),
+        load == true
+        ? Activity.check()
+        : Container()
       ]
     );
   }
