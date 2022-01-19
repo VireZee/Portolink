@@ -8,9 +8,27 @@ class MainMenu extends StatefulWidget {
 }
 class _MainMenuState extends State<MainMenu> {
   bool load = false;
-  int _selectedIntex = 0;
+  static int _selectedIntex = 0;
+  final List<Widget> _widgetOptions = <Widget>[
+    const Profile()
+  ];
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIntex = index;
+    });
+  }
   @override
   Widget build(BuildContext context) {
-    return Text('Hello');
+    return Scaffold(
+      body: Center(child: _widgetOptions.elementAt(_selectedIntex)),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Account')
+        ],
+        currentIndex: _selectedIntex,
+        onTap: _onItemTapped
+      )
+    );
   }
 }

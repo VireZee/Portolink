@@ -43,9 +43,6 @@ class Auth {
       else if (e.code == 'operation-not-allowed') {
         msg = 'Disabled';
       }
-      else {
-        print(e.code);
-      }
     }
     return msg;
   }
@@ -55,18 +52,34 @@ class Auth {
     String msg = '';
     final String token;
     final String uid;
-    UserCredential uCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
-    uid = uCredential.user!.uid;
-    token = (await FirebaseMessaging.instance.getToken())!;
-    await uCollection.doc(uid).update({
-      'isOn': '1',
-      'token': token,
-      'entered': dateNow
-    }).then((value) {
-      msg = 'Success';
-    }).catchError((onError) {
-      msg = onError;
-    });
+    try {
+      UserCredential uCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
+      uid = uCredential.user!.uid;
+      token = (await FirebaseMessaging.instance.getToken())!;
+      await uCollection.doc(uid).update({
+        'isOn': '1',
+        'token': token,
+        'entered': dateNow
+      }).then((value) {
+        msg = 'Success';
+      }).catchError((onError) {
+        msg = onError;
+      });
+      return msg;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        msg = 'None';
+      }
+      else if (e.code == 'wrong-password') {
+        msg = 'Hacker';
+      }
+      else if (e.code == 'invalid-email') {
+        msg = 'Invalid Email';
+      }
+      else if (e.code == 'user-disabled') {
+        msg = 'Disabled';
+      }
+    }
     return msg;
   }
   static Future<bool> signOut() async {
