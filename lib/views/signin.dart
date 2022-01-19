@@ -155,7 +155,45 @@ class _SigninState extends State<Signin> {
                     width: 150,
                     child: ElevatedButton.icon(
                       onPressed: ctrlEmail.text.isNotEmpty && ctrlPass.text.isNotEmpty
-                      ? () {}
+                      ? () async {
+                        if (_formKey.currentState!.validate()) {
+                          setState(() {
+                            load = true;
+                          });
+                          final String msg = await Auth.signIn(ctrlEmail.text, ctrlPass.text);
+                          if (msg == 'Signed') {
+                            setState(() {
+                              load = false;
+                            });
+                            Activity.showToast(null.toString(), Colors.blue);
+                            Navigator.pushReplacementNamed(context, MainMenu.routeName);
+                          }
+                          else if (msg == 'None') {
+                            setState(() {
+                              load = false;
+                            });
+                            Activity.showToast('Email is not exist', const Color(0xFFFF0000));
+                          }
+                          else if (msg == 'Hacker') {
+                            setState(() {
+                              load = false;
+                            });
+                            Activity.showToast('Password is wrong', const Color(0xFFFF0000));
+                          }
+                          else if (msg == 'Invalid Email') {
+                            setState(() {
+                              load = false;
+                            });
+                            Activity.showToast('Email is invalid', const Color(0xFFFF0000));
+                          }
+                          else if (msg == 'Disabled') {
+                            setState(() {
+                              load = false;
+                            });
+                            Activity.showToast('This email has been disabled', const Color(0xFFFF0000));
+                          }
+                        }
+                      }
                       : null,
                       style: ButtonStyle(
                         overlayColor: MaterialStateProperty.resolveWith((states) {

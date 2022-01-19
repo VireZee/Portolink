@@ -61,9 +61,7 @@ class Auth {
         'token': token,
         'entered': dateNow
       }).then((value) {
-        msg = 'Success';
-      }).catchError((onError) {
-        msg = onError;
+        msg = 'Signed';
       });
       return msg;
     } on FirebaseAuthException catch (e) {

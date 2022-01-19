@@ -268,14 +268,19 @@ class _SignupState extends State<Signup> {
                                 load = false;
                               });
                               Activity.showToast('Email is invalid', const Color(0xFFFF0000));
-                            } else if (msg == 'Invalid Pass') {
+                            }
+                            else if (msg == 'Invalid Pass') {
                               setState(() {
                                 load = false;
                               });
                               Activity.showToast('Password is too weak', const Color(0xFFFF0000));
                             }
-                          } else {
-                            Activity.showToast('Fill the form', const Color(0xFFFF0000));
+                            else if (msg == 'Disabled') {
+                              setState(() {
+                                load = false;
+                              });
+                              Activity.showToast('This email has been disabled', const Color(0xFFFF0000));
+                            }
                           }
                         }
                       }
