@@ -44,7 +44,6 @@ dependencies:
   firebase_messaging: ^11.2.5
   crypto: ^3.0.1
   connectivity: ^3.0.6
-  email_validator: ^2.0.1
 
 dev_dependencies:
   flutter_test:
