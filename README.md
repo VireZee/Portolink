@@ -1,4 +1,5 @@
 # Portolink App
 
-- Bug Image (In & Up)
+- Bug Image (Up)
 - Bug Button
+- Coba display wlc bck

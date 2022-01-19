@@ -7,10 +7,12 @@ class Splash extends StatefulWidget {
   _SplashState createState() => _SplashState();
 }
 class _SplashState extends State<Splash> {
+  final ft = FToast();
   @override
   void initState() {
     super.initState();
     _loadSplash();
+    ft.init(context);
   }
   _loadSplash() async {
     var _duration = const Duration(seconds: 5);
@@ -20,7 +22,14 @@ class _SplashState extends State<Splash> {
     FirebaseAuth auth = FirebaseAuth.instance;
     if (auth.currentUser != null) {
       Navigator.pushReplacementNamed(context, MainMenu.routeName);
-      Activity.showToast('Welcome Back', Colors.blue);
+      ft.showToast(
+        child: Activity.showToast(
+          'Welcome Back',
+          Colors.blue
+        ),
+        toastDuration: const Duration(seconds: 1),
+        fadeDuration: 200
+      );
     } else {
       Navigator.pushReplacementNamed(context, SignIn.routeName);
     }

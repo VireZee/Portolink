@@ -13,8 +13,14 @@ class _SignUpState extends State<SignUp> {
   final ctrlEmail = TextEditingController();
   final ctrlPass = TextEditingController();
   final ctrlCPass = TextEditingController();
+  final ft = FToast();
   bool vis = true;
   bool load = false;
+  @override
+  void initState() {
+    super.initState();
+    ft.init(context);
+  }
   @override
   void dispose() {
     ctrlName.dispose();
@@ -221,16 +227,44 @@ class _SignUpState extends State<SignUp> {
                       ? () async {
                         final net = await (Connectivity().checkConnectivity());
                         if (net == ConnectivityResult.none) {
-                          Activity.showToast('No internet connection', const Color(0xFFFF0000));
+                          ft.showToast(
+                            child: Activity.showToast(
+                              'No internet connection',
+                              const Color(0xFFFF0000)
+                            ),
+                            toastDuration: const Duration(seconds: 1),
+                            fadeDuration: 200
+                          );
                         }
                         else if (ctrlName.text.isEmpty) {
-                          Activity.showToast('Name cannot be empty', const Color(0xFFFF0000));
+                          ft.showToast(
+                            child: Activity.showToast(
+                              'Name cannot be empty',
+                              const Color(0xFFFF0000)
+                            ),
+                            toastDuration: const Duration(seconds: 1),
+                            fadeDuration: 200
+                          );
                         }
                         else if (ctrlPhone.text.length <= 7 || ctrlPhone.text.length >= 13) {
-                          Activity.showToast('Phone number is invalid', const Color(0xFFFF0000));
+                          ft.showToast(
+                            child: Activity.showToast(
+                              'Phone number is invalid',
+                              const Color(0xFFFF0000)
+                            ),
+                            toastDuration: const Duration(seconds: 1),
+                            fadeDuration: 200
+                          );
                         }
                         else if (ctrlPass.text != ctrlCPass.text) {
-                          Activity.showToast('Password is not match', const Color(0xFFFF0000));
+                          ft.showToast(
+                            child: Activity.showToast(
+                              'Password is not match',
+                              const Color(0xFFFF0000)
+                            ),
+                            toastDuration: const Duration(seconds: 1),
+                            fadeDuration: 200
+                          );
                         } else {
                           if (_formKey.currentState!.validate()) {
                             setState(() {
@@ -254,32 +288,67 @@ class _SignUpState extends State<SignUp> {
                               setState(() {
                                 load = false;
                               });
-                              Activity.showToast('You can Sign In now', Colors.blue);
+                              ft.showToast(
+                                child: Activity.showToast(
+                                  'You can Sign In now',
+                                  Colors.blue
+                                ),
+                                toastDuration: const Duration(seconds: 1),
+                                fadeDuration: 200
+                              );
                               Navigator.pushReplacementNamed(context, SignIn.routeName);
                             }
                             else if (msg == 'Existed') {
                               setState(() {
                                 load = false;
                               });
-                              Activity.showToast('Email is already taken', const Color(0xFFFF0000));
+                              ft.showToast(
+                                child: Activity.showToast(
+                                  'Email is already taken',
+                                  const Color(0xFFFF0000)
+                                ),
+                                toastDuration: const Duration(seconds: 1),
+                                fadeDuration: 200
+                              );
                             }
                             else if (msg == 'Invalid Email') {
                               setState(() {
                                 load = false;
                               });
-                              Activity.showToast('Email is invalid', const Color(0xFFFF0000));
+                              ft.showToast(
+                                child: Activity.showToast(
+                                  'Email is invalid',
+                                  const Color(0xFFFF0000)
+                                ),
+                                toastDuration: const Duration(seconds: 1),
+                                fadeDuration: 200
+                              );
                             }
                             else if (msg == 'Invalid Pass') {
                               setState(() {
                                 load = false;
                               });
-                              Activity.showToast('Password is too weak', const Color(0xFFFF0000));
+                              ft.showToast(
+                                child: Activity.showToast(
+                                  'Password is too weak',
+                                  const Color(0xFFFF0000)
+                                ),
+                                toastDuration: const Duration(seconds: 1),
+                                fadeDuration: 200
+                              );
                             }
                             else if (msg == 'Disabled') {
                               setState(() {
                                 load = false;
                               });
-                              Activity.showToast('This email has been disabled', const Color(0xFFFF0000));
+                              ft.showToast(
+                                child: Activity.showToast(
+                                  'This email has been disabled',
+                                  const Color(0xFFFF0000)
+                                ),
+                                toastDuration: const Duration(seconds: 1),
+                                fadeDuration: 200
+                              );
                             }
                           }
                         }

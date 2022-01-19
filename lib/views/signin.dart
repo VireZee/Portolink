@@ -10,8 +10,14 @@ class _SignInState extends State<SignIn> {
   final _formKey = GlobalKey<FormState>();
   final ctrlEmail = TextEditingController();
   final ctrlPass = TextEditingController();
+  final ft = FToast();
   bool vis = true;
   bool load = false;
+  @override
+  void initState() {
+    super.initState();
+    ft.init(context);
+  }
   @override
   void dispose() {
     ctrlEmail.dispose();
@@ -156,41 +162,80 @@ class _SignInState extends State<SignIn> {
                     child: ElevatedButton.icon(
                       onPressed: ctrlEmail.text.isNotEmpty && ctrlPass.text.isNotEmpty
                       ? () async {
-                        if (_formKey.currentState!.validate()) {
-                          setState(() {
-                            load = true;
-                          });
-                          final String msg = await Auth.signIn(ctrlEmail.text, ctrlPass.text);
-                          if (msg == 'Signed') {
+                        final net = await (Connectivity().checkConnectivity());
+                        if (net == ConnectivityResult.none) {
+                          ft.showToast(
+                            child: Activity.showToast(
+                              'No internet connection',
+                              const Color(0xFFFF0000)
+                            ),
+                            toastDuration: const Duration(seconds: 1),
+                            fadeDuration: 200
+                          );
+                        } else {
+                          if (_formKey.currentState!.validate()) {
                             setState(() {
-                              load = false;
+                              load = true;
                             });
-                            Activity.showToast('', Colors.blue);
-                            Navigator.pushReplacementNamed(context, MainMenu.routeName);
-                          }
-                          else if (msg == 'None') {
-                            setState(() {
-                              load = false;
-                            });
-                            Activity.showToast('Email is not exist', const Color(0xFFFF0000));
-                          }
-                          else if (msg == 'Hacker') {
-                            setState(() {
-                              load = false;
-                            });
-                            Activity.showToast('Password is wrong', const Color(0xFFFF0000));
-                          }
-                          else if (msg == 'Invalid Email') {
-                            setState(() {
-                              load = false;
-                            });
-                            Activity.showToast('Email is invalid', const Color(0xFFFF0000));
-                          }
-                          else if (msg == 'Disabled') {
-                            setState(() {
-                              load = false;
-                            });
-                            Activity.showToast('This email has been disabled', const Color(0xFFFF0000));
+                            final String msg = await Auth.signIn(ctrlEmail.text, ctrlPass.text);
+                            if (msg == 'Signed') {
+                              setState(() {
+                                load = false;
+                              });
+                              Navigator.pushReplacementNamed(context, MainMenu.routeName);
+                            }
+                            else if (msg == 'None') {
+                              setState(() {
+                                load = false;
+                              });
+                              ft.showToast(
+                                child: Activity.showToast(
+                                  'Email is not exist',
+                                  const Color(0xFFFF0000)
+                                ),
+                                toastDuration: const Duration(seconds: 1),
+                                fadeDuration: 200
+                              );
+                            }
+                            else if (msg == 'Hacker') {
+                              setState(() {
+                                load = false;
+                              });
+                              ft.showToast(
+                                child: Activity.showToast(
+                                  'Password is wrong',
+                                  const Color(0xFFFF0000)
+                                ),
+                                toastDuration: const Duration(seconds: 1),
+                                fadeDuration: 200
+                              );
+                            }
+                            else if (msg == 'Invalid Email') {
+                              setState(() {
+                                load = false;
+                              });
+                              ft.showToast(
+                                child: Activity.showToast(
+                                  'Email is invalid',
+                                  const Color(0xFFFF0000)
+                                ),
+                                toastDuration: const Duration(seconds: 1),
+                                fadeDuration: 200
+                              );
+                            }
+                            else if (msg == 'Disabled') {
+                              setState(() {
+                                load = false;
+                              });
+                              ft.showToast(
+                                child: Activity.showToast(
+                                  'This email has been disabled',
+                                  const Color(0xFFFF0000)
+                                ),
+                                toastDuration: const Duration(seconds: 1),
+                                fadeDuration: 200
+                              );
+                            }
                           }
                         }
                       }

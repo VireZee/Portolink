@@ -6,8 +6,14 @@ class Profile extends StatefulWidget {
   _ProfileState createState() => _ProfileState();
 }
 class _ProfileState extends State<Profile> {
+  final ft = FToast();
   bool load = false;
   final CollectionReference uCollection = FirebaseFirestore.instance.collection('Users');
+  @override
+  void initState() {
+    super.initState();
+    ft.init(context);
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -16,7 +22,14 @@ class _ProfileState extends State<Profile> {
           onPressed: () async {
             final net = await (Connectivity().checkConnectivity());
             if (net == ConnectivityResult.none) {
-              Activity.showToast('No internet connection', const Color(0xFFFF0000));
+              ft.showToast(
+                child: Activity.showToast(
+                  'No internet connection',
+                  const Color(0xFFFF0000)
+                ),
+                toastDuration: const Duration(seconds: 1),
+                fadeDuration: 200
+              );
             }
             setState(() {
               load = true;
@@ -26,13 +39,19 @@ class _ProfileState extends State<Profile> {
                 setState(() {
                   load = false;
                 });
-                Activity.showToast('Signed out', Colors.blue);
                 Navigator.pushReplacementNamed(context, SignIn.routeName);
               } else {
                 setState(() {
                   load = false;
                 });
-                Activity.showToast('No internet connection', const Color(0xFFFF0000));
+                ft.showToast(
+                  child: Activity.showToast(
+                    'No internet connection',
+                    const Color(0xFFFF0000)
+                  ),
+                  toastDuration: const Duration(seconds: 1),
+                  fadeDuration: 200
+                );
               }
             });
           },
@@ -43,7 +62,14 @@ class _ProfileState extends State<Profile> {
           onPressed: () async {
             final net = await (Connectivity().checkConnectivity());
             if (net == ConnectivityResult.none) {
-              Activity.showToast('No internet connection', const Color(0xFFFF0000));
+              ft.showToast(
+                child: Activity.showToast(
+                  'No internet connection',
+                  const Color(0xFFFF0000)
+                ),
+                toastDuration: const Duration(seconds: 1),
+                fadeDuration: 200
+              );
             }
             setState(() {
               load = true;
@@ -53,13 +79,27 @@ class _ProfileState extends State<Profile> {
                 setState(() {
                   load = false;
                 });
-                Activity.showToast('Goodbye', Colors.blue);
+                ft.showToast(
+                  child: Activity.showToast(
+                    'Goodbye',
+                    Colors.blue
+                  ),
+                  toastDuration: const Duration(seconds: 1),
+                  fadeDuration: 200
+                );
                 Navigator.pushReplacementNamed(context, SignIn.routeName);
               } else {
                 setState(() {
                   load = false;
                 });
-                Activity.showToast('No internet connection', const Color(0xFFFF0000));
+                ft.showToast(
+                  child: Activity.showToast(
+                    'No internet connection',
+                    const Color(0xFFFF0000)
+                  ),
+                  toastDuration: const Duration(seconds: 1),
+                  fadeDuration: 200
+                );
               }
             });
           },

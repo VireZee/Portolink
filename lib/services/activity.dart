@@ -7,7 +7,25 @@ class Activity {
     final String date = formatter.format(now);
     return date;
   }
-  static void showToast(String msg, Color myColor) {
+  static showToast(String msg, Color myColor) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(50),
+        color: myColor
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          myColor == Colors.blue
+          ? const Icon(Icons.check, color: Colors.white)
+          : const Icon(Icons.clear, color: Colors.white),
+          const SizedBox(width: 12),
+          Text(msg, style: const TextStyle(color: Colors.white))
+        ]
+      ),
+    );
+    /* It works only on Android Q & Below
     Fluttertoast.showToast(
       msg: msg,
       toastLength: Toast.LENGTH_LONG,
@@ -15,6 +33,7 @@ class Activity {
       textColor: Colors.white,
       fontSize: 14
     );
+    */
   }
   static Container check() {
     return Container(
