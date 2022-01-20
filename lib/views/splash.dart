@@ -21,10 +21,11 @@ class _SplashState extends State<Splash> {
   void checkAuth() async {
     FirebaseAuth auth = FirebaseAuth.instance;
     if (auth.currentUser != null) {
+      final name = auth.currentUser!.displayName;
       Navigator.pushReplacementNamed(context, MainMenu.routeName);
       ft.showToast(
         child: Activity.showToast(
-          'Welcome Back',
+          'Welcome Back, ' + name!.split(' ').first,
           Colors.blue
         ),
         toastDuration: const Duration(seconds: 1),
@@ -39,9 +40,7 @@ class _SplashState extends State<Splash> {
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Lottie.asset('assets/images/auth.json')
-        ]
+        children: [Lottie.asset('assets/images/loading.json')]
       )
     );
   }

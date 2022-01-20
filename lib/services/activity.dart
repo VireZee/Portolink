@@ -33,7 +33,7 @@ class Activity {
       textColor: Colors.white,
       fontSize: 14
     );
-    */
+    JANGAN DIHAPUS!!!!! */
   }
   static Container check() {
     return Container(

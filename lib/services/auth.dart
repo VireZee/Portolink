@@ -17,8 +17,8 @@ class Auth {
         'uid': uid,
         'photo': '-',
         'name': users.name,
-        'phone': users.phone,
-        'email': users.email,
+        'phone': users.phone.trim(),
+        'email': users.email.trim(),
         'password': sha512.convert(utf8.encode(users.password)).toString(),
         'message': '-',
         'token': token,
@@ -29,6 +29,8 @@ class Auth {
       }).then((value) {
         msg = 'Signed';
       });
+      auth.currentUser!.updatePhotoURL(users.photo);
+      auth.currentUser!.updateDisplayName(users.name);
       return msg;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
@@ -84,12 +86,10 @@ class Auth {
     await Firebase.initializeApp();
     final String dateNow = Activity.dateNow();
     final String uid = auth.currentUser!.uid;
-    await auth.signOut().whenComplete(() {
-      uCollection.doc(uid).update({
-        'isOn': '0',
-        'token': '-',
-        'left': dateNow
-      });
+    await uCollection.doc(uid).update({
+      'isOn': '0',
+      'token': '-',
+      'left': dateNow
     });
     return true;
   }
