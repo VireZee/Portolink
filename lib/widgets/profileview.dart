@@ -78,7 +78,7 @@ class _ProfileViewState extends State<ProfileView> {
                         padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 12, horizontal: 32))
                       )
                     ),
-                    const SizedBox(height: 50),
+                    const SizedBox(height: 300),
                     ElevatedButton.icon(
                       onPressed: () async {
                         final net = await (Connectivity().checkConnectivity());
@@ -91,6 +91,30 @@ class _ProfileViewState extends State<ProfileView> {
                             toastDuration: const Duration(seconds: 1),
                             fadeDuration: 200
                           );
+                        } else {
+                          setState(() {
+                            load = true;
+                          });
+                          await Auth.signOut().then((value) {
+                            if (value == true) {
+                              setState(() {
+                                load = false;
+                              });
+                              Navigator.pushReplacementNamed(context, SignIn.routeName);
+                            } else {
+                              setState(() {
+                                load = false;
+                              });
+                              ft.showToast(
+                                child: Activity.showToast(
+                                  'No internet connection',
+                                  const Color(0xFFFF0000)
+                                ),
+                                toastDuration: const Duration(seconds: 1),
+                                fadeDuration: 200
+                              );
+                            }
+                          });
                         }
                       },
                       icon: const Icon(Icons.logout),
