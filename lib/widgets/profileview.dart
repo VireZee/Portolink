@@ -7,7 +7,13 @@ class ProfileView extends StatefulWidget {
   _ProfileViewState createState() => _ProfileViewState();
 }
 class _ProfileViewState extends State<ProfileView> {
+  final ft = FToast();
   bool load = false;
+  @override
+  void initState() {
+    super.initState();
+    ft.init(context);
+  }
   @override
   Widget build(BuildContext context) {
     Users users = widget.users;
@@ -69,8 +75,26 @@ class _ProfileViewState extends State<ProfileView> {
                         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
                         ),
-                        padding: MaterialStateProperty.all(const EdgeInsets.fromLTRB(32, 12, 32, 12))
+                        padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 12, horizontal: 32))
                       )
+                    ),
+                    const SizedBox(height: 50),
+                    ElevatedButton.icon(
+                      onPressed: () async {
+                        final net = await (Connectivity().checkConnectivity());
+                        if (net == ConnectivityResult.none) {
+                          ft.showToast(
+                            child: Activity.showToast(
+                              'No internet connection',
+                              const Color(0xFFFF0000)
+                            ),
+                            toastDuration: const Duration(seconds: 1),
+                            fadeDuration: 200
+                          );
+                        }
+                      },
+                      icon: const Icon(Icons.logout),
+                      label: const Text('Sign Out')
                     )
                   ]
                 )
