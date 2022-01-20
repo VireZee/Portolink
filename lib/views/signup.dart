@@ -225,6 +225,7 @@ class _SignUpState extends State<SignUp> {
                     child: ElevatedButton.icon(
                       onPressed: ctrlName.text.isNotEmpty && ctrlPhone.text.isNotEmpty && ctrlEmail.text.isNotEmpty && ctrlPass.text.isNotEmpty && ctrlCPass.text.isNotEmpty
                       ? () async {
+                        FocusScope.of(context).requestFocus(FocusNode());
                         final net = await (Connectivity().checkConnectivity());
                         if (net == ConnectivityResult.none) {
                           ft.showToast(

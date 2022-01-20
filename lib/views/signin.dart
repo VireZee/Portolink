@@ -162,6 +162,7 @@ class _SignInState extends State<SignIn> {
                     child: ElevatedButton.icon(
                       onPressed: ctrlEmail.text.isNotEmpty && ctrlPass.text.isNotEmpty
                       ? () async {
+                        FocusScope.of(context).requestFocus(FocusNode());
                         final net = await (Connectivity().checkConnectivity());
                         if (net == ConnectivityResult.none) {
                           ft.showToast(
