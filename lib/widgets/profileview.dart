@@ -49,6 +49,11 @@ class _ProfileViewState extends State<ProfileView> {
                       users.email,
                       style: const TextStyle(color: Colors.blue, decoration: TextDecoration.underline, decorationThickness: 2)
                     ),
+                    const SizedBox(height: 12),
+                    Text(
+                      users.phone,
+                      style: const TextStyle(fontFamily: 'Dancing Script', fontSize: 25)
+                    ),
                     const SizedBox(height: 24),
                     ElevatedButton(
                       onPressed: () {},
