@@ -20,6 +20,7 @@ class MyTheme {
         caption: TextStyle(),
         overline: TextStyle()
       ).apply(bodyColor: Colors.white),
+      iconTheme: const IconThemeData(color: Colors.white),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.resolveWith((states) {
@@ -58,6 +59,7 @@ class MyTheme {
         caption: TextStyle(),
         overline: TextStyle()
       ).apply(bodyColor: Colors.black),
+      iconTheme: const IconThemeData(color: Colors.black),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.resolveWith((states) {
