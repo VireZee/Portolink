@@ -47,11 +47,13 @@ class _ProfileViewState extends State<ProfileView> {
                     ),
                     Text(
                       users.email,
+                      textAlign: TextAlign.center,
                       style: const TextStyle(color: Colors.blue, decoration: TextDecoration.underline, decorationThickness: 2)
                     ),
                     const SizedBox(height: 12),
                     Text(
                       users.phone,
+                      textAlign: TextAlign.center,
                       style: const TextStyle(fontFamily: 'Dancing Script', fontSize: 25)
                     ),
                     const SizedBox(height: 24),
