@@ -79,35 +79,16 @@ class _ProfileViewState extends State<ProfileView> {
                       )
                     ),
                     const SizedBox(height: 300),
-                    SizedBox(
-                      width: 350,
-                      height: 40,
-                      child: ElevatedButton.icon(
-                        onPressed: () async {
-                          final net = await (Connectivity().checkConnectivity());
-                          if (net == ConnectivityResult.none) {
-                            ft.showToast(
-                              child: Activity.showToast(
-                                'No internet connection',
-                                const Color(0xFFFF0000)
-                              ),
-                              toastDuration: const Duration(seconds: 1),
-                              fadeDuration: 200
-                            );
-                          } else {
-                            setState(() {
-                              load = true;
-                            });
-                            await Auth.signOut().then((value) {
-                              if (value == true) {
-                                setState(() {
-                                  load = false;
-                                });
-                                Navigator.pushReplacementNamed(context, SignIn.routeName);
-                              } else {
-                                setState(() {
-                                  load = false;
-                                });
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: 350,
+                          height: 40,
+                          child: ElevatedButton.icon(
+                            onPressed: () async {
+                              final net = await (Connectivity().checkConnectivity());
+                              if (net == ConnectivityResult.none) {
                                 ft.showToast(
                                   child: Activity.showToast(
                                     'No internet connection',
@@ -116,18 +97,42 @@ class _ProfileViewState extends State<ProfileView> {
                                   toastDuration: const Duration(seconds: 1),
                                   fadeDuration: 200
                                 );
+                              } else {
+                                setState(() {
+                                  load = true;
+                                });
+                                await Auth.signOut().then((value) {
+                                  if (value == true) {
+                                    setState(() {
+                                      load = false;
+                                    });
+                                    Navigator.pushReplacementNamed(context, SignIn.routeName);
+                                  } else {
+                                    setState(() {
+                                      load = false;
+                                    });
+                                    ft.showToast(
+                                      child: Activity.showToast(
+                                        'No internet connection',
+                                        const Color(0xFFFF0000)
+                                      ),
+                                      toastDuration: const Duration(seconds: 1),
+                                      fadeDuration: 200
+                                    );
+                                  }
+                                });
                               }
-                            });
-                          }
-                        },
-                        icon: const Icon(Icons.logout),
-                        label: const Text('Sign Out'),
-                        style: ButtonStyle(
-                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
+                            },
+                            icon: const Icon(Icons.logout),
+                            label: const Text('Sign Out'),
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
+                              )
+                            )
                           )
                         )
-                      )
+                      ]
                     )
                   ]
                 )
