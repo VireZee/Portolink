@@ -79,109 +79,103 @@ class _ProfileViewState extends State<ProfileView> {
                       )
                     ),
                     const SizedBox(height: 350),
-                    Container(
-                      width: 350,
-                      height: 50,
-                      decoration: BoxDecoration(
+                    Material(
+                      child: InkWell(
+                        onTap: () async {
+                          final net = await (Connectivity().checkConnectivity());
+                          if (net == ConnectivityResult.none) {
+                            ft.showToast(
+                              child: Activity.showToast(
+                                'No internet connection',
+                                const Color(0xFFFF0000)
+                              ),
+                              toastDuration: const Duration(seconds: 1),
+                              fadeDuration: 200
+                            );
+                          } else {
+                            setState(() {
+                              load = true;
+                            });
+                            await Auth.signOut().then((value) {
+                              if (value == true) {
+                                setState(() {
+                                  load = false;
+                                });
+                                Navigator.pushReplacementNamed(context, SignIn.routeName);
+                              } else {
+                                setState(() {
+                                  load = false;
+                                });
+                                ft.showToast(
+                                  child: Activity.showToast(
+                                    'No internet connection',
+                                    const Color(0xFFFF0000)
+                                  ),
+                                  toastDuration: const Duration(seconds: 1),
+                                  fadeDuration: 200
+                                );
+                              }
+                            });
+                          }
+                        },
+                        child: SizedBox(
+                          width: 350,
+                          height: 60,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Spacer(),
+                              Icon(Icons.logout),
+                              Spacer(flex: 5),
+                              Text('Sign Out'),
+                              Spacer(flex: 5),
+                              Icon(Icons.keyboard_arrow_right_sharp),
+                              Spacer()
+                            ],
+                          )
+                        ),
+                        highlightColor: Colors.blue,
                         borderRadius: BorderRadius.circular(50),
-                        color: Colors.grey.withOpacity(0.6)
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Spacer(),
-                          Icon(Icons.logout),
-                          Spacer(flex: 5),
-                          Text('Sign Out'),
-                          Spacer(flex: 5),
-                          Icon(Icons.keyboard_arrow_right_sharp),
-                          Spacer()
-                        ],
-                      ),
+                      color: Colors.grey.withOpacity(0.6),
+                      shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(50))
                     ),
                     const SizedBox(height: 12),
-                    Container(
-                      width: 350,
-                      height: 50,
-                      decoration: BoxDecoration(
+                    Material(
+                      child: InkWell(
+                        onTap: () {},
+                        child: SizedBox(
+                          width: 350,
+                          height: 60,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Spacer(),
+                              Icon(Icons.clear),
+                              Spacer(flex: 5),
+                              Text('Delete Account'),
+                              Spacer(flex: 5),
+                              Icon(Icons.keyboard_arrow_right_sharp),
+                              Spacer()
+                            ],
+                          )
+                        ),
+                        highlightColor: const Color(0xFFFF0000),
                         borderRadius: BorderRadius.circular(50),
-                        color: Colors.grey.withOpacity(0.6)
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Spacer(),
-                          Icon(Icons.clear),
-                          Spacer(flex: 5),
-                          Text('Delete Account'),
-                          Spacer(flex: 5),
-                          Icon(Icons.keyboard_arrow_right_sharp),
-                          Spacer()
-                        ],
-                      ),
+                      color: Colors.grey.withOpacity(0.6),
+                      shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(50))
                     )
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.center,
-                    //   children: [
-                    //     SizedBox(
-                    //       width: 350,
-                    //       height: 40,
-                    //       child: ElevatedButton.icon(
-                    //         onPressed: () async {
-                    //           final net = await (Connectivity().checkConnectivity());
-                    //           if (net == ConnectivityResult.none) {
-                    //             ft.showToast(
-                    //               child: Activity.showToast(
-                    //                 'No internet connection',
-                    //                 const Color(0xFFFF0000)
-                    //               ),
-                    //               toastDuration: const Duration(seconds: 1),
-                    //               fadeDuration: 200
-                    //             );
-                    //           } else {
-                    //             setState(() {
-                    //               load = true;
-                    //             });
-                    //             await Auth.signOut().then((value) {
-                    //               if (value == true) {
-                    //                 setState(() {
-                    //                   load = false;
-                    //                 });
-                    //                 Navigator.pushReplacementNamed(context, SignIn.routeName);
-                    //               } else {
-                    //                 setState(() {
-                    //                   load = false;
-                    //                 });
-                    //                 ft.showToast(
-                    //                   child: Activity.showToast(
-                    //                     'No internet connection',
-                    //                     const Color(0xFFFF0000)
-                    //                   ),
-                    //                   toastDuration: const Duration(seconds: 1),
-                    //                   fadeDuration: 200
-                    //                 );
-                    //               }
-                    //             });
-                    //           }
-                    //         },
-                    //         icon: const Icon(Icons.logout),
-                    //         label: const Text('Sign Out'),
-                    //         style: ButtonStyle(
-                    //           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    //             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
-                    //           )
-                    //         )
-                    //       )
-                    //     )
-                    //   ]
-                    // )
                   ]
                 )
               ]
             )
-          ),
+          )
         ),
-      ],
+        load == true
+        ? Activity.loading()
+        : Container()
+      ]
     );
   }
 }
