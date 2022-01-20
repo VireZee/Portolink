@@ -79,46 +79,55 @@ class _ProfileViewState extends State<ProfileView> {
                       )
                     ),
                     const SizedBox(height: 300),
-                    ElevatedButton.icon(
-                      onPressed: () async {
-                        final net = await (Connectivity().checkConnectivity());
-                        if (net == ConnectivityResult.none) {
-                          ft.showToast(
-                            child: Activity.showToast(
-                              'No internet connection',
-                              const Color(0xFFFF0000)
-                            ),
-                            toastDuration: const Duration(seconds: 1),
-                            fadeDuration: 200
-                          );
-                        } else {
-                          setState(() {
-                            load = true;
-                          });
-                          await Auth.signOut().then((value) {
-                            if (value == true) {
-                              setState(() {
-                                load = false;
-                              });
-                              Navigator.pushReplacementNamed(context, SignIn.routeName);
-                            } else {
-                              setState(() {
-                                load = false;
-                              });
-                              ft.showToast(
-                                child: Activity.showToast(
-                                  'No internet connection',
-                                  const Color(0xFFFF0000)
-                                ),
-                                toastDuration: const Duration(seconds: 1),
-                                fadeDuration: 200
-                              );
-                            }
-                          });
-                        }
-                      },
-                      icon: const Icon(Icons.logout),
-                      label: const Text('Sign Out')
+                    SizedBox(
+                      width: 350,
+                      height: 40,
+                      child: ElevatedButton.icon(
+                        onPressed: () async {
+                          final net = await (Connectivity().checkConnectivity());
+                          if (net == ConnectivityResult.none) {
+                            ft.showToast(
+                              child: Activity.showToast(
+                                'No internet connection',
+                                const Color(0xFFFF0000)
+                              ),
+                              toastDuration: const Duration(seconds: 1),
+                              fadeDuration: 200
+                            );
+                          } else {
+                            setState(() {
+                              load = true;
+                            });
+                            await Auth.signOut().then((value) {
+                              if (value == true) {
+                                setState(() {
+                                  load = false;
+                                });
+                                Navigator.pushReplacementNamed(context, SignIn.routeName);
+                              } else {
+                                setState(() {
+                                  load = false;
+                                });
+                                ft.showToast(
+                                  child: Activity.showToast(
+                                    'No internet connection',
+                                    const Color(0xFFFF0000)
+                                  ),
+                                  toastDuration: const Duration(seconds: 1),
+                                  fadeDuration: 200
+                                );
+                              }
+                            });
+                          }
+                        },
+                        icon: const Icon(Icons.logout),
+                        label: const Text('Sign Out'),
+                        style: ButtonStyle(
+                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
+                          )
+                        )
+                      )
                     )
                   ]
                 )
