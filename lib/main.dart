@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: MyTheme.darkTheme(),
+      theme: MyTheme.lightTheme(),
       initialRoute: '/',
       routes: {
         Splash.routeName: (context) => const Splash(),

@@ -4,6 +4,7 @@ class MyTheme {
   static ThemeData lightTheme(){
     return ThemeData(
       colorScheme: ThemeData().colorScheme.copyWith(primary: Colors.white),
+      appBarTheme: const AppBarTheme(iconTheme: IconThemeData(color: Colors.white)),
       textTheme: const TextTheme(
         headline1: TextStyle(),
         headline2: TextStyle(),
@@ -41,6 +42,7 @@ class MyTheme {
   static ThemeData darkTheme(){
     return ThemeData(
       colorScheme: ThemeData().colorScheme.copyWith(primary: Colors.black),
+      appBarTheme: const AppBarTheme(iconTheme: IconThemeData(color: Colors.black)),
       textTheme: const TextTheme(
         headline1: TextStyle(),
         headline2: TextStyle(),

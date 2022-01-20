@@ -6,107 +6,44 @@ class Profile extends StatefulWidget {
   _ProfileState createState() => _ProfileState();
 }
 class _ProfileState extends State<Profile> {
-  final ft = FToast();
   bool load = false;
-  final CollectionReference uCollection = FirebaseFirestore.instance.collection('Users');
-  @override
-  void initState() {
-    super.initState();
-    ft.init(context);
-  }
+  CollectionReference uCollection = FirebaseFirestore.instance.collection('Users');
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ElevatedButton.icon(
-          onPressed: () async {
-            final net = await (Connectivity().checkConnectivity());
-            if (net == ConnectivityResult.none) {
-              ft.showToast(
-                child: Activity.showToast(
-                  'No internet connection',
-                  const Color(0xFFFF0000)
-                ),
-                toastDuration: const Duration(seconds: 1),
-                fadeDuration: 200
-              );
-            }
-            setState(() {
-              load = true;
-            });
-            await Auth.signOut().then((value) {
-              if (value == true) {
-                setState(() {
-                  load = false;
-                });
-                Navigator.pushReplacementNamed(context, SignIn.routeName);
-              } else {
-                setState(() {
-                  load = false;
-                });
-                ft.showToast(
-                  child: Activity.showToast(
-                    'No internet connection',
-                    const Color(0xFFFF0000)
-                  ),
-                  toastDuration: const Duration(seconds: 1),
-                  fadeDuration: 200
+    return SizedBox(
+      child: StreamBuilder<QuerySnapshot>(  
+        stream: uCollection.snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return const Text("Failed to load data!");
+          }
+          else if (snapshot.connectionState == ConnectionState.waiting) {
+            return Activity.loading();
+          }
+          return Stack(
+            children: snapshot.data!.docs.map((DocumentSnapshot doc) {
+              late Users users;
+              if (doc['uid'] == FirebaseAuth.instance.currentUser!.uid) {
+                users = Users(
+                  doc['uid'],
+                  doc['photo'],
+                  doc['name'],
+                  doc['phone'],
+                  doc['email'],
+                  doc['password'],
+                  doc['message'],
+                  doc['dark'],
+                  doc['created'],
+                  doc['updated'],
+                  doc['entered'],
+                  doc['left'],
                 );
               }
-            });
-          },
-          icon: const Icon(Icons.logout),
-          label: const Text('Sign Out')
-        ),
-        ElevatedButton.icon(
-          onPressed: () async {
-            final net = await (Connectivity().checkConnectivity());
-            if (net == ConnectivityResult.none) {
-              ft.showToast(
-                child: Activity.showToast(
-                  'No internet connection',
-                  const Color(0xFFFF0000)
-                ),
-                toastDuration: const Duration(seconds: 1),
-                fadeDuration: 200
-              );
-            }
-            setState(() {
-              load = true;
-            });
-            await Auth.deleteAccount().then((value) {
-              if (value == true) {
-                setState(() {
-                  load = false;
-                });
-                ft.showToast(
-                  child: Activity.showToast(
-                    'Goodbye',
-                    Colors.blue
-                  ),
-                  toastDuration: const Duration(seconds: 1),
-                  fadeDuration: 200
-                );
-                Navigator.pushReplacementNamed(context, SignIn.routeName);
-              } else {
-                setState(() {
-                  load = false;
-                });
-                ft.showToast(
-                  child: Activity.showToast(
-                    'No internet connection',
-                    const Color(0xFFFF0000)
-                  ),
-                  toastDuration: const Duration(seconds: 1),
-                  fadeDuration: 200
-                );
-              }
-            });
-          },
-          icon: const Icon(Icons.clear),
-          label: const Text('Delete Account')
-        )
-      ]
+              return ProfileView(users: users);
+            }).toList(),
+          );
+        }
+      )
     );
   }
 }

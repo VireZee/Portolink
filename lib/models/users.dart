@@ -8,6 +8,7 @@ class Users {
   final String email;
   final String password;
   final String message;
+  final String dark;
   final String created;
   final String updated;
   final String entered;
@@ -20,6 +21,7 @@ class Users {
     this.email,
     this.password,
     this.message,
+    this.dark,
     this.created,
     this.updated,
     this.entered,
@@ -33,6 +35,7 @@ class Users {
     email,
     password,
     message,
+    dark,
     created,
     updated,
     entered,
