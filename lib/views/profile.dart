@@ -22,22 +22,21 @@ class _ProfileState extends State<Profile> {
           }
           return Stack(
             children: snapshot.data!.docs.map((DocumentSnapshot doc) {
-              late Users users;
+              final Users users = Users (
+                doc['uid'],
+                doc['photo'],
+                doc['name'],
+                doc['phone'],
+                doc['email'],
+                doc['password'],
+                doc['message'],
+                doc['created'],
+                doc['updated'],
+                doc['entered'],
+                doc['left']
+              );
               if (doc['uid'] == FirebaseAuth.instance.currentUser!.uid) {
-                users = Users(
-                  doc['uid'],
-                  doc['photo'],
-                  doc['name'],
-                  doc['phone'],
-                  doc['email'],
-                  doc['password'],
-                  doc['message'],
-                  doc['dark'],
-                  doc['created'],
-                  doc['updated'],
-                  doc['entered'],
-                  doc['left'],
-                );
+                users;
               }
               return ProfileView(users: users);
             }).toList(),

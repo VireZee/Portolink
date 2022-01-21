@@ -296,7 +296,6 @@ class _SignUpState extends State<SignUp> {
                               '',
                               '',
                               '',
-                              '',
                               ''
                             );
                             final String msg = await Auth.signUp(users);

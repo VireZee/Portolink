@@ -16,7 +16,8 @@ class _ProfileViewState extends State<ProfileView> {
   }
   @override
   Widget build(BuildContext context) {
-    Users users = widget.users;
+    final dark = Theme.of(context).brightness == Brightness.dark;
+    final Users users = widget.users;
     return Stack(
       children: [
         Container(
@@ -34,9 +35,17 @@ class _ProfileViewState extends State<ProfileView> {
               elevation: 0,
               actions: [
                 const Spacer(flex: 25),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(CupertinoIcons.moon_stars, color: Colors.white)
+                ThemeSwitcher(
+                  builder: (context) => IconButton(
+                    onPressed: () {
+                      final theme = dark
+                      ? MyTheme.lightTheme()
+                      : MyTheme.darkTheme();
+                      final switcher = ThemeSwitcher.of(context);
+                      switcher.changeTheme(theme: theme);
+                    },
+                    icon: const Icon(CupertinoIcons.moon_stars, color: Colors.white)
+                  )
                 ),
                 const Spacer()
               ]
@@ -108,8 +117,15 @@ class _ProfileViewState extends State<ProfileView> {
                     Material(
                       child: InkWell(
                         onTap: () async {
+                          setState(() {
+                            load = true;
+                          });
                           final net = await (Connectivity().checkConnectivity());
+                          final sub = await InternetConnectionChecker().hasConnection;
                           if (net == ConnectivityResult.none) {
+                            setState(() {
+                              load = false;
+                            });
                             ft.showToast(
                               child: Activity.showToast(
                                 'No internet connection',
@@ -118,30 +134,26 @@ class _ProfileViewState extends State<ProfileView> {
                               toastDuration: const Duration(seconds: 1),
                               fadeDuration: 200
                             );
+                          }
+                          else if (sub) {
+                            await Auth.signOut().then((value) {
+                              setState(() {
+                                load = false;
+                              });
+                              Navigator.pushReplacementNamed(context, SignIn.routeName);
+                            });
                           } else {
                             setState(() {
-                              load = true;
+                              load = false;
                             });
-                            await Auth.signOut().then((value) {
-                              if (value == true) {
-                                setState(() {
-                                  load = false;
-                                });
-                                Navigator.pushReplacementNamed(context, SignIn.routeName);
-                              } else {
-                                setState(() {
-                                  load = false;
-                                });
-                                ft.showToast(
-                                  child: Activity.showToast(
-                                    'No internet connection',
-                                    const Color(0xFFFF0000)
-                                  ),
-                                  toastDuration: const Duration(seconds: 1),
-                                  fadeDuration: 200
-                                );
-                              }
-                            });
+                            ft.showToast(
+                              child: Activity.showToast(
+                                'No internet connection',
+                                const Color(0xFFFF0000)
+                              ),
+                              toastDuration: const Duration(seconds: 1),
+                              fadeDuration: 200
+                            );
                           }
                         },
                         child: SizedBox(
@@ -169,7 +181,54 @@ class _ProfileViewState extends State<ProfileView> {
                     const SizedBox(height: 12),
                     Material(
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () async {
+                          setState(() {
+                            load = true;
+                          });
+                          final net = await (Connectivity().checkConnectivity());
+                          final sub = await InternetConnectionChecker().hasConnection;
+                          if (net == ConnectivityResult.none) {
+                            setState(() {
+                              load = false;
+                            });
+                            ft.showToast(
+                              child: Activity.showToast(
+                                'No internet connection',
+                                const Color(0xFFFF0000)
+                              ),
+                              toastDuration: const Duration(seconds: 1),
+                              fadeDuration: 200
+                            );
+                          }
+                          else if (sub) {
+                            await Auth.deleteAccount().then((value) {
+                              setState(() {
+                                load = false;
+                              });
+                              ft.showToast(
+                                child: Activity.showToast(
+                                  'Goodbye',
+                                  Colors.blue
+                                ),
+                                toastDuration: const Duration(seconds: 1),
+                                fadeDuration: 200
+                              );
+                              Navigator.pushReplacementNamed(context, SignIn.routeName);
+                            });
+                          } else { 
+                            setState(() {
+                              load = false;
+                            });
+                            ft.showToast(
+                              child: Activity.showToast(
+                                'No internet connection',
+                                const Color(0xFFFF0000)
+                              ),
+                              toastDuration: const Duration(seconds: 1),
+                              fadeDuration: 200
+                            );
+                          }
+                        },
                         child: SizedBox(
                           width: 350,
                           height: 60,

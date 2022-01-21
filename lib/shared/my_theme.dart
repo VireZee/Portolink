@@ -1,7 +1,7 @@
 part of 'shared.dart';
 
 class MyTheme {
-  static ThemeData lightTheme(){
+  static ThemeData lightTheme() {
     return ThemeData(
       colorScheme: ThemeData().colorScheme.copyWith(primary: Colors.white),
       appBarTheme: const AppBarTheme(iconTheme: IconThemeData(color: Colors.white)),
@@ -40,7 +40,7 @@ class MyTheme {
       textSelectionTheme: const TextSelectionThemeData(cursorColor: Colors.white)
     );
   }
-  static ThemeData darkTheme(){
+  static ThemeData darkTheme() {
     return ThemeData(
       colorScheme: ThemeData().colorScheme.copyWith(primary: Colors.black),
       appBarTheme: const AppBarTheme(iconTheme: IconThemeData(color: Colors.black)),
