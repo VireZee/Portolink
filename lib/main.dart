@@ -13,16 +13,15 @@ void main() async {
 }
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-  final bool light = true;
+  final light = true;
   @override
   Widget build(BuildContext context) {
     return ThemeProvider(
-      initTheme:  MyTheme.darkTheme(),
+      initTheme:  light ? MyTheme.lightTheme() : MyTheme.darkTheme(),
       child: Builder(
         builder: (context) => MaterialApp(
           debugShowCheckedModeBanner: false,
-          themeMode: ThemeMode.system,
-          theme: light ? MyTheme.lightTheme() : MyTheme.darkTheme(),
+          theme: ThemeProvider.of(context),
           darkTheme: MyTheme.darkTheme(),
           initialRoute: '/',
           routes: {
@@ -36,4 +35,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-          
