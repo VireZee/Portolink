@@ -78,7 +78,33 @@ class _ProfileViewState extends State<ProfileView> {
                         padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 12, horizontal: 32))
                       )
                     ),
-                    const SizedBox(height: 350),
+                    const SizedBox(height: 250),
+                    Material(
+                      child: InkWell(
+                        onTap: () {},
+                        child: SizedBox(
+                          width: 350,
+                          height: 60,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Spacer(),
+                              Icon(Icons.help),
+                              Spacer(flex: 6),
+                              Text('Help'),
+                              Spacer(flex: 6),
+                              Icon(Icons.keyboard_arrow_right_sharp),
+                              Spacer()
+                            ],
+                          )
+                        ),
+                        highlightColor: Colors.blue,
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      color: Colors.grey.withOpacity(0.6),
+                      shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(50))
+                    ),
+                    const SizedBox(height: 12),
                     Material(
                       child: InkWell(
                         onTap: () async {

@@ -3,6 +3,15 @@ part of 'services.dart';
 class Auth {
   static FirebaseAuth auth = FirebaseAuth.instance;
   static CollectionReference uCollection = FirebaseFirestore.instance.collection('Users');
+  static String convertToTitleCase(String text) {
+    final List<String> words = text.split(' ');
+    final cap = words.map((word) {
+      final String first = word.trim().substring(0, 1).toUpperCase();
+      final String remain = word.trim().substring(1).toLowerCase();
+      return '$first$remain';
+    });
+    return cap.join(' ');
+  }
   static Future<String> signUp(Users users) async {
     await Firebase.initializeApp();
     final String dateNow = Activity.dateNow();
@@ -16,7 +25,7 @@ class Auth {
       await uCollection.doc(uid).set({
         'uid': uid,
         'photo': '-',
-        'name': users.name,
+        'name': convertToTitleCase(users.name),
         'phone': users.phone.replaceAll(' ', ''),
         'email': users.email.replaceAll(' ', '').toLowerCase(),
         'password': sha512.convert(utf8.encode(sha512.convert(utf8.encode(users.password)).toString())).toString(),
@@ -31,7 +40,7 @@ class Auth {
         msg = 'Signed';
       });
       auth.currentUser!.updatePhotoURL(users.photo);
-      auth.currentUser!.updateDisplayName(users.name);
+      auth.currentUser!.updateDisplayName(convertToTitleCase(users.name));
       return msg;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {

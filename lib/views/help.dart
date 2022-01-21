@@ -8,7 +8,9 @@ class Help extends StatefulWidget {
 class _HelpState extends State<Help> {
   @override
   Widget build(BuildContext context) {
-    return const Text('Hello'
+    return const Scaffold(
+      backgroundColor: Colors.grey,
+      body: Text('Hello'),
     );
   }
 }

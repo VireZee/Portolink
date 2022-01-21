@@ -8,7 +8,7 @@ class SignUp extends StatefulWidget {
 }
 class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
-  final ctrlName = TextEditingController();
+  final ctrlName =  TextEditingController();
   final ctrlPhone = TextEditingController();
   final ctrlEmail = TextEditingController();
   final ctrlPass = TextEditingController();
@@ -225,9 +225,16 @@ class _SignUpState extends State<SignUp> {
                     child: ElevatedButton.icon(
                       onPressed: ctrlName.text.isNotEmpty && ctrlPhone.text.isNotEmpty && ctrlEmail.text.isNotEmpty && ctrlPass.text.isNotEmpty && ctrlCPass.text.isNotEmpty
                       ? () async {
+                        setState(() {
+                          load = true;
+                        });
                         FocusScope.of(context).requestFocus(FocusNode());
                         final net = await (Connectivity().checkConnectivity());
+                        final sub = await InternetConnectionChecker().hasConnection;
                         if (net == ConnectivityResult.none) {
+                          setState(() {
+                            load = false;
+                          });
                           ft.showToast(
                             child: Activity.showToast(
                               'No internet connection',
@@ -238,6 +245,9 @@ class _SignUpState extends State<SignUp> {
                           );
                         }
                         else if (ctrlName.text.isEmpty) {
+                          setState(() {
+                            load = false;
+                          });
                           ft.showToast(
                             child: Activity.showToast(
                               'Name cannot be empty',
@@ -248,6 +258,9 @@ class _SignUpState extends State<SignUp> {
                           );
                         }
                         else if (ctrlPhone.text.length <= 7 || ctrlPhone.text.length >= 13) {
+                          setState(() {
+                            load = false;
+                          });
                           ft.showToast(
                             child: Activity.showToast(
                               'Phone number is invalid',
@@ -258,6 +271,9 @@ class _SignUpState extends State<SignUp> {
                           );
                         }
                         else if (ctrlPass.text != ctrlCPass.text) {
+                          setState(() {
+                            load = false;
+                          });
                           ft.showToast(
                             child: Activity.showToast(
                               'Password is not match',
@@ -266,11 +282,9 @@ class _SignUpState extends State<SignUp> {
                             toastDuration: const Duration(seconds: 1),
                             fadeDuration: 200
                           );
-                        } else {
+                        }
+                        else if (sub) {
                           if (_formKey.currentState!.validate()) {
-                            setState(() {
-                              load = true;
-                            });
                             final Users users = Users(
                               '',
                               '',
@@ -353,6 +367,18 @@ class _SignUpState extends State<SignUp> {
                               );
                             }
                           }
+                        } else {
+                          setState(() {
+                            load = false;
+                          });
+                          ft.showToast(
+                            child: Activity.showToast(
+                              'No internet connection',
+                              const Color(0xFFFF0000)
+                            ),
+                            toastDuration: const Duration(seconds: 1),
+                            fadeDuration: 200
+                          );
                         }
                       }
                       : null,

@@ -162,9 +162,16 @@ class _SignInState extends State<SignIn> {
                     child: ElevatedButton.icon(
                       onPressed: ctrlEmail.text.isNotEmpty && ctrlPass.text.isNotEmpty
                       ? () async {
+                        setState(() {
+                          load = true;
+                        });
                         FocusScope.of(context).requestFocus(FocusNode());
                         final net = await (Connectivity().checkConnectivity());
+                        final sub = await InternetConnectionChecker().hasConnection;
                         if (net == ConnectivityResult.none) {
+                          setState(() {
+                            load = false;
+                          });
                           ft.showToast(
                             child: Activity.showToast(
                               'No internet connection',
@@ -173,11 +180,9 @@ class _SignInState extends State<SignIn> {
                             toastDuration: const Duration(seconds: 1),
                             fadeDuration: 200
                           );
-                        } else {
+                        }
+                        else if (sub) {
                           if (_formKey.currentState!.validate()) {
-                            setState(() {
-                              load = true;
-                            });
                             final String msg = await Auth.signIn(ctrlEmail.text, ctrlPass.text);
                             if (msg == 'Signed') {
                               setState(() {
@@ -238,6 +243,18 @@ class _SignInState extends State<SignIn> {
                               );
                             }
                           }
+                        } else {
+                          setState(() {
+                            load = false;
+                          });
+                          ft.showToast(
+                            child: Activity.showToast(
+                              'No internet connection',
+                              const Color(0xFFFF0000)
+                            ),
+                            toastDuration: const Duration(seconds: 1),
+                            fadeDuration: 200
+                          );
                         }
                       }
                       : null,
