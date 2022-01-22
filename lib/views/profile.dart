@@ -22,7 +22,7 @@ class _ProfileState extends State<Profile> {
           }
           return Stack(
             children: snapshot.data!.docs.map((DocumentSnapshot doc) {
-              Users users = Users (
+              final Users users = Users (
                 doc['uid'],
                 doc['photo'],
                 doc['name'],
@@ -35,9 +35,6 @@ class _ProfileState extends State<Profile> {
                 doc['entered'],
                 doc['left']
               );
-              if (doc['uid'] == FirebaseAuth.instance.currentUser!.uid) {
-                users;
-              }
               return ProfileView(users: users);
             }).toList(),
           );

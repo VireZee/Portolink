@@ -19,11 +19,10 @@ class MyApp extends StatelessWidget {
     final initTheme = dark ? MyTheme.darkTheme() : MyTheme.lightTheme();
     return ThemeProvider(
       initTheme: initTheme,
-      builder: (context, light) {
+      builder: (context, theme) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          theme: light,
-          darkTheme: MyTheme.darkTheme(),
+          theme: theme,
           initialRoute: '/',
           routes: {
             Splash.routeName: (context) => const Splash(),

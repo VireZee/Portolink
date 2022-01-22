@@ -36,20 +36,19 @@ class _ProfileViewState extends State<ProfileView> {
               actions: [
                 const Spacer(flex: 25),
                 ThemeSwitcher(
-                  clipper: const ThemeSwitcherCircleClipper(),
                   builder: (context) => IconButton(
                     onPressed: () {
                       setState(() {
                         c = !c;
                       });
                       ThemeSwitcher.of(context).changeTheme(
-                        theme: ThemeModelInheritedNotifier.of(context).theme.brightness == Brightness.light
-                        ? MyTheme.darkTheme()
-                        : MyTheme.lightTheme()
+                        theme: ThemeModelInheritedNotifier.of(context).theme.brightness == Brightness.dark
+                        ? MyTheme.lightTheme()
+                        : MyTheme.darkTheme()
                       );
                     },
-                    icon: c ? const Icon(CupertinoIcons.moon_stars_fill) : const Icon(CupertinoIcons.sun_max_fill),
-                    color: c ? Colors.black : Colors.white
+                    icon: c ? const Icon(CupertinoIcons.sun_max_fill) : const Icon(CupertinoIcons.moon_stars_fill),
+                    color: c ? Colors.white : Colors.black
                   )
                 ),
                 const Spacer()

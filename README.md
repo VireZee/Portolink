@@ -2,4 +2,5 @@
 
 - Bug Image (Up)
 - Bug Button
-- Bug 2 Account return same
+- Bug Profile.dart
+- Jagged, Laggy
