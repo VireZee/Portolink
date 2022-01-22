@@ -14,8 +14,8 @@ class _SignUpState extends State<SignUp> {
   final ctrlPass = TextEditingController();
   final ctrlCPass = TextEditingController();
   final ft = FToast();
-  bool vis = true;
-  bool load = false;
+  static bool vis = true;
+  static bool load = false;
   @override
   void initState() {
     super.initState();

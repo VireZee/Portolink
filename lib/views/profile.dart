@@ -22,14 +22,14 @@ class _ProfileState extends State<Profile> {
           }
           return Stack(
             children: snapshot.data!.docs.map((DocumentSnapshot doc) {
-              final Users users = Users (
+              Users users = Users (
                 doc['uid'],
                 doc['photo'],
                 doc['name'],
                 doc['phone'],
                 doc['email'],
                 doc['password'],
-                doc['message'],
+                doc['message'], 
                 doc['created'],
                 doc['updated'],
                 doc['entered'],

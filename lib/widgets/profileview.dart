@@ -8,7 +8,8 @@ class ProfileView extends StatefulWidget {
 }
 class _ProfileViewState extends State<ProfileView> {
   final ft = FToast();
-  bool load = false;
+  static bool load = false;
+  static bool c = true;
   @override
   void initState() {
     super.initState();
@@ -38,13 +39,17 @@ class _ProfileViewState extends State<ProfileView> {
                   clipper: const ThemeSwitcherCircleClipper(),
                   builder: (context) => IconButton(
                     onPressed: () {
+                      setState(() {
+                        c = !c;
+                      });
                       ThemeSwitcher.of(context).changeTheme(
                         theme: ThemeModelInheritedNotifier.of(context).theme.brightness == Brightness.light
                         ? MyTheme.darkTheme()
                         : MyTheme.lightTheme()
                       );
                     },
-                    icon: const Icon(CupertinoIcons.moon_stars)
+                    icon: c ? const Icon(CupertinoIcons.moon_stars_fill) : const Icon(CupertinoIcons.sun_max_fill),
+                    color: c ? Colors.black : Colors.white
                   )
                 ),
                 const Spacer()
@@ -73,7 +78,19 @@ class _ProfileViewState extends State<ProfileView> {
                     ),
                     const SizedBox(height: 24),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Update(
+                              uid: users.uid,
+                              name: users.name,
+                              phone: users.phone,
+                              email: users.email
+                            )
+                          )
+                        );
+                      },
                       child: const Text('Edit Profile'),
                       style: ButtonStyle(
                         overlayColor: MaterialStateProperty.resolveWith((states) {

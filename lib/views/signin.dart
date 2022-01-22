@@ -11,8 +11,8 @@ class _SignInState extends State<SignIn> {
   final ctrlEmail = TextEditingController();
   final ctrlPass = TextEditingController();
   final ft = FToast();
-  bool vis = true;
-  bool load = false;
+  static bool vis = true;
+  static bool load = false;
   @override
   void initState() {
     super.initState();

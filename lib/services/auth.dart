@@ -91,6 +91,20 @@ class Auth {
     }
     return msg;
   }
+  static Future<bool> updateAccount(Users users) async {
+    await Firebase.initializeApp();
+    final String dateNow = Activity.dateNow();
+    final String uid = auth.currentUser!.uid;
+    await uCollection.doc(uid).update({
+      'name': convertToTitleCase(users.name),
+      'email': users.email.replaceAll(' ', '').toLowerCase(),
+      'phone': users.phone.replaceAll(' ', ''),
+      'updated': dateNow
+    });
+    auth.currentUser!.updateDisplayName(convertToTitleCase(users.name));
+    auth.currentUser!.updateEmail(users.email.replaceAll(' ', '').toLowerCase());
+    return true;
+  }
   static Future<bool> signOut() async {
     await Firebase.initializeApp();
     final String dateNow = Activity.dateNow();

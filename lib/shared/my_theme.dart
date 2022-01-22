@@ -3,7 +3,6 @@ part of 'shared.dart';
 class MyTheme {
   static ThemeData lightTheme() {
     return ThemeData(
-      brightness: Brightness.light,
       colorScheme: const ColorScheme(
         brightness: Brightness.light,
         primary: Colors.white,
@@ -57,7 +56,6 @@ class MyTheme {
   }
   static ThemeData darkTheme() {
     return ThemeData(
-      brightness: Brightness.dark,
       colorScheme: const ColorScheme(
         brightness: Brightness.dark,
         primary: Colors.black,
