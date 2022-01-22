@@ -16,7 +16,6 @@ class _ProfileViewState extends State<ProfileView> {
   }
   @override
   Widget build(BuildContext context) {
-    final dark = Theme.of(context).brightness == Brightness.dark;
     final Users users = widget.users;
     return Stack(
       children: [
@@ -36,15 +35,16 @@ class _ProfileViewState extends State<ProfileView> {
               actions: [
                 const Spacer(flex: 25),
                 ThemeSwitcher(
+                  clipper: const ThemeSwitcherCircleClipper(),
                   builder: (context) => IconButton(
                     onPressed: () {
-                      final theme = dark
-                      ? MyTheme.lightTheme()
-                      : MyTheme.darkTheme();
-                      final switcher = ThemeSwitcher.of(context);
-                      switcher.changeTheme(theme: theme);
+                      ThemeSwitcher.of(context).changeTheme(
+                        theme: ThemeModelInheritedNotifier.of(context).theme.brightness == Brightness.light
+                        ? MyTheme.darkTheme()
+                        : MyTheme.lightTheme()
+                      );
                     },
-                    icon: const Icon(CupertinoIcons.moon_stars, color: Colors.white)
+                    icon: const Icon(CupertinoIcons.moon_stars)
                   )
                 ),
                 const Spacer()

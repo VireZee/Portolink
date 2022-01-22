@@ -3,7 +3,22 @@ part of 'shared.dart';
 class MyTheme {
   static ThemeData lightTheme() {
     return ThemeData(
-      colorScheme: ThemeData().colorScheme.copyWith(primary: Colors.white),
+      brightness: Brightness.light,
+      colorScheme: const ColorScheme(
+        brightness: Brightness.light,
+        primary: Colors.white,
+        onPrimary: Colors.white,
+        primaryVariant: Colors.white,
+        secondary: Colors.white,
+        onSecondary: Colors.white,
+        secondaryVariant: Colors.white,
+        background: Colors.white,
+        onBackground: Colors.white,
+        surface: Colors.white,
+        onSurface: Colors.white,
+        error: Colors.white,
+        onError: Colors.white
+      ),
       appBarTheme: const AppBarTheme(iconTheme: IconThemeData(color: Colors.white)),
       textTheme: const TextTheme(
         headline1: TextStyle(),
@@ -42,7 +57,22 @@ class MyTheme {
   }
   static ThemeData darkTheme() {
     return ThemeData(
-      colorScheme: ThemeData().colorScheme.copyWith(primary: Colors.black),
+      brightness: Brightness.dark,
+      colorScheme: const ColorScheme(
+        brightness: Brightness.dark,
+        primary: Colors.black,
+        onPrimary: Colors.black,
+        primaryVariant: Colors.black,
+        secondary: Colors.black,
+        onSecondary: Colors.black,
+        secondaryVariant: Colors.black,
+        background: Colors.black,
+        onBackground: Colors.black,
+        surface: Colors.black,
+        onSurface: Colors.black,
+        error: Colors.black,
+        onError: Colors.black
+      ),
       appBarTheme: const AppBarTheme(iconTheme: IconThemeData(color: Colors.black)),
       textTheme: const TextTheme(
         headline1: TextStyle(),
