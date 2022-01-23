@@ -1,36 +1,38 @@
-import 'package:animated_theme_switcher/animated_theme_switcher.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/services.dart';
-import 'package:portolink/shared/shared.dart';
+import 'dart:io';
+import 'package:firebase_core/firebase_core.dart';  
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:portolink/views/views.dart';
+import 'package:flutter/services.dart';
+import 'package:portolink_user/shared/shared.dart';
+import 'package:portolink_user/ui/pages/pages.dart';
 
+void enablePlatformOverrideForDesktop() {
+  if (!kIsWeb && (Platform.isMacOS || Platform.isWindows || Platform.isLinux)) {
+    debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
+  }
+}
 void main() async {
+  enablePlatformOverrideForDesktop();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+  runApp(const MyApp());
 }
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final dark = WidgetsBinding.instance!.window.platformBrightness == Brightness.dark;
-    final initTheme = dark ? MyTheme.darkTheme() : MyTheme.lightTheme();
-    return ThemeProvider(
-      initTheme: initTheme,
-      builder: (context, theme) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: theme,
-          initialRoute: '/',
-          routes: {
-            Splash.routeName: (context) => const Splash(),
-            SignIn.routeName: (context) => const SignIn(),
-            SignUp.routeName: (context) => const SignUp(),
-            MainMenu.routeName: (context) => const MainMenu()
-          }
-        );
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: MyTheme.lightTheme(),
+      initialRoute: '/splash',
+      routes: {
+        Splash.routeName: (context) => const Splash(),
+        Login.routeName: (context) => const Login(),
+        Register.routeName: (context) => const  Register(),
+        MainMenu.routeName: (context) => const MainMenu(),
+        ListTemplate.routeName: (context) => const ListTemplate(),
+        PendingRequest.routeName: (context) => const PendingRequest()
       }
     );
   }

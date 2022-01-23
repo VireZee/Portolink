@@ -1,6 +1,6 @@
 {
-    "name": "portolink",
-    "short_name": "portolink",
+    "name": "portolink_user",
+    "short_name": "portolink_user",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

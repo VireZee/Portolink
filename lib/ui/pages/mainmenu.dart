@@ -1,17 +1,19 @@
-part of 'views.dart';
+part of 'pages.dart';
 
 class MainMenu extends StatefulWidget {
-  const MainMenu({Key? key}) : super(key: key);
-  static const String routeName = '/main';
+  const MainMenu({Key key}) : super(key: key);
+  static const String routeName = "/mainmenu";
   @override
   _MainMenuState createState() => _MainMenuState();
 }
 class _MainMenuState extends State<MainMenu> {
-  bool load = false;
-  static int _selectedIntex = 0;
+  bool isLoading = false;
+  int _selectedIntex = 0;
   final List<Widget> _widgetOptions = <Widget>[
-    const Help(),
-    const Profile()
+     const Help(),
+     const ListTemplate(),
+     const PendingRequest(),
+     const MyAccount()
   ];
   void _onItemTapped(int index) {
     setState(() {
@@ -25,12 +27,14 @@ class _MainMenuState extends State<MainMenu> {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.help), label: 'Help'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Account')
+          BottomNavigationBarItem(icon: Icon(Icons.help), label: "Help"),
+          BottomNavigationBarItem(icon: Icon(Icons.list), label: "List template"),
+          BottomNavigationBarItem(icon: Icon(Icons.pending), label: "Pending"),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Account"),
         ],
         currentIndex: _selectedIntex,
-        onTap: _onItemTapped
-      )
+        onTap: _onItemTapped,
+      ),
     );
   }
 }

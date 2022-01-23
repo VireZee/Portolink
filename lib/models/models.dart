@@ -1,4 +1,4 @@
-part 'orders.dart';
-part 'pendings.dart';
-part 'templates.dart';
+part 'order.dart';
+part 'pending.dart';
+part 'template.dart';
 part 'users.dart';
