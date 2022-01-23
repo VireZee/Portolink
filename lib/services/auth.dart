@@ -101,6 +101,7 @@ class Auth {
       'phone': users.phone.replaceAll(' ', ''),
       'updated': dateNow
     });
+    EmailAuthProvider.credential(email: users.email, password: users.password);
     auth.currentUser!.updateDisplayName(convertToTitleCase(users.name));
     auth.currentUser!.updateEmail(users.email.replaceAll(' ', '').toLowerCase());
     return true;

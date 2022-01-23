@@ -250,7 +250,7 @@ class _SignUpState extends State<SignUp> {
                           });
                           ft.showToast(
                             child: Activity.showToast(
-                              'Name cannot be empty',
+                              'Name can\'t be empty',
                               const Color(0xFFFF0000)
                             ),
                             toastDuration: const Duration(seconds: 1),
@@ -270,13 +270,39 @@ class _SignUpState extends State<SignUp> {
                             fadeDuration: 200
                           );
                         }
+                        else if (ctrlEmail.text.isEmpty) {
+                          setState(() {
+                            load = false;
+                          });
+                          ft.showToast(
+                            child: Activity.showToast(
+                              'Email can\'t be empty',
+                              const Color(0xFFFF0000)
+                            ),
+                            toastDuration: const Duration(seconds: 1),
+                            fadeDuration: 200
+                          );
+                        }
+                        else if (ctrlPass.text.isEmpty) {
+                          setState(() {
+                            load = false;
+                          });
+                          ft.showToast(
+                            child: Activity.showToast(
+                              'Password can\'t be empty',
+                              const Color(0xFFFF0000)
+                            ),
+                            toastDuration: const Duration(seconds: 1),
+                            fadeDuration: 200
+                          );
+                        }
                         else if (ctrlPass.text != ctrlCPass.text) {
                           setState(() {
                             load = false;
                           });
                           ft.showToast(
                             child: Activity.showToast(
-                              'Password is not match',
+                              'Password isn\'t match',
                               const Color(0xFFFF0000)
                             ),
                             toastDuration: const Duration(seconds: 1),

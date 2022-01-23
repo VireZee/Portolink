@@ -181,6 +181,32 @@ class _SignInState extends State<SignIn> {
                             fadeDuration: 200
                           );
                         }
+                        else if (ctrlEmail.text.isEmpty) {
+                          setState(() {
+                            load = false;
+                          });
+                          ft.showToast(
+                            child: Activity.showToast(
+                              'Email can\'t be empty',
+                              const Color(0xFFFF0000)
+                            ),
+                            toastDuration: const Duration(seconds: 1),
+                            fadeDuration: 200
+                          );
+                        }
+                        else if (ctrlPass.text.isEmpty) {
+                          setState(() {
+                            load = false;
+                          });
+                          ft.showToast(
+                            child: Activity.showToast(
+                              'Password can\'t be empty',
+                              const Color(0xFFFF0000)
+                            ),
+                            toastDuration: const Duration(seconds: 1),
+                            fadeDuration: 200
+                          );
+                        }
                         else if (sub) {
                           if (_formKey.currentState!.validate()) {
                             final String msg = await Auth.signIn(ctrlEmail.text, ctrlPass.text);
