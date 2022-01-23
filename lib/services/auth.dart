@@ -72,7 +72,7 @@ class Auth {
         'token': token,
         'entered': dateNow
       }).then((value) {
-        msg = 'Signed';
+        msg = 'Granted';
       });
       return msg;
     } on FirebaseAuthException catch (e) {
@@ -91,35 +91,54 @@ class Auth {
     }
     return msg;
   }
-  static Future<bool> updateAccount(Users users) async {
+  static Future<String> updateAccount(Users users) async {
     await Firebase.initializeApp();
     final String dateNow = Activity.dateNow();
+    String msg = '';
     final String uid = auth.currentUser!.uid;
-    await uCollection.doc(uid).update({
-      'name': convertToTitleCase(users.name),
-      'email': users.email.replaceAll(' ', '').toLowerCase(),
-      'phone': users.phone.replaceAll(' ', ''),
-      'updated': dateNow
-    });
-    EmailAuthProvider.credential(email: users.email, password: users.password);
+    try {
+      await uCollection.doc(uid).update({
+        'name': convertToTitleCase(users.name),
+        'phone': users.phone.replaceAll(' ', ''),
+        'email': users.email.replaceAll(' ', '').toLowerCase(),
+        'updated': dateNow
+      }).then((value) {
+        msg = 'Granted';
+      });
+      return msg;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'email-already-in-use') {
+        msg = 'Existed';
+      }
+      else if (e.code == 'invalid-email') {
+        msg = 'Invalid Email';
+      }
+      else if (e.code == 'operation-not-allowed') {
+        msg = 'Disabled';
+      }
+    }
     auth.currentUser!.updateDisplayName(convertToTitleCase(users.name));
     auth.currentUser!.updateEmail(users.email.replaceAll(' ', '').toLowerCase());
-    return true;
+    EmailAuthProvider.credential(email: users.email, password: users.password);
+    return msg;
   }
   static Future<bool> signOut() async {
     await Firebase.initializeApp();
     final String dateNow = Activity.dateNow();
     final String uid = auth.currentUser!.uid;
-    await uCollection.doc(uid).update({
+    await auth.signOut().whenComplete(() {
+      uCollection.doc(uid).update({
       'isOn': '0',
       'token': '-',
       'left': dateNow
+      });
     });
     return true;
   }
   static Future<bool> deleteAccount() async {
     await Firebase.initializeApp();
-    uCollection.doc(auth.currentUser!.uid).delete();
+    final String uid = auth.currentUser!.uid;
+    uCollection.doc(uid).delete();
     auth.currentUser!.delete();
     return true;
   }
