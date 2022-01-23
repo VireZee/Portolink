@@ -210,7 +210,7 @@ class _SignInState extends State<SignIn> {
                         else if (sub) {
                           if (_formKey.currentState!.validate()) {
                             final String msg = await Auth.signIn(ctrlEmail.text, ctrlPass.text);
-                            if (msg == 'Signed') {
+                            if (msg == 'Granted') {
                               setState(() {
                                 load = false;
                               });

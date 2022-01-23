@@ -120,7 +120,7 @@ class _ProfileViewState extends State<ProfileView> {
                               Spacer(flex: 6),
                               Icon(Icons.keyboard_arrow_right_sharp),
                               Spacer()
-                            ],
+                            ]
                           )
                         ),
                         highlightColor: Colors.blue,
@@ -185,7 +185,7 @@ class _ProfileViewState extends State<ProfileView> {
                               Spacer(flex: 5),
                               Icon(Icons.keyboard_arrow_right_sharp),
                               Spacer()
-                            ],
+                            ]
                           )
                         ),
                         highlightColor: Colors.blue,
@@ -258,7 +258,7 @@ class _ProfileViewState extends State<ProfileView> {
                               Spacer(flex: 5),
                               Icon(Icons.keyboard_arrow_right_sharp),
                               Spacer()
-                            ],
+                            ]
                           )
                         ),
                         highlightColor: const Color(0xFFFF0000),

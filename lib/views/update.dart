@@ -10,19 +10,20 @@ class Update extends StatefulWidget {
   _UpdateState createState() => _UpdateState();
 }
 class _UpdateState extends State<Update> {
-  final ft = FToast();
-  static bool load = false;
-  static bool c = true;
   final _formKey = GlobalKey<FormState>();
   final ctrlName = TextEditingController();
   final ctrlPhone = TextEditingController();
   final ctrlEmail = TextEditingController();
+  final ft = FToast();
+  static bool c = true;
+  static bool load = false;
   @override
   void initState() {
     ctrlName.text =  widget.name;
     ctrlPhone.text = widget.phone;
     ctrlEmail.text = widget.email;
     super.initState();
+    ft.init(context);
   }
   @override
   void dispose() {
@@ -182,13 +183,13 @@ class _UpdateState extends State<Update> {
                                               fadeDuration: 200
                                             );
                                           }
-                                          else if (ctrlPhone.text.isEmpty) {
+                                          else if (ctrlPhone.text.isEmpty || ctrlPhone.text.length <= 7 || ctrlPhone.text.length >= 13) {
                                             setState(() {
                                               load = false;
                                             });
                                             ft.showToast(
                                               child: Activity.showToast(
-                                                'Phone can\'t be empty',
+                                                'Phone number is invalid',
                                                 const Color(0xFFFF0000)
                                               ),
                                               toastDuration: const Duration(seconds: 1),
@@ -222,34 +223,59 @@ class _UpdateState extends State<Update> {
                                               '',
                                               ''
                                             );
-                                            await Auth.updateAccount(users).then((value) {
-                                              if (value == true) {
-                                                setState(() {
-                                                  load = false;
-                                                });
-                                                ft.showToast(
-                                                  child: Activity.showToast(
-                                                    'Updated',
-                                                    Colors.blue
-                                                  ),
-                                                  toastDuration: const Duration(seconds: 1),
-                                                  fadeDuration: 200
-                                                );
-                                              }
-                                              else if (value == false) {
-                                                setState(() {
-                                                  load = false;
-                                                });
-                                                ft.showToast(
-                                                  child: Activity.showToast(
-                                                    'Email is invalid',
-                                                    const Color(0xFFFF0000)
-                                                  ),
-                                                  toastDuration: const Duration(seconds: 1),
-                                                  fadeDuration: 200
-                                                );
-                                              }
-                                            });
+                                            final String msg = await Auth.updateAccount(users);
+                                            if (msg == 'Granted') {
+                                              setState(() {
+                                                load = false;
+                                              });
+                                              ft.showToast(
+                                                child: Activity.showToast(
+                                                  'Updated',
+                                                  Colors.blue
+                                                ),
+                                                toastDuration: const Duration(seconds: 1),
+                                                fadeDuration: 200
+                                              );
+                                            }
+                                            else if (msg == 'Existed') {
+                                              setState(() {
+                                                load = false;
+                                              });
+                                              ft.showToast(
+                                                child: Activity.showToast(
+                                                  'Email is linked to another account',
+                                                  const Color(0xFFFF0000)
+                                                ),
+                                                toastDuration: const Duration(seconds: 1),
+                                                fadeDuration: 200
+                                              );
+                                            }
+                                            else if (msg == 'Invalid Email') {
+                                              setState(() {
+                                                load = false;
+                                              });
+                                              ft.showToast(
+                                                child: Activity.showToast(
+                                                  'Email is invalid',
+                                                  const Color(0xFFFF0000)
+                                                ),
+                                                toastDuration: const Duration(seconds: 1),
+                                                fadeDuration: 200
+                                              );
+                                            }
+                                            else if (msg == 'Disabled') {
+                                              setState(() {
+                                                load = false;
+                                              });
+                                              ft.showToast(
+                                                child: Activity.showToast(
+                                                  'This email has been disabled',
+                                                  const Color(0xFFFF0000)
+                                                ),
+                                                toastDuration: const Duration(seconds: 1),
+                                                fadeDuration: 200
+                                              );
+                                            }
                                           }
                                         } else {
                                           setState(() {
