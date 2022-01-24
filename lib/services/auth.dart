@@ -105,6 +105,9 @@ class Auth {
       }).then((value) {
         msg = 'Granted';
       });
+      auth.currentUser!.updateDisplayName(convertToTitleCase(users.name));
+      auth.currentUser!.updateEmail(users.email.replaceAll(' ', '').toLowerCase());
+      EmailAuthProvider.credential(email: users.email, password: users.password);
       return msg;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
@@ -117,9 +120,6 @@ class Auth {
         msg = 'Disabled';
       }
     }
-    auth.currentUser!.updateDisplayName(convertToTitleCase(users.name));
-    auth.currentUser!.updateEmail(users.email.replaceAll(' ', '').toLowerCase());
-    EmailAuthProvider.credential(email: users.email, password: users.password);
     return msg;
   }
   static Future<bool> signOut() async {

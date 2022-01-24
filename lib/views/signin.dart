@@ -76,7 +76,7 @@ class _SignInState extends State<SignIn> {
                     child: Container(
                       height: 60,
                       decoration: BoxDecoration(
-                        color: Colors.grey[500]?.withOpacity(0.5),
+                        color: Colors.grey[500]!.withOpacity(0.5),
                         borderRadius: BorderRadius.circular(50)
                       ),
                       child: Center(
@@ -105,7 +105,7 @@ class _SignInState extends State<SignIn> {
                     child: Container(
                       height: 60,
                       decoration: BoxDecoration(
-                        color: Colors.grey[500]?.withOpacity(0.5),
+                        color: Colors.grey[500]!.withOpacity(0.5),
                         borderRadius: BorderRadius.circular(50)
                       ),
                       child: Center(

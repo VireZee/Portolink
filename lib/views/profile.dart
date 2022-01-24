@@ -7,7 +7,7 @@ class Profile extends StatefulWidget {
 }
 class _ProfileState extends State<Profile> {
   bool load = false;
-  static CollectionReference uCollection = FirebaseFirestore.instance.collection('Users');
+  final CollectionReference uCollection = FirebaseFirestore.instance.collection('Users');
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,7 +17,7 @@ class _ProfileState extends State<Profile> {
           stream: uCollection.snapshots(),
           builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
-              return const Center(child: Text("Failed to load data!"));
+              return const Center(child: Text("No internet connection"));
             } 
             else if (snapshot.connectionState == ConnectionState.waiting) {
               return Activity.loading();
@@ -37,7 +37,7 @@ class _ProfileState extends State<Profile> {
                   d['entered'],
                   d['left']
                 );
-                if (d['uid'] == FirebaseAuth.instance.currentUser?.uid) {
+                if (d['uid'] == FirebaseAuth.instance.currentUser!.uid) {
                   users;
                 }
                 return ProfileView(users: users);
