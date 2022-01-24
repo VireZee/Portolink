@@ -61,7 +61,7 @@ class _ProfileViewState extends State<ProfileView> {
                         uid: users.uid,
                         name: users.name,
                         phone: users.phone,
-                        email: users.email  ,
+                        email: users.email,
                       )
                     )
                   );
