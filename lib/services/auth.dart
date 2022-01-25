@@ -29,7 +29,6 @@ class Auth {
         'phone': users.phone.replaceAll(' ', ''),
         'email': users.email.replaceAll(' ', '').toLowerCase(),
         'password': sha512.convert(utf8.encode(sha512.convert(utf8.encode(users.password)).toString())).toString(),
-        'message': '-',
         'token': token,
         'created': dateNow,
         'updated': '-',

@@ -7,7 +7,6 @@ class Users {
   final String phone;
   final String email;
   final String password;
-  final String message;
   final String created;
   final String updated;
   final String entered;
@@ -19,7 +18,6 @@ class Users {
     this.phone,
     this.email,
     this.password,
-    this.message,
     this.created,
     this.updated,
     this.entered,
@@ -32,7 +30,6 @@ class Users {
     phone,
     email,
     password,
-    message,
     created,
     updated,
     entered,

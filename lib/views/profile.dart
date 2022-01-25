@@ -6,46 +6,42 @@ class Profile extends StatefulWidget {
   _ProfileState createState() => _ProfileState();
 }
 class _ProfileState extends State<Profile> {
-  bool load = false;
-  final CollectionReference uCollection = FirebaseFirestore.instance.collection('Users');
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  Future getUser() async {
+    await FirebaseFirestore.instance.collection('Users').doc(auth.currentUser!.uid).get().then((DocumentSnapshot doc) async {
+      final Users users = Users (
+        doc['uid'],
+        doc['photo'],
+        doc['name'],
+        doc['phone'],
+        doc['email'],
+        doc['password'],
+        doc['created'],
+        doc['updated'],
+        doc['entered'],
+        doc['left']
+      );
+      return ProfileView(users: users);
+    });
+  }
+  @override
+  void initState() {
+    super.initState();
+    getUser();
+  }
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      child: Scaffold(
-        body: StreamBuilder<QuerySnapshot>(
-          stream: uCollection.snapshots(),
-          builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-            if (snapshot.hasError) {
-              return const Center(child: Text("No internet connection"));
-            } 
-            else if (snapshot.connectionState == ConnectionState.waiting) {
-              return Activity.loading();
-            }
-            return Stack(
-              children: snapshot.data!.docs.map((DocumentSnapshot d) {
-                final Users users = Users (
-                  d['uid'],
-                  d['photo'],
-                  d['name'],
-                  d['phone'],
-                  d['email'],
-                  d['password'],
-                  d['message'], 
-                  d['created'],
-                  d['updated'],
-                  d['entered'],
-                  d['left']
-                );
-                if (d['uid'] == FirebaseAuth.instance.currentUser!.uid) {
-                  users;
-                }
-                return ProfileView(users: users);
-              }).toList()
-            );
-          }
-        )
-      )
+    return FutureBuilder(
+      future: getUser(),
+      builder: (context, snapshot) {
+        if (snapshot.hasError || !snapshot.hasData) {
+          return const Center(child: Text("No internet connection"));
+        }
+        else if (snapshot.connectionState == ConnectionState.waiting) {
+          return Activity.loading();
+        }
+        return ProfileView(users: users);
+      }
     );
   }
 }
