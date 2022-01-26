@@ -336,7 +336,7 @@ class _SignUpState extends State<SignUp> {
                                 toastDuration: const Duration(seconds: 1),
                                 fadeDuration: 200
                               );
-                              Navigator.pushReplacementNamed(context, SignIn.routeName);
+                              Navigator.pushReplacementNamed(context, '/in');
                             }
                             else if (msg == 'Existed') {
                               setState(() {
@@ -440,7 +440,7 @@ class _SignUpState extends State<SignUp> {
                   const SizedBox(height: 20),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushReplacementNamed(context, SignIn.routeName);
+                      Navigator.pushReplacementNamed(context, '/in');
                     },
                     child: const Text(
                       'Already Have an Account',

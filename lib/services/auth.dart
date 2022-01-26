@@ -90,6 +90,23 @@ class Auth {
     }
     return msg;
   }
+  static Future getUser() async {
+    return await uCollection.doc(auth.currentUser!.uid).get().then((DocumentSnapshot doc) async {
+      final Users users = Users (
+        doc['uid'],
+        doc['photo'],
+        doc['name'],
+        doc['phone'],
+        doc['email'],
+        doc['password'],
+        doc['created'],
+        doc['updated'],
+        doc['entered'],
+        doc['left']
+      );
+      return users;
+    });
+  }
   static Future<String> updateAccount(Users users) async {
     await Firebase.initializeApp();
     final String dateNow = Activity.dateNow();

@@ -9,7 +9,7 @@ class _HelpState extends State<Help> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Color(0xFF00FF00),
+      backgroundColor: Color(0xFFFF0000),
       body: Center(
         child: Text('Hello'),
       ),

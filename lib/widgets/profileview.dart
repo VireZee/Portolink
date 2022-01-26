@@ -63,7 +63,6 @@ class _ProfileViewState extends State<ProfileView> {
                       name: users.name,
                       radius: 75,
                       fontsize: 50,
-                      count: 4,
                       random: true,
                       tooltip: true,
                       role: ''
@@ -112,7 +111,7 @@ class _ProfileViewState extends State<ProfileView> {
                         padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 12, horizontal: 32))
                       )
                     ),
-                    const SizedBox(height: 100),
+                    const SizedBox(height: 70),
                     Material(
                       child: InkWell(
                         onTap: () {},

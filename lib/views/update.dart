@@ -17,6 +17,7 @@ class _UpdateState extends State<Update> {
   final ft = FToast();
   static bool c = true;
   static bool load = false;
+  final CollectionReference uCollection = FirebaseFirestore.instance.collection('Users');
   @override
   void initState() {
     ctrlName.text =  widget.name;

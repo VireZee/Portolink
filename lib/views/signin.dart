@@ -214,7 +214,7 @@ class _SignInState extends State<SignIn> {
                               setState(() {
                                 load = false;
                               });
-                              Navigator.pushReplacementNamed(context, MainMenu.routeName);
+                              Navigator.pushReplacementNamed(context, '/main');
                             }
                             else if (msg == 'None') {
                               setState(() {
@@ -318,7 +318,7 @@ class _SignInState extends State<SignIn> {
                   const SizedBox(height: 20),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushReplacementNamed(context, SignUp.routeName);
+                      Navigator.pushReplacementNamed(context, '/up');
                     },
                     child: const Text(
                       'Create New Account',

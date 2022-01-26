@@ -7,41 +7,42 @@ class Profile extends StatefulWidget {
 }
 class _ProfileState extends State<Profile> {
   final FirebaseAuth auth = FirebaseAuth.instance;
-  Future getUser() async {
-    await FirebaseFirestore.instance.collection('Users').doc(auth.currentUser!.uid).get().then((DocumentSnapshot doc) async {
-      final Users users = Users (
-        doc['uid'],
-        doc['photo'],
-        doc['name'],
-        doc['phone'],
-        doc['email'],
-        doc['password'],
-        doc['created'],
-        doc['updated'],
-        doc['entered'],
-        doc['left']
-      );
-      return users;
-    });
-  }
-  @override
-  void initState() {
-    super.initState();
-    getUser();
-  }
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: getUser(),
+      future: Auth.getUser(),
       builder: (context, snapshot) {
-        if (snapshot.hasError || !snapshot.hasData) {
-          return const Center(child: Text("No internet connection"));
+        if (snapshot.hasError) {
+          return Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/profile_bg.jpg'),
+                fit: BoxFit.fill
+              )
+            ),
+            child: Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/no_net_bg.png'),
+                  fit: BoxFit.fitWidth
+                )
+              )
+            )
+          );
         }
         else if (snapshot.connectionState == ConnectionState.waiting) {
-          return Activity.loading();
+          return Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/profile_bg.jpg'),
+                fit: BoxFit.fill
+              )
+            ),
+            child: Activity.loading()
+          );
         }
-        return ProfileView(users: getUser() as Users);
-      } 
+        return ProfileView(users: snapshot.data as Users);
+      }
     );
   }
 }
