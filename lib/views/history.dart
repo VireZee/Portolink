@@ -1,11 +1,11 @@
 part of 'views.dart';
 
-class Chat extends StatefulWidget {
-  const Chat({Key? key}) : super(key: key);
+class History extends StatefulWidget {
+  const History({Key? key}) : super(key: key);
   @override
-  _ChatState createState() => _ChatState();
+  _HistoryState createState() => _HistoryState();
 }
-class _ChatState extends State<Chat> {
+class _HistoryState extends State<History> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(

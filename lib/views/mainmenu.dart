@@ -11,6 +11,7 @@ class _MainMenuState extends State<MainMenu> {
   final List<Widget> _widgetOptions = <Widget>[
     const Help(),
     const Chat(),
+    const History(),
     const Profile()
   ];
   void _onItemTapped(int index) {
