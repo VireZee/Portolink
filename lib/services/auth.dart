@@ -67,7 +67,7 @@ class Auth {
       uid = uCredential.user!.uid;
       token = (await FirebaseMessaging.instance.getToken())!;
       await uCollection.doc(uid).update({
-        'isOn': '1',
+        'isOn': true,
         'token': token,
         'entered': dateNow
       }).then((value) {
@@ -127,7 +127,7 @@ class Auth {
     final String uid = auth.currentUser!.uid;
     await auth.signOut().whenComplete(() {
       uCollection.doc(uid).update({
-      'isOn': '0',
+      'isOn': false,
       'token': '-',
       'left': dateNow
       });

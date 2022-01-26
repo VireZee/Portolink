@@ -21,7 +21,7 @@ class _ProfileState extends State<Profile> {
         doc['entered'],
         doc['left']
       );
-      return ProfileView(users: users);
+      return users;
     });
   }
   @override
@@ -40,8 +40,8 @@ class _ProfileState extends State<Profile> {
         else if (snapshot.connectionState == ConnectionState.waiting) {
           return Activity.loading();
         }
-        return ProfileView(users: users);
-      }
+        return ProfileView(users: getUser() as Users);
+      } 
     );
   }
 }
