@@ -35,13 +35,35 @@ class _ProfileState extends State<Profile> {
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/images/profile_bg.jpg'),
-                fit: BoxFit.fill
+                fit: BoxFit.fill  
               )
             ),
             child: Activity.loading()
           );
         }
-        return ProfileView(users: snapshot.data as Users);
+        // StreamBuilder<QuerySnapshot>(
+        //   stream: Auth.uCollection.snapshots(),
+        //   builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        //     return Stack(
+        //       children: snapshot.data!.docs.map((DocumentSnapshot doc) {
+        //         final Users users = Users(
+        //           doc['uid'],
+        //           doc['photo'],
+        //           doc['name'],
+        //           doc['phone'],
+        //           doc['email'],
+        //           doc['password'],
+        //           doc['created'],
+        //           doc['updated'],
+        //           doc['entered'],
+        //           doc['left']
+        //         );
+        //         return ProfileView(users: users);
+        //       }).toList()
+        //     );
+        //   }
+        // );
+        return ProfileView(users: snapshot.data! as Users);
       }
     );
   }

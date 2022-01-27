@@ -9,7 +9,7 @@ class _HistoryState extends State<History> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Color(0xFF00FF00),
+      backgroundColor: Color(0xFF0000FF),
       body: Center(
         child: Text('Hello'),
       ),

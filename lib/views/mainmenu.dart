@@ -34,7 +34,7 @@ class _MainMenuState extends State<MainMenu> {
               height: 80,
               child: Stack(
                 children: [
-                  CustomPaint(
+                  CustomPaint(  
                     size: Size(size.width, 80),
                     painter: Custom()
                   ),
@@ -104,9 +104,14 @@ class _MainMenuState extends State<MainMenu> {
 class Custom extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final Paint paint = Paint()..color = Colors.white..style = PaintingStyle.fill;
+    final Paint paint = Paint()..shader = const SweepGradient(
+      colors: [
+        Color(0xFF4ADEDE),
+        Color(0xFF1CA7EC),
+      ]
+    ).createShader(Rect.largest)..style = PaintingStyle.fill;
     final Path path = Path();
-    path.moveTo(0, 20); // Start
+    path.moveTo(0, 20);
     path.quadraticBezierTo(size.width * 0.20, 0, size.width * 0.35, 0);
     path.quadraticBezierTo(size.width * 0.40, 0, size.width * 0.40, 20);
     path.arcToPoint(
