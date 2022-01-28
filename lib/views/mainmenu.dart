@@ -9,7 +9,7 @@ class MainMenu extends StatefulWidget {
 class _MainMenuState extends State<MainMenu> {
   static int _selectedIntex = 3;
   final List<Widget> _widgetOptions = <Widget>[
-    const Help(),
+    const Home(),
     const Chat(),
     const History(),
     const Profile()
@@ -54,7 +54,7 @@ class _MainMenuState extends State<MainMenu> {
                       children: [
                         IconButton(
                           icon: Icon(
-                            Icons.help,
+                            Icons.home,
                             color: _selectedIntex == 0 ? Colors.blue : null
                           ),
                           onPressed: () {

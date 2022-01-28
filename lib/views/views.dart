@@ -17,6 +17,7 @@ import 'package:portolink/widgets/widgets.dart';
 part 'chat.dart';
 part 'help.dart';
 part 'history.dart';
+part 'home.dart';
 part 'mainmenu.dart';
 part 'profile.dart';
 part 'signin.dart';
