@@ -39,7 +39,7 @@ class _SignUpState extends State<SignUp> {
           child: Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/signup_bg.jpg'),
+                image: AssetImage('assets/images/begin_bg.jpg'),
                 fit: BoxFit.cover,
                 colorFilter: ColorFilter.mode(Colors.black54, BlendMode.darken)
               )

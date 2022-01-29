@@ -1,5 +1,4 @@
 # Portolink App
 
-- Bug Image (Up)
-- Bug Button
+- Bug Button (Up & In)
 - Update Email ada celah

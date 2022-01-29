@@ -33,7 +33,7 @@ class _SignInState extends State<SignIn> {
           child: Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/signin_bg.jpg'),
+                image: AssetImage('assets/images/begin_bg.jpg'),
                 fit: BoxFit.cover,
                 colorFilter: ColorFilter.mode(Colors.black54, BlendMode.darken)
               )
