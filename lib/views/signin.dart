@@ -13,6 +13,18 @@ class _SignInState extends State<SignIn> {
   final ft = FToast();
   static bool vis = true;
   static bool load = false;
+  static bool btn = true;
+  bool isEmpty() {
+    setState(() {
+      if (ctrlEmail.text != '' && ctrlPass.text != '') {
+        btn = true;
+      }
+      else {
+        btn = false;
+      }
+    });
+    return btn;
+  }
   @override
   void initState() {
     super.initState();
@@ -81,6 +93,9 @@ class _SignInState extends State<SignIn> {
                       ),
                       child: Center(
                         child: TextField(
+                          onChanged: (value) {
+                            isEmpty();
+                          },
                           style: const TextStyle(fontSize: 25),
                           decoration: const InputDecoration(
                             border: InputBorder.none,
@@ -110,6 +125,9 @@ class _SignInState extends State<SignIn> {
                       ),
                       child: Center(
                         child: TextField(
+                          onChanged: (value) {
+                            isEmpty();
+                          },
                           style: const TextStyle(fontSize: 25),
                           decoration: InputDecoration(
                             border: InputBorder.none,
@@ -160,7 +178,7 @@ class _SignInState extends State<SignIn> {
                     height: 40,
                     width: 150,
                     child: ElevatedButton.icon(
-                      onPressed: ctrlEmail.text.isNotEmpty && ctrlPass.text.isNotEmpty
+                      onPressed: isEmpty()
                       ? () async {
                         setState(() {
                           load = true;
