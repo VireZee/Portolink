@@ -33,7 +33,7 @@ class Activity {
       textColor: Colors.white,
       fontSize: 14
     );
-    JANGAN DIHAPUS!!!!! */
+    DO NOT DELETE!!!!! */
   }
   static Container check() {
     return Container(
@@ -51,6 +51,15 @@ class Activity {
       height: double.infinity,
       color: Colors.black54,
       child: Lottie.asset('assets/images/loading.json')
+    );
+  }
+  static Container sent() {
+    return Container(
+      alignment: Alignment.center,
+      width: double.infinity,
+      height: double.infinity,
+      color: Colors.black54,
+      child: Lottie.asset('assets/images/sent.json')
     );
   }
   static String toIDR(String price) {

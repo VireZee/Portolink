@@ -165,47 +165,47 @@ class _UpdateState extends State<Update> {
                                         fadeDuration: 200
                                       );
                                     }
+                                    else if (ctrlName.text.isEmpty) {
+                                      setState(() {
+                                        load = false;
+                                      });
+                                      ft.showToast(
+                                        child: Activity.showToast(
+                                          'Name can\'t be empty',
+                                          const Color(0xFFFF0000)
+                                        ),
+                                        toastDuration: const Duration(seconds: 1),
+                                        fadeDuration: 200
+                                      );
+                                    }
+                                    else if (ctrlPhone.text.isEmpty || ctrlPhone.text.length <= 7 || ctrlPhone.text.length >= 13) {
+                                      setState(() {
+                                        load = false;
+                                      });
+                                      ft.showToast(
+                                        child: Activity.showToast(
+                                          'Phone number is invalid',
+                                          const Color(0xFFFF0000)
+                                        ),
+                                        toastDuration: const Duration(seconds: 1),
+                                        fadeDuration: 200
+                                      );
+                                    }
+                                    else if (ctrlEmail.text.isEmpty) {
+                                      setState(() {
+                                        load = false;
+                                      });
+                                      ft.showToast(
+                                        child: Activity.showToast(
+                                          'Email can\'t be empty',
+                                          const Color(0xFFFF0000)
+                                        ),
+                                        toastDuration: const Duration(seconds: 1),
+                                        fadeDuration: 200
+                                      );
+                                    }
                                     else if (sub) {
-                                      if (ctrlName.text.isEmpty) {
-                                        setState(() {
-                                          load = false;
-                                        });
-                                        ft.showToast(
-                                          child: Activity.showToast(
-                                            'Name can\'t be empty',
-                                            const Color(0xFFFF0000)
-                                          ),
-                                          toastDuration: const Duration(seconds: 1),
-                                          fadeDuration: 200
-                                        );
-                                      }
-                                      else if (ctrlPhone.text.isEmpty || ctrlPhone.text.length <= 7 || ctrlPhone.text.length >= 13) {
-                                        setState(() {
-                                          load = false;
-                                        });
-                                        ft.showToast(
-                                          child: Activity.showToast(
-                                            'Phone number is invalid',
-                                            const Color(0xFFFF0000)
-                                          ),
-                                          toastDuration: const Duration(seconds: 1),
-                                          fadeDuration: 200
-                                        );
-                                      }
-                                      else if (ctrlEmail.text.isEmpty) {
-                                        setState(() {
-                                          load = false;
-                                        });
-                                        ft.showToast(
-                                          child: Activity.showToast(
-                                            'Email can\'t be empty',
-                                            const Color(0xFFFF0000)
-                                          ),
-                                          toastDuration: const Duration(seconds: 1),
-                                          fadeDuration: 200
-                                        );
-                                      }
-                                      else if (_formKey.currentState!.validate()) {
+                                      if (_formKey.currentState!.validate()) {
                                         final Users users = Users (
                                           '',
                                           '',

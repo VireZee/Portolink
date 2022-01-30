@@ -144,9 +144,9 @@ class Auth {
     final String uid = auth.currentUser!.uid;
     await auth.signOut().whenComplete(() {
       uCollection.doc(uid).update({
-      'isOn': false,
-      'token': '-',
-      'left': dateNow
+        'isOn': false,
+        'token': '-',
+        'left': dateNow
       });
     });
     return true;
