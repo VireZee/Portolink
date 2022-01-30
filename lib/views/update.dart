@@ -323,7 +323,7 @@ class _UpdateState extends State<Update> {
                                   borderRadius: BorderRadius.circular(50)
                                 ),
                                 shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(50))
-                              ),
+                              )
                             )
                           ]
                         )
