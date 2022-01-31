@@ -12,3 +12,5 @@ import 'package:portolink/models/models.dart';
 
 part 'activity.dart';
 part 'auth.dart';
+part 'orders.dart';
+part 'pendings.dart';
