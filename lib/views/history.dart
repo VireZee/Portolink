@@ -11,8 +11,8 @@ class _HistoryState extends State<History> {
     return const Scaffold(
       backgroundColor: Color(0xFF0000FF),
       body: Center(
-        child: Text('Hello'),
-      ),
+        child: Text('Hello')
+      )
     );
   }
 }

@@ -11,8 +11,8 @@ class _HomeState extends State<Home> {
     return const Scaffold(
       backgroundColor: Color(0xFFFF0000),
       body: Center(
-        child: Text('Hello'),
-      ),
+        child: Text('Hello')
+      )
     );
   }
 }

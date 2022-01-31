@@ -11,8 +11,8 @@ class _ChatState extends State<Chat> {
     return const Scaffold(
       backgroundColor: Color(0xFF00FF00),
       body: Center(
-        child: Text('Hello'),
-      ),
+        child: Text('Hello')
+      )
     );
   }
 }

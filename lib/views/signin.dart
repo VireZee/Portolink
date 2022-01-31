@@ -148,14 +148,14 @@ class _SignInState extends State<SignIn> {
                               child: Icon(
                                 vis
                                 ? Icons.visibility
-                                : Icons.visibility_off,
+                                : Icons.visibility_off
                               )
                             )
                           ),
                           obscureText: vis,
                           controller: ctrlPass,
                           keyboardType: TextInputType.text,
-                          textInputAction: TextInputAction.done,
+                          textInputAction: TextInputAction.done
                         )
                       )
                     )

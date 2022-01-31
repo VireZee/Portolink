@@ -64,7 +64,7 @@ class _UpdateState extends State<Update> {
                       icon: brightness == Brightness.dark ? const Icon(CupertinoIcons.sun_max_fill) : const Icon(CupertinoIcons.moon_stars_fill),
                       color: brightness == Brightness.dark ? Colors.white : Colors.black
                     )
-                  ),
+                  )
                 ]
               ),
               backgroundColor: Colors.transparent,

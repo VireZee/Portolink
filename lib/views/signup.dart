@@ -200,7 +200,7 @@ class _SignUpState extends State<SignUp> {
                               child: Icon(
                                 vis
                                 ? Icons.visibility
-                                : Icons.visibility_off,
+                                : Icons.visibility_off
                               )
                             )
                           ),

@@ -23,7 +23,7 @@ class Activity {
           const SizedBox(width: 12),
           Text(msg, style: const TextStyle(color: Colors.white))
         ]
-      ),
+      )
     );
     /* It works only on Android Q & Below
     Fluttertoast.showToast(

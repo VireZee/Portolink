@@ -43,7 +43,8 @@ class _MainMenuState extends State<MainMenu> {
                     child: FloatingActionButton(
                       backgroundColor: Colors.blue,
                       child: const Icon(Icons.shopping_bag),
-                      elevation: 0.1, onPressed: () {}
+                      elevation: 0.1,
+                      onPressed: () {}
                     )
                   ),
                   SizedBox(
@@ -107,7 +108,7 @@ class Custom extends CustomPainter {
     final Paint paint = Paint()..shader = const SweepGradient(
       colors: [
         Color(0xFF4ADEDE),
-        Color(0xFF1CA7EC),
+        Color(0xFF1CA7EC)
       ]
     ).createShader(Rect.largest)..style = PaintingStyle.fill;
     final Path path = Path();
