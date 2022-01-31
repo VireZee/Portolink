@@ -48,6 +48,7 @@ dependencies:
   animated_theme_switcher: ^2.0.6
   flutter_profile_picture: ^1.0.2
   firebase_storage: ^10.2.6
+  image_picker: ^0.8.4+5
 
 dev_dependencies:
   flutter_test:
