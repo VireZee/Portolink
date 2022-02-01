@@ -1,29 +1,23 @@
 part of 'models.dart';
 
 class Orders {
-  final String oid;
   final String oname;
   final String ocolor;
-  final String ocontact;
   final String odesc;
   final String ophoto;
-  final String createdAt;
+  final String ocontact;
   const Orders(
-    this.oid,
     this.oname,
     this.ocolor,
-    this.ocontact,
     this.odesc,
     this.ophoto,
-    this.createdAt
+    this.ocontact
   );
   List<Object> get props => [
-    oid,
     oname,
     ocolor,
-    ocontact,
     odesc,
     ophoto,
-    createdAt
+    ocontact,
   ];
 }

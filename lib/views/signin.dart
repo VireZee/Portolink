@@ -140,11 +140,7 @@ class _SignInState extends State<SignIn> {
                             ),
                             hintText: 'Password',
                             suffixIcon: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  vis = !vis;
-                                });
-                              },
+                              onTap: () => setState(() => vis = !vis),
                               child: Icon(
                                 vis
                                 ? Icons.visibility
@@ -180,16 +176,12 @@ class _SignInState extends State<SignIn> {
                     child: ElevatedButton.icon(
                       onPressed: isEmpty()
                       ? () async {
-                        setState(() {
-                          load = true;
-                        });
+                        setState(() => load = true);
                         FocusScope.of(context).requestFocus(FocusNode());
                         final net = await (Connectivity().checkConnectivity());
                         final sub = await InternetConnectionChecker().hasConnection;
                         if (net == ConnectivityResult.none) {
-                          setState(() {
-                            load = false;
-                          });
+                          setState(() => load = false);
                           ft.showToast(
                             child: Activity.showToast(
                               'No internet connection',
@@ -200,9 +192,7 @@ class _SignInState extends State<SignIn> {
                           );
                         }
                         else if (ctrlEmail.text.isEmpty) {
-                          setState(() {
-                            load = false;
-                          });
+                          setState(() => load = false);
                           ft.showToast(
                             child: Activity.showToast(
                               'Email can\'t be empty',
@@ -213,9 +203,7 @@ class _SignInState extends State<SignIn> {
                           );
                         }
                         else if (ctrlPass.text.isEmpty) {
-                          setState(() {
-                            load = false;
-                          });
+                          setState(() => load = false);
                           ft.showToast(
                             child: Activity.showToast(
                               'Password can\'t be empty',
@@ -229,15 +217,11 @@ class _SignInState extends State<SignIn> {
                           if (_formKey.currentState!.validate()) {
                             final String msg = await Auth.signIn(ctrlEmail.text, ctrlPass.text);
                             if (msg == 'Granted') {
-                              setState(() {
-                                load = false;
-                              });
+                              setState(() => load = false);
                               Navigator.pushReplacementNamed(context, '/main');
                             }
                             else if (msg == 'None') {
-                              setState(() {
-                                load = false;
-                              });
+                              setState(() => load = false);
                               ft.showToast(
                                 child: Activity.showToast(
                                   'Email is not exist',
@@ -248,9 +232,7 @@ class _SignInState extends State<SignIn> {
                               );
                             }
                             else if (msg == 'Hacker') {
-                              setState(() {
-                                load = false;
-                              });
+                              setState(() => load = false);
                               ft.showToast(
                                 child: Activity.showToast(
                                   'Password is wrong',
@@ -261,9 +243,7 @@ class _SignInState extends State<SignIn> {
                               );
                             }
                             else if (msg == 'Invalid Email') {
-                              setState(() {
-                                load = false;
-                              });
+                              setState(() => load = false);
                               ft.showToast(
                                 child: Activity.showToast(
                                   'Email is invalid',
@@ -274,9 +254,7 @@ class _SignInState extends State<SignIn> {
                               );
                             }
                             else if (msg == 'Disabled') {
-                              setState(() {
-                                load = false;
-                              });
+                              setState(() => load = false);
                               ft.showToast(
                                 child: Activity.showToast(
                                   'This email has been disabled',
@@ -288,9 +266,7 @@ class _SignInState extends State<SignIn> {
                             }
                           }
                         } else {
-                          setState(() {
-                            load = false;
-                          });
+                          setState(() => load = false);
                           ft.showToast(
                             child: Activity.showToast(
                               'No internet connection',

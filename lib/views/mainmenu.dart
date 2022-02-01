@@ -15,9 +15,7 @@ class _MainMenuState extends State<MainMenu> {
     const Profile()
   ];
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIntex = index;
-    });
+    setState(() => _selectedIntex = index);
   }
   @override
   Widget build(BuildContext context) {
@@ -58,18 +56,14 @@ class _MainMenuState extends State<MainMenu> {
                             Icons.home,
                             color: _selectedIntex == 0 ? Colors.blue : null
                           ),
-                          onPressed: () {
-                            _onItemTapped(0);
-                          }
+                          onPressed: () =>_onItemTapped(0)
                         ),
                         IconButton(
                           icon: Icon(
                             Icons.chat,
                             color: _selectedIntex == 1 ? Colors.blue : null
                           ),
-                          onPressed: () {
-                            _onItemTapped(1);
-                          }
+                          onPressed: () => _onItemTapped(1)
                         ),
                         Container(width: size.width * 0.20),
                         IconButton(
@@ -77,18 +71,14 @@ class _MainMenuState extends State<MainMenu> {
                             Icons.history,
                             color: _selectedIntex == 2 ? Colors.blue : null
                           ),
-                          onPressed: () {
-                            _onItemTapped(2);
-                          }
+                          onPressed: () => _onItemTapped(2)
                         ),
                         IconButton(
                           icon: Icon(
                             Icons.person,
                             color : _selectedIntex == 3 ? Colors.blue : null
                           ),
-                          onPressed: () {
-                            _onItemTapped(3);
-                          }
+                          onPressed: () => _onItemTapped(3)
                         )
                       ]
                     )
@@ -129,7 +119,5 @@ class Custom extends CustomPainter {
     canvas.drawPath(path, paint);
   }
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
-  }
+  bool shouldRepaint(CustomPainter oldDelegate) => false;
 }

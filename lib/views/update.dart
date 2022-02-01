@@ -1,8 +1,7 @@
 part of 'views.dart';
 
 class Update extends StatefulWidget {
-  const Update({Key? key, required this.uid, required this.name, required this.phone, required this.email}) : super(key: key);
-  final String uid;
+  const Update({Key? key, required this.name, required this.phone, required this.email}) : super(key: key);
   final String name;
   final String phone;
   final String email;
@@ -146,16 +145,12 @@ class _UpdateState extends State<Update> {
                               child: Material(
                                 child: InkWell(
                                   onTap: () async {
-                                    setState(() {
-                                      load = true;
-                                    });
+                                    setState(() => load = true);
                                     FocusScope.of(context).requestFocus(FocusNode());
                                     final net = await (Connectivity().checkConnectivity());
                                     final sub = await InternetConnectionChecker().hasConnection;
                                     if (net == ConnectivityResult.none) {
-                                      setState(() {
-                                        load = false;
-                                      });
+                                      setState(() => load = false);
                                       ft.showToast(
                                         child: Activity.showToast(
                                           'No internet connection',
@@ -166,9 +161,7 @@ class _UpdateState extends State<Update> {
                                       );
                                     }
                                     else if (ctrlName.text.isEmpty) {
-                                      setState(() {
-                                        load = false;
-                                      });
+                                      setState(() => load = false);
                                       ft.showToast(
                                         child: Activity.showToast(
                                           'Name can\'t be empty',
@@ -179,9 +172,7 @@ class _UpdateState extends State<Update> {
                                       );
                                     }
                                     else if (ctrlPhone.text.isEmpty || ctrlPhone.text.length <= 7 || ctrlPhone.text.length >= 13) {
-                                      setState(() {
-                                        load = false;
-                                      });
+                                      setState(() => load = false);
                                       ft.showToast(
                                         child: Activity.showToast(
                                           'Phone number is invalid',
@@ -192,9 +183,7 @@ class _UpdateState extends State<Update> {
                                       );
                                     }
                                     else if (ctrlEmail.text.isEmpty) {
-                                      setState(() {
-                                        load = false;
-                                      });
+                                      setState(() => load = false);
                                       ft.showToast(
                                         child: Activity.showToast(
                                           'Email can\'t be empty',
@@ -208,21 +197,14 @@ class _UpdateState extends State<Update> {
                                       if (_formKey.currentState!.validate()) {
                                         final Users users = Users (
                                           '',
-                                          '',
                                           ctrlName.text,
                                           ctrlPhone.text,
                                           ctrlEmail.text,
-                                          '',
-                                          '',
-                                          '',
-                                          '',
                                           ''
                                         );
                                         final String msg = await Auth.updateAccount(users);
                                         if (msg == 'Granted') {
-                                          setState(() {
-                                            load = false;
-                                          });
+                                          setState(() => load = false);
                                           ft.showToast(
                                             child: Activity.showToast(
                                               'Updated',
@@ -233,9 +215,7 @@ class _UpdateState extends State<Update> {
                                           );
                                         }
                                         else if (msg == 'Existed') {
-                                          setState(() {
-                                            load = false;
-                                          });
+                                          setState(() => load = false);
                                           ft.showToast(
                                             child: Activity.showToast(
                                               'Email is linked to another account',
@@ -246,9 +226,7 @@ class _UpdateState extends State<Update> {
                                           );
                                         }
                                         else if (msg == 'Invalid Email') {
-                                          setState(() {
-                                            load = false;
-                                          });
+                                          setState(() => load = false);
                                           ft.showToast(
                                             child: Activity.showToast(
                                               'Email is invalid',
@@ -259,9 +237,7 @@ class _UpdateState extends State<Update> {
                                           );
                                         }
                                         else if (msg == 'Disabled') {
-                                          setState(() {
-                                            load = false;
-                                          });
+                                          setState(() => load = false);
                                           ft.showToast(
                                             child: Activity.showToast(
                                               'This email has been disabled',
@@ -273,9 +249,7 @@ class _UpdateState extends State<Update> {
                                         }
                                       }
                                     } else {
-                                      setState(() {
-                                        load = false;
-                                      });
+                                      setState(() => load = false);
                                       ft.showToast(
                                         child: Activity.showToast(
                                           'No internet connection',
