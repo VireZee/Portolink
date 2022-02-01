@@ -1,38 +1,23 @@
 part of 'models.dart';
 
 class Users {
-  final String uid;
   final String photo;
   final String name;
   final String phone;
   final String email;
   final String password;
-  final String created;
-  final String updated;
-  final String entered;
-  final String left;
   const Users(
-    this.uid,
     this.photo,
     this.name,
     this.phone,
     this.email,
-    this.password,
-    this.created,
-    this.updated,
-    this.entered,
-    this.left
+    this.password
   );
   List<Object> get props => [
-    uid,
     photo,
     name,
     phone,
     email,
-    password,
-    created,
-    updated,
-    entered,
-    left
+    password
   ];
 }

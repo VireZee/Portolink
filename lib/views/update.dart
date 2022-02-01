@@ -1,8 +1,7 @@
 part of 'views.dart';
 
 class Update extends StatefulWidget {
-  const Update({Key? key, required this.uid, required this.name, required this.phone, required this.email}) : super(key: key);
-  final String uid;
+  const Update({Key? key, required this.name, required this.phone, required this.email}) : super(key: key);
   final String name;
   final String phone;
   final String email;
@@ -208,14 +207,9 @@ class _UpdateState extends State<Update> {
                                       if (_formKey.currentState!.validate()) {
                                         final Users users = Users (
                                           '',
-                                          '',
                                           ctrlName.text,
                                           ctrlPhone.text,
                                           ctrlEmail.text,
-                                          '',
-                                          '',
-                                          '',
-                                          '',
                                           ''
                                         );
                                         final String msg = await Auth.updateAccount(users);

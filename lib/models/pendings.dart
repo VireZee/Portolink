@@ -1,7 +1,6 @@
 part of 'models.dart';
 
 class Pendings {
-  final String pid;
   final String pname;
   final String pcolor;
   final String pdesc;
@@ -9,7 +8,6 @@ class Pendings {
   final String ptext;
   final String addBy;
   const Pendings(
-    this.pid,
     this.pname,
     this.pcolor,
     this.pdesc,
@@ -18,7 +16,6 @@ class Pendings {
     this.addBy
   );
   List<Object> get props => [
-    pid,
     pname,
     pcolor,
     pdesc,

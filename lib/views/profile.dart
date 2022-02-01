@@ -81,16 +81,11 @@ class _ProfileState extends State<Profile> {
         return Stack(
           children: snapshot.data!.docs.map((DocumentSnapshot doc) {
             final Users users = Users(
-              doc['uid'],
-              doc['photo'],
-              doc['name'],
-              doc['phone'],
-              doc['email'],
-              doc['password'],
-              doc['created'],
-              doc['updated'],
-              doc['entered'],
-              doc['left']
+              doc['Photo'],
+              doc['Name'],
+              doc['Phone'],
+              doc['Email'],
+              doc['Password']
             );
             return ProfileView(users: users);
           }).toList()

@@ -38,9 +38,7 @@ class _ProfileViewState extends State<ProfileView> {
                 ThemeSwitcher(
                   builder: (context) => IconButton(
                     onPressed: () {
-                      setState(() {
-                        c = !c;
-                      });
+                      setState(() => c = !c);
                       ThemeSwitcher.of(context).changeTheme(
                         theme: ThemeModelInheritedNotifier.of(context).theme.brightness == Brightness.dark
                         ? MyTheme.lightTheme()
@@ -90,7 +88,6 @@ class _ProfileViewState extends State<ProfileView> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => Update(
-                              uid: users.uid,
                               name: users.name,
                               phone: users.phone,
                               email: users.email
@@ -148,15 +145,11 @@ class _ProfileViewState extends State<ProfileView> {
                     Material(
                       child: InkWell(
                         onTap: () async {
-                          setState(() {
-                            load = true;
-                          });
+                          setState(() => load = true);
                           final net = await (Connectivity().checkConnectivity());
                           final sub = await InternetConnectionChecker().hasConnection;
                           if (net == ConnectivityResult.none) {
-                            setState(() {
-                              load = false;
-                            });
+                            setState(() => load = false);
                             ft.showToast(
                               child: Activity.showToast(
                                 'No internet connection',
@@ -168,15 +161,11 @@ class _ProfileViewState extends State<ProfileView> {
                           }
                           else if (sub) {
                             await Auth.signOut().then((value) {
-                              setState(() {
-                                load = false;
-                              });
+                              setState(() => load = false);
                               Navigator.pushReplacementNamed(context, SignIn.routeName);
                             });
                           } else {
-                            setState(() {
-                              load = false;
-                            });
+                            setState(() => load = false);
                             ft.showToast(
                               child: Activity.showToast(
                                 'No internet connection',
@@ -213,15 +202,11 @@ class _ProfileViewState extends State<ProfileView> {
                     Material(
                       child: InkWell(
                         onTap: () async {
-                          setState(() {
-                            load = true;
-                          });
+                          setState(() => load = true);
                           final net = await (Connectivity().checkConnectivity());
                           final sub = await InternetConnectionChecker().hasConnection;
                           if (net == ConnectivityResult.none) {
-                            setState(() {
-                              load = false;
-                            });
+                            setState(() => load = false);
                             ft.showToast(
                               child: Activity.showToast(
                                 'No internet connection',
@@ -233,9 +218,7 @@ class _ProfileViewState extends State<ProfileView> {
                           }
                           else if (sub) {
                             await Auth.deleteAccount().then((value) {
-                              setState(() {
-                                load = false;
-                              });
+                              setState(() => load = false);
                               ft.showToast(
                                 child: Activity.showToast(
                                   'Goodbye',
@@ -247,9 +230,7 @@ class _ProfileViewState extends State<ProfileView> {
                               Navigator.pushReplacementNamed(context, SignIn.routeName);
                             });
                           } else { 
-                            setState(() {
-                              load = false;
-                            });
+                            setState(() => load = false);
                             ft.showToast(
                               child: Activity.showToast(
                                 'No internet connection',

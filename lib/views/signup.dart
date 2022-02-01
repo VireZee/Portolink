@@ -340,15 +340,10 @@ class _SignUpState extends State<SignUp> {
                           if (_formKey.currentState!.validate()) {
                             final Users users = Users(
                               '',
-                              '',
                               ctrlName.text,
                               ctrlPhone.text,
                               ctrlEmail.text,
-                              ctrlPass.text,
-                              '',
-                              '',
-                              '',
-                              ''
+                              ctrlPass.text
                             );
                             final String msg = await Auth.signUp(users);
                             if (msg == 'Signed') {

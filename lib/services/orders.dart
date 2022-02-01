@@ -8,18 +8,37 @@ part of 'services.dart';
 //   static DocumentReference pDocument;
 //   static Reference ref;
 //   static UploadTask uploadTask;
-//   final String imgUrl;
-//   static Future<bool> addOrder(Orders orders, Pendings pendings, PickedFile imgFile) async {
+//   static String imgUrl;
+//   static Future<bool> add(Orders orders, Pendings pendings, PickedFile imgFile) async {
 //     await Firebase.initializeApp();
 //     final String dateNow = Activity.dateNow();
 //     pDocument = await pCollection.add({
-//       'pid': pendings.pid,
-//       'pname': pendings.pname,
-//       'pcolor': pendings.pcolor,
-//       'pdesc': pendings.pdesc,
-//       'pstatus': pendings.pstatus,
-//       'ptext': pendings.ptext,
-//       'addBy': auth.currentUser!.uid
+//       'PID': pDocument.id,
+//       'Name': pendings.pname,
+//       'Color': pendings.pcolor,
+//       'Description': pendings.pdesc,
+//       'Status': 'In Progress',
+//       'Text': pendings.ptext,
+//       'Added By': auth.currentUser!.uid
 //     });
+//     oDocument = await oCollection.add({
+//       'OID': oDocument.id,
+//       'Name': orders.oname,
+//       'Color': orders.ocolor,
+//       'Contact': orders.ocontact,
+//       'Description': orders.odesc,
+//       'Photo Reference': orders.ophoto,
+//       'Added By': auth.currentUser!.uid,
+//       'Status': 'In Progress',
+//       'Created': dateNow
+//     });
+//     ref = FirebaseStorage.instance.ref().child('Design Request Photos').child(oDocument.id + 'jpg');
+//     uploadTask = ref.putFile(File(imgFile.path));
+//     await uploadTask.whenComplete(() => ref.getDownloadURL().then((value) => imgUrl = value));
+//     oCollection.doc(oDocument.id).update({
+//       'OID': oDocument.id,
+//       'Photo Reference': imgUrl
+//     });
+//     return true;
 //   }
 // }

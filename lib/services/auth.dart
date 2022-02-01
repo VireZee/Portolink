@@ -23,20 +23,18 @@ class Auth {
       uid = uCredential.user!.uid;
       token = (await FirebaseMessaging.instance.getToken())!;
       await uCollection.doc(uid).set({
-        'uid': uid,
-        'photo': '-',
-        'name': convertToTitleCase(users.name),
-        'phone': users.phone.replaceAll(' ', ''),
-        'email': users.email.replaceAll(' ', '').toLowerCase(),
-        'password': sha512.convert(utf8.encode(sha512.convert(utf8.encode(users.password)).toString())).toString(),
-        'token': token,
-        'created': dateNow,
-        'updated': '-',
-        'entered': '-',
-        'left': '-'
-      }).then((value) {
-        msg = 'Signed';
-      });
+        'UID': uid,
+        'Photo': '-',
+        'Name': convertToTitleCase(users.name),
+        'Phone': users.phone.replaceAll(' ', ''),
+        'Email': users.email.replaceAll(' ', '').toLowerCase(),
+        'Password': sha512.convert(utf8.encode(sha512.convert(utf8.encode(users.password)).toString())).toString(),
+        'Token': token,
+        'Created': dateNow,
+        'Updated': '-',
+        'Entered': '-',
+        'Left': '-'
+      }).then((value) => msg = 'Signed');
       auth.currentUser!.updatePhotoURL(users.photo);
       auth.currentUser!.updateDisplayName(convertToTitleCase(users.name));
       return msg;
@@ -67,12 +65,10 @@ class Auth {
       uid = uCredential.user!.uid;
       token = (await FirebaseMessaging.instance.getToken())!;
       await uCollection.doc(uid).update({
-        'isOn': true,
-        'token': token,
-        'entered': dateNow
-      }).then((value) {
-        msg = 'Granted';
-      });
+        'Is On': true,
+        'Token': token,
+        'Entered': dateNow
+      }).then((value) => msg = 'Granted');
       return msg;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -93,16 +89,11 @@ class Auth {
   static Future<dynamic> getUser() async {
     return await uCollection.doc(auth.currentUser!.uid).get().then((DocumentSnapshot doc) async {
       final Users users = Users (
-        doc['uid'],
-        doc['photo'],
-        doc['name'],
-        doc['phone'],
-        doc['email'],
-        doc['password'],
-        doc['created'],
-        doc['updated'],
-        doc['entered'],
-        doc['left']
+        doc['Photo'],
+        doc['Name'],
+        doc['Phone'],
+        doc['Email'],
+        doc['Password']
       );
       return users;
     });
@@ -114,10 +105,10 @@ class Auth {
     final String uid = auth.currentUser!.uid;
     try {
       await uCollection.doc(uid).update({
-        'name': convertToTitleCase(users.name),
-        'phone': users.phone.replaceAll(' ', ''),
-        'email': users.email.replaceAll(' ', '').toLowerCase(),
-        'updated': dateNow
+        'Name': convertToTitleCase(users.name),
+        'Phone': users.phone.replaceAll(' ', ''),
+        'Email': users.email.replaceAll(' ', '').toLowerCase(),
+        'Updated': dateNow
       }).then((value) {
         msg = 'Granted';
       });
@@ -144,9 +135,9 @@ class Auth {
     final String uid = auth.currentUser!.uid;
     await auth.signOut().whenComplete(() {
       uCollection.doc(uid).update({
-        'isOn': false,
-        'token': '-',
-        'left': dateNow
+        'Is On': false,
+        'Token': '-',
+        'Left': dateNow
       });
     });
     return true;
