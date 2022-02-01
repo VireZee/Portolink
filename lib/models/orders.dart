@@ -3,21 +3,21 @@ part of 'models.dart';
 class Orders {
   final String oname;
   final String ocolor;
-  final String ocontact;
   final String odesc;
   final String ophoto;
+  final String ocontact;
   const Orders(
     this.oname,
     this.ocolor,
-    this.ocontact,
     this.odesc,
-    this.ophoto
+    this.ophoto,
+    this.ocontact
   );
   List<Object> get props => [
     oname,
     ocolor,
-    ocontact,
     odesc,
-    ophoto
+    ophoto,
+    ocontact,
   ];
 }
