@@ -14,17 +14,17 @@ class OrdersAuth {
     final String dateNow = Activity.dateNow();
     await oCollection.doc(oDocument!.id).set({
       'OID': oDocument!.id,
-      'Name': orders.oname,
-      'Color': orders.ocolor,
-      'Description': orders.odesc,
-      'Photo Reference': orders.ophoto,
-      'Contact': orders.ocontact,
+      'Name': orders.name,
+      'Color': orders.color,
+      'Description': orders.desc,
+      'Photo Reference': orders.photo,
+      'Contact': orders.contact,
       'Added By': auth.currentUser!.uid,
       'Created': dateNow
     });
     await pCollection.doc(pDocument!.id).set({
       'Status': 'In Progress',
-      'Text': pendings.ptext
+      'Text': pendings.text
     });
     ref = FirebaseStorage.instance.ref().child('Design Request Photos').child(oDocument!.id + 'jpg');
     uploadTask = ref!.putFile(File(imgFile.path));

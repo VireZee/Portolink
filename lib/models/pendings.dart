@@ -1,11 +1,14 @@
 part of 'models.dart';
 
 class Pendings {
-  final String ptext;
+  final String status;
+  final String text;
   const Pendings(
-    this.ptext
+    this.status,
+    this.text
   );
   List<Object> get props => [
-    ptext
+    status,
+    text
   ];
 }

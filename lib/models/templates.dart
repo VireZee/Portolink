@@ -1,23 +1,20 @@
 part of 'models.dart';
 
 class Templates {
-  final String tid;
-  final String tphoto;
-  final String tname;
-  final String tdesc;
-  final String tprice;
+  final String photo;
+  final String name;
+  final String desc;
+  final String price;
   const Templates(
-    this.tid,
-    this.tphoto,
-    this.tname,
-    this.tdesc,
-    this.tprice
+    this.photo,
+    this.name,
+    this.desc,
+    this.price
   );
   List<Object> get props => [
-    tid,
-    tphoto,
-    tname,
-    tdesc,
-    tprice
+    photo,
+    name,
+    desc,
+    price
   ];
 }
