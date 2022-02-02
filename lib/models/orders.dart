@@ -1,23 +1,23 @@
 part of 'models.dart';
 
 class Orders {
-  final String oname;
-  final String ocolor;
-  final String odesc;
-  final String ophoto;
-  final String ocontact;
+  final String name;
+  final String color;
+  final String desc;
+  final String photo;
+  final String contact;
   const Orders(
-    this.oname,
-    this.ocolor,
-    this.odesc,
-    this.ophoto,
-    this.ocontact
+    this.name,
+    this.color,
+    this.desc,
+    this.photo,
+    this.contact
   );
   List<Object> get props => [
-    oname,
-    ocolor,
-    odesc,
-    ophoto,
-    ocontact,
+    name,
+    color,
+    desc,
+    photo,
+    contact,
   ];
 }
