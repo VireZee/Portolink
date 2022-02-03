@@ -7,7 +7,6 @@ import 'package:portolink/views/views.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
   runApp(const MyApp());
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 }
