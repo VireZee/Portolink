@@ -236,11 +236,11 @@ class _UpdateState extends State<Update> {
                                             fadeDuration: 200
                                           );
                                         }
-                                        else if (msg == 'Disabled') {
+                                        else if (msg == 'Relog') {
                                           setState(() => load = false);
                                           ft.showToast(
                                             child: Activity.showToast(
-                                              'This email has been disabled',
+                                              'You need to relog',
                                               const Color(0xFFFF0000)
                                             ),
                                             toastDuration: const Duration(seconds: 1),
