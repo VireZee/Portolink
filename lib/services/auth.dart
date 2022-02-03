@@ -86,7 +86,8 @@ class Auth {
     return msg;
   }
   static Future<dynamic> getUser() async {
-    return await uCollection.doc(auth.currentUser!.uid).get().then((DocumentSnapshot doc) async {
+    final String uid = auth.currentUser!.uid;
+    return await uCollection.doc(uid).get().then((DocumentSnapshot doc) async {
       final Users users = Users(
         doc['Photo'],
         doc['Name'],
@@ -112,7 +113,6 @@ class Auth {
       auth.currentUser!.updateDisplayName(convertToTitleCase(users.name));
       auth.currentUser!.updateEmail(users.email.replaceAll(' ', '').toLowerCase());
       EmailAuthProvider.credential(email: users.email, password: users.password);
-      return msg;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         msg = 'Existed';

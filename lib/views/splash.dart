@@ -22,7 +22,7 @@ class _SplashState extends State<Splash> {
   void checkAuth() async {
     if (auth.currentUser != null) {
       final ctrlName = auth.currentUser!.displayName;
-      Navigator.pushReplacementNamed(context, MainMenu.routeName);
+      Navigator.pushReplacementNamed(context, '/main');
       ft.showToast(
         child: Activity.showToast(
           'Welcome Back, ' + ctrlName!.split(' ').first,
@@ -32,7 +32,7 @@ class _SplashState extends State<Splash> {
         fadeDuration: 200
       );
     } else {
-      Navigator.pushReplacementNamed(context, SignIn.routeName);
+      Navigator.pushReplacementNamed(context, '/in');
     }
   }
   @override
