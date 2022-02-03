@@ -88,7 +88,7 @@ class Auth {
   }
   static Future<dynamic> getUser() async {
     return await uCollection.doc(auth.currentUser!.uid).get().then((DocumentSnapshot doc) async {
-      final Users users = Users (
+      final Users users = Users(
         doc['Photo'],
         doc['Name'],
         doc['Phone'],
