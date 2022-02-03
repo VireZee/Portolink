@@ -35,8 +35,8 @@ class Auth {
         'Entered': '-',
         'Left': '-'
       }).then((value) => msg = 'Signed');
-      auth.currentUser!.updatePhotoURL(users.photo);
-      auth.currentUser!.updateDisplayName(convertToTitleCase(users.name));
+      await auth.currentUser!.updatePhotoURL(users.photo);
+      await auth.currentUser!.updateDisplayName(convertToTitleCase(users.name));
       return msg;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
@@ -87,7 +87,8 @@ class Auth {
     return msg;
   }
   static Future<dynamic> getUser() async {
-    return await uCollection.doc(auth.currentUser!.uid).get().then((DocumentSnapshot doc) async {
+    final String uid = auth.currentUser!.uid;
+    return await uCollection.doc(uid).get().then((DocumentSnapshot doc) async {
       final Users users = Users(
         doc['Photo'],
         doc['Name'],
@@ -110,9 +111,8 @@ class Auth {
         'Email': users.email.replaceAll(' ', '').toLowerCase(),
         'Updated': dateNow
       }).then((value) => msg = 'Granted');
-      auth.currentUser!.updateDisplayName(convertToTitleCase(users.name));
-      auth.currentUser!.updateEmail(users.email.replaceAll(' ', '').toLowerCase());
-      EmailAuthProvider.credential(email: users.email, password: users.password);
+      await auth.currentUser!.updateDisplayName(convertToTitleCase(users.name));
+      await auth.currentUser!.updateEmail(users.email.replaceAll(' ', '').toLowerCase());
       return msg;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
@@ -121,8 +121,8 @@ class Auth {
       else if (e.code == 'invalid-email') {
         msg = 'Invalid Email';
       }
-      else if (e.code == 'operation-not-allowed') {
-        msg = 'Disabled';
+      else if (e.code == 'requires-recent-login') {
+        msg = 'Relog';
       }
     }
     return msg;

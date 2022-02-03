@@ -41,7 +41,7 @@ class _ProfileState extends State<Profile> {
             child: Activity.loading()
           );
         }
-        if (snapshot.hasData) {
+        else if (snapshot.hasData) {
           return FutureBuilder(
             future: Auth.getUser(),
             builder: (context, snapshot) {
