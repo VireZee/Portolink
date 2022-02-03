@@ -3,9 +3,7 @@ part of 'services.dart';
 class OrdersAuth {
   static FirebaseAuth auth = FirebaseAuth.instance;
   static CollectionReference oCollection = FirebaseFirestore.instance.collection('Orders');
-  static CollectionReference pCollection = oCollection.doc().collection('Pending Status');
   static DocumentReference? oDocument;
-  static DocumentReference? pDocument;
   static Reference? ref;
   static UploadTask? uploadTask;
   static String? imgUrl;
@@ -20,11 +18,11 @@ class OrdersAuth {
       'Photo Reference': orders.photo,
       'Contact': orders.contact,
       'Added By': auth.currentUser!.uid,
+      'Pending Status': {
+        'Status': 'In Progress',
+        'Text': pendings.text
+      },
       'Created': dateNow
-    });
-    await pCollection.doc(pDocument!.id).set({
-      'Status': 'In Progress',
-      'Text': pendings.text
     });
     ref = FirebaseStorage.instance.ref().child('Design Request Photos').child(oDocument!.id + 'jpg');
     uploadTask = ref!.putFile(File(imgFile.path));
