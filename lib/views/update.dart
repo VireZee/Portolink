@@ -56,8 +56,8 @@ class _UpdateState extends State<Update> {
                       onPressed: () {
                         ThemeSwitcher.of(context).changeTheme(
                           theme: ThemeModelInheritedNotifier.of(context).theme.brightness == Brightness.dark
-                          ? MyTheme.lightTheme()
-                          : MyTheme.darkTheme()
+                          ? BlackWhite.lightTheme()
+                          : BlackWhite.darkTheme()
                         );
                       },
                       icon: brightness == Brightness.dark ? const Icon(CupertinoIcons.sun_max_fill) : const Icon(CupertinoIcons.moon_stars_fill),
