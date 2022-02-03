@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:portolink/views/views.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized()
+  await Firebase.initializeApp();
   runApp(const MyApp());
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 }
