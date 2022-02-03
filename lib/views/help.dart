@@ -30,8 +30,8 @@ class _HelpState extends State<Help> {
                     final brightness = ThemeModelInheritedNotifier.of(context).theme.brightness;
                     ThemeSwitcher.of(context).changeTheme(
                       theme: brightness == Brightness.dark
-                      ? MyTheme.lightTheme()
-                      : MyTheme.darkTheme(),
+                      ? BlackWhite.lightTheme()
+                      : BlackWhite.darkTheme(),
                       isReversed: brightness == Brightness.light ? true : false
                     );
                   },

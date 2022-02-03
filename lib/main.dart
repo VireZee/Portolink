@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark = WidgetsBinding.instance!.window.platformBrightness == Brightness.dark;
-    final initTheme = dark ? MyTheme.darkTheme() : MyTheme.lightTheme();
+    final initTheme = dark ? BlackWhite.darkTheme() : BlackWhite.lightTheme();
     return ThemeProvider(
       initTheme: initTheme,
       builder: (context, theme) {
