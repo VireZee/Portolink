@@ -30,6 +30,7 @@ class Auth {
         'Email': users.email.replaceAll(' ', '').toLowerCase(),
         'Password': sha512.convert(utf8.encode(sha512.convert(utf8.encode(users.password)).toString())).toString(),
         'Token': token,
+        'Superuser': false,
         'Created': dateNow,
         'Updated': '-',
         'Entered': '-',
