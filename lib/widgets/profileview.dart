@@ -164,7 +164,8 @@ class _ProfileViewState extends State<ProfileView> {
                               setState(() => load = false);
                               Navigator.pushReplacementNamed(context, SignIn.routeName);
                             });
-                          } else {
+                          }
+                          else {
                             setState(() => load = false);
                             ft.showToast(
                               child: Activity.showToast(
@@ -229,7 +230,8 @@ class _ProfileViewState extends State<ProfileView> {
                               );
                               Navigator.pushReplacementNamed(context, SignIn.routeName);
                             });
-                          } else { 
+                          }
+                          else { 
                             setState(() => load = false);
                             ft.showToast(
                               child: Activity.showToast(

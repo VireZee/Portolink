@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(portolink LANGUAGES CXX)
+project(Portolink LANGUAGES CXX)
 
-set(BINARY_NAME "portolink")
+set(BINARY_NAME "Portolink")
 
 cmake_policy(SET CMP0063 NEW)
 

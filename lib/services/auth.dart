@@ -1,8 +1,8 @@
 part of 'services.dart';
 
 class Auth {
-  static FirebaseAuth auth = FirebaseAuth.instance;
-  static CollectionReference uCollection = FirebaseFirestore.instance.collection('Users');
+  static final FirebaseAuth auth = FirebaseAuth.instance;
+  static final CollectionReference uCollection = FirebaseFirestore.instance.collection('Users');
   static String convertToTitleCase(String text) {
     final List<String> words = text.split(' ');
     final cap = words.map((word) {
@@ -19,7 +19,7 @@ class Auth {
     final String token;
     final String uid;
     try {
-      UserCredential uCredential = await auth.createUserWithEmailAndPassword(email: users.email, password: users.password);
+      final UserCredential uCredential = await auth.createUserWithEmailAndPassword(email: users.email, password: users.password);
       uid = uCredential.user!.uid;
       token = (await FirebaseMessaging.instance.getToken())!;
       await uCollection.doc(uid).set({
@@ -30,6 +30,7 @@ class Auth {
         'Email': users.email.replaceAll(' ', '').toLowerCase(),
         'Password': sha512.convert(utf8.encode(sha512.convert(utf8.encode(users.password)).toString())).toString(),
         'Token': token,
+        'Administrator': false,
         'Created': dateNow,
         'Updated': '-',
         'Entered': '-',
@@ -61,7 +62,7 @@ class Auth {
     final String token;
     final String uid;
     try {
-      UserCredential uCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
+      final UserCredential uCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
       uid = uCredential.user!.uid;
       token = (await FirebaseMessaging.instance.getToken())!;
       await uCollection.doc(uid).update({

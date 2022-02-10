@@ -195,7 +195,7 @@ class _UpdateState extends State<Update> {
                                     }
                                     else if (sub) {
                                       if (_formKey.currentState!.validate()) {
-                                        final Users users = Users (
+                                        final Users users = Users(
                                           '',
                                           ctrlName.text,
                                           ctrlPhone.text,
@@ -248,7 +248,8 @@ class _UpdateState extends State<Update> {
                                           );
                                         }
                                       }
-                                    } else {
+                                    }
+                                    else {
                                       setState(() => load = false);
                                       ft.showToast(
                                         child: Activity.showToast(

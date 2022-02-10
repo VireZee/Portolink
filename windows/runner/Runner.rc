@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "portolink" "\0"
+            VALUE "FileDescription", "Portolink" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "portolink" "\0"
+            VALUE "InternalName", "Portolink" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2022 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "portolink.exe" "\0"
-            VALUE "ProductName", "portolink" "\0"
+            VALUE "OriginalFilename", "Portolink.exe" "\0"
+            VALUE "ProductName", "Portolink" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
