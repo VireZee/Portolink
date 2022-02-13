@@ -96,7 +96,8 @@ class _UpdateState extends State<Update> {
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))
                               ),
-                              maxLines: 1
+                              maxLines: 1,
+                              textInputAction: TextInputAction.next
                             ),
                             const SizedBox(height: 16),
                             const Text(
@@ -117,7 +118,8 @@ class _UpdateState extends State<Update> {
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))
                               ),
-                              maxLines: 1
+                              maxLines: 1,
+                              textInputAction: TextInputAction.next
                             ),
                             const SizedBox(height: 16),
                             const Text(
@@ -138,7 +140,8 @@ class _UpdateState extends State<Update> {
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))
                               ),
-                              maxLines: 1
+                              maxLines: 1,
+                              textInputAction: TextInputAction.done
                             ),
                             const SizedBox(height: 80),
                             Center(
