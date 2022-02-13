@@ -40,7 +40,7 @@ class _UpdateState extends State<Update> {
           Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/edit_bg.jpg'),
+                image: AssetImage('assets/images/update_bg.jpg'),
                 fit: BoxFit.fill
               )
             ),
