@@ -5,7 +5,7 @@ class Auth {
   static final CollectionReference uCollection = FirebaseFirestore.instance.collection('Users');
   static String convertToTitleCase(String text) {
     final List<String> words = text.split(' ');
-    final cap = words.map((word) {
+    final Iterable<String> cap = words.map((word) {
       final String first = word.trim().substring(0, 1).toUpperCase();
       final String remain = word.trim().substring(1).toLowerCase();
       return '$first$remain';
@@ -30,7 +30,6 @@ class Auth {
         'Email': users.email.replaceAll(' ', '').toLowerCase(),
         'Password': sha512.convert(utf8.encode(sha512.convert(utf8.encode(users.password)).toString())).toString(),
         'Token': token,
-        'Administrator': false,
         'Created': dateNow,
         'Updated': '-',
         'Entered': '-',
@@ -90,7 +89,7 @@ class Auth {
     }
     return msg;
   }
-  static Future<dynamic> getUser() async {
+  static Future<Users> getUser() async {
     final String uid = auth.currentUser!.uid;
     return await uCollection.doc(uid).get().then((DocumentSnapshot doc) async {
       final Users users = Users(
@@ -102,7 +101,7 @@ class Auth {
       );
       return users;
     });
-  }
+  } 
   static Future<String> updateAccount(Users users) async {
     await Firebase.initializeApp();
     final String dateNow = Activity.dateNow();
