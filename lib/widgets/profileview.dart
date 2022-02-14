@@ -111,14 +111,12 @@ class _ProfileViewState extends State<ProfileView> {
                     const SizedBox(height: 70),
                     Material(
                       child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const Help(),
-                            )
-                          );
-                        },
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Help(),
+                          )
+                        ),
                         child: SizedBox(
                           width: 350,
                           height: 60,
