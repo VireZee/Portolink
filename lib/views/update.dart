@@ -9,13 +9,13 @@ class Update extends StatefulWidget {
   _UpdateState createState() => _UpdateState();
 }
 class _UpdateState extends State<Update> {
-  final _formKey = GlobalKey<FormState>();
-  final ctrlName = TextEditingController();
-  final ctrlPhone = TextEditingController();
-  final ctrlEmail = TextEditingController();
-  final ft = FToast();
-  static bool load = false;
-  final CollectionReference uCollection = FirebaseFirestore.instance.collection('Users');
+  final CollectionReference uCollection = Auth.uCollection;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController ctrlName = TextEditingController();
+  final TextEditingController ctrlPhone = TextEditingController();
+  final TextEditingController ctrlEmail = TextEditingController();
+  final FToast ft = FToast();
+  bool load = false;
   @override
   void initState() {
     ctrlName.text =  widget.name;
@@ -33,7 +33,7 @@ class _UpdateState extends State<Update> {
   }
   @override
   Widget build(BuildContext context) {
-    final brightness = ThemeModelInheritedNotifier.of(context).theme.brightness;
+    final Brightness brightness = ThemeModelInheritedNotifier.of(context).theme.brightness;
     return ThemeSwitchingArea(
       child: Stack(
         children: [
@@ -150,8 +150,8 @@ class _UpdateState extends State<Update> {
                                   onTap: () async {
                                     setState(() => load = true);
                                     FocusScope.of(context).requestFocus(FocusNode());
-                                    final net = await (Connectivity().checkConnectivity());
-                                    final sub = await InternetConnectionChecker().hasConnection;
+                                    final ConnectivityResult net = await (Connectivity().checkConnectivity());
+                                    final bool sub = await InternetConnectionChecker().hasConnection;
                                     if (net == ConnectivityResult.none) {
                                       setState(() => load = false);
                                       ft.showToast(
