@@ -5,11 +5,10 @@ class Help extends StatefulWidget {
   @override
   _HelpState createState() => _HelpState();
 }
-
 class _HelpState extends State<Help> {
   @override
   Widget build(BuildContext context) {
-    final brightness = ThemeModelInheritedNotifier.of(context).theme.brightness;
+    final Brightness brightness = ThemeModelInheritedNotifier.of(context).theme.brightness;
     return ThemeSwitchingArea(
       child: Container(
         decoration: const BoxDecoration(
