@@ -83,18 +83,16 @@ class _ProfileViewState extends State<ProfileView> {
                     ),
                     const SizedBox(height: 24),
                     ElevatedButton(
-                      onPressed: () async {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Update(
-                              name: users.name,
-                              phone: users.phone,
-                              email: users.email
-                            )
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Update(
+                            name: users.name,
+                            phone: users.phone,
+                            email: users.email
                           )
-                        );
-                      },
+                        )
+                      ),
                       child: const Text('Edit Profile'),
                       style: ButtonStyle(
                         overlayColor: MaterialStateProperty.resolveWith((states) {
