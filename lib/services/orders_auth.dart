@@ -1,40 +1,65 @@
 part of 'services.dart';
 
 class OrdersAuth {
-  static FirebaseAuth auth = FirebaseAuth.instance;
-  static CollectionReference oCollection = FirebaseFirestore.instance.collection('Orders');
+  static final FirebaseAuth auth = FirebaseAuth.instance;
+  static final CollectionReference oCollection = FirebaseFirestore.instance.collection('Orders');
   static DocumentReference? oDocument;
   static Reference? ref;
   static UploadTask? uploadTask;
   static String? imgUrl;
-  static Future<bool> addOrder(Orders orders, Pendings pendings, PickedFile imgFile) async {
+  static Future<bool> addOrder(Orders orders, Pendings pendings, XFile imgFile) async {
     await Firebase.initializeApp();
     final String dateNow = Activity.dateNow();
-    await oCollection.doc(oDocument!.id).set({
-      'OID': oDocument!.id,
+    oDocument = await oCollection.add({
+      'OID': '-',
       'Name': orders.name,
       'Color': orders.color,
       'Description': orders.desc,
       'Photo Reference': orders.photo,
       'Contact': orders.contact,
-      'Added By': auth.currentUser!.uid,
+      'Added By': auth.currentUser!.displayName,
+      'UID': auth.currentUser!.uid,
       'Pending Status': {
-        'Status': 'In Progress',
+        'Status': 'Sent, Waiting for approval',
         'Text': pendings.text
       },
-      'Created': dateNow
+      'Created': dateNow,
+      'Updated': '-'
     });
-    ref = FirebaseStorage.instance.ref().child('Design Request Photos').child(oDocument!.id + 'jpg');
+    ref = FirebaseStorage.instance.ref().child('Design Request Photos').child(oDocument!.id + '.jpg');
     uploadTask = ref!.putFile(File(imgFile.path));
     await uploadTask!.whenComplete(() => ref!.getDownloadURL().then((value) => imgUrl = value));
-    oCollection.doc(oDocument!.id).update({
+    await oCollection.doc(oDocument!.id).update({
+      'OID': oDocument!.id,
       'Photo Reference': imgUrl
+    });
+    return true;
+  }
+  static Future<bool> updateOrder(Orders orders, Pendings pendings, XFile imgFile) async {
+    await Firebase.initializeApp();
+    final String dateNow = Activity.dateNow();
+    await FirebaseStorage.instance.ref().child('Design Request Photos').child(oDocument!.id + '.jpg').delete();
+    ref = FirebaseStorage.instance.ref().child('Design Request Photos').child(oDocument!.id + '.jpg');
+    uploadTask = ref!.putFile(File(imgFile.path));
+    await uploadTask!.whenComplete(() => ref!.getDownloadURL().then((value) => imgUrl = value));
+    await oCollection.doc(oDocument!.id).update({
+      'Name': orders.name,
+      'Color': orders.color,
+      'Description': orders.desc,
+      'Photo Reference': imgUrl,
+      'Contact': orders.contact,
+      'Pending Status': {
+        'Status': 'Sent, Waiting for approval',
+        'Text': pendings.text
+      },
+      'Updated': dateNow
     });
     return true;
   }
   static Future<bool> deleteOrder(Orders orders) async {
     await Firebase.initializeApp();
     await oCollection.doc(oDocument!.id).delete();
+    await FirebaseStorage.instance.ref().child('Template Photos').child(oDocument!.id + '.jpg').delete();
     return true;
   }
 }

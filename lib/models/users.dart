@@ -6,18 +6,5 @@ class Users {
   final String phone;
   final String email;
   final String password;
-  const Users(
-    this.photo,
-    this.name,
-    this.phone,
-    this.email,
-    this.password
-  );
-  List<Object> get props => [
-    photo,
-    name,
-    phone,
-    email,
-    password
-  ];
+  const Users(this.photo, this.name, this.phone, this.email, this.password);
 }
