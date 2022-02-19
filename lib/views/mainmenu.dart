@@ -22,7 +22,7 @@ class _MainMenuState extends State<MainMenu> {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Stack(
-        children: [
+        children: <Widget>[
           Center(child: _widgetOptions.elementAt(_selectedIntex)),
           Positioned(
             bottom: 0,
@@ -31,7 +31,7 @@ class _MainMenuState extends State<MainMenu> {
               width: size.width,
               height: 80,
               child: Stack(
-                children: [
+                children: <Widget>[
                   CustomPaint(  
                     size: Size(size.width, 80),
                     painter: Custom()
@@ -50,7 +50,7 @@ class _MainMenuState extends State<MainMenu> {
                     height: 80,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
+                      children: <Widget>[
                         IconButton(
                           icon: Icon(
                             Icons.home,
