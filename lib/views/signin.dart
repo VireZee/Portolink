@@ -11,7 +11,6 @@ class _SignInState extends State<SignIn> {
   final TextEditingController ctrlEmail = TextEditingController();
   final ObscuringTextEditingController ctrlPass = ObscuringTextEditingController();
   final FToast ft = FToast();
-  bool vis = true;
   bool load = false;
   bool btn = true;
   bool isEmpty() {
@@ -135,16 +134,7 @@ class _SignInState extends State<SignIn> {
                               )
                             ),
                             hintText: 'Password',
-                            suffixIcon: GestureDetector(
-                              onTap: () => setState(() => vis = !vis),
-                              child: Icon(
-                                vis
-                                ? Icons.visibility
-                                : Icons.visibility_off
-                              )
-                            )
                           ),
-                          obscureText: vis,
                           controller: ctrlPass,
                           keyboardType: TextInputType.text,
                           textInputAction: TextInputAction.done
