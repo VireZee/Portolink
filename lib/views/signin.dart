@@ -143,16 +143,19 @@ class _SignInState extends State<SignIn> {
                     )
                   ),
                   Row(
-                    children: const [
-                      Spacer(flex: 10),
-                      Text(
-                        'Forgot Password',
-                        style: TextStyle(
-                          fontFamily: 'Roboto',
-                          fontSize: 15
+                    children: [
+                      const Spacer(flex: 10),
+                      GestureDetector(
+                        onTap: () => Navigator.pushReplacementNamed(context, '/for'),
+                        child: const Text(
+                          'Forgot Password',
+                          style: TextStyle(
+                            fontFamily: 'Roboto',
+                            fontSize: 15
+                          )
                         )
                       ),
-                      Spacer()
+                      const Spacer()
                     ]
                   ),
                   const SizedBox(height: 20),

@@ -2,6 +2,7 @@ part of 'views.dart';
 
 class Forgot extends StatefulWidget {
   const Forgot({Key? key}) : super(key: key);
+  static const String routeName = '/for';
   @override
   _ForgotState createState() => _ForgotState();
 }
