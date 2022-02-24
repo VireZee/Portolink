@@ -131,6 +131,7 @@ class Auth {
     return msg;
   }
   static Future<bool> forgot() async {
+    await Firebase.initializeApp();
     return true;
   }
   static Future<bool> signOut() async {
