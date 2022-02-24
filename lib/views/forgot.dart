@@ -127,7 +127,52 @@ class _ForgotState extends State<Forgot> {
                           );
                         }
                         else if (sub) {
-                          await Auth.forgot(ctrlEmail.text);
+                          final String msg = await Auth.forgot(ctrlEmail.text);
+                          if (msg == 'Sent') {
+                            setState(() => load = false);
+                            ft.showToast(
+                              child: Activity.showToast(
+                                'Check your email',
+                                Colors.blue
+                              ),
+                              toastDuration: const Duration(seconds: 1),
+                              fadeDuration: 200
+                            );
+                            Navigator.pushReplacementNamed(context, '/in');
+                          }
+                          else if (msg == 'None') {
+                            setState(() => load = false);
+                            ft.showToast(
+                              child: Activity.showToast(
+                                'Email is not exist',
+                                const Color(0xFFFF0000)
+                              ),
+                              toastDuration: const Duration(seconds: 1),
+                              fadeDuration: 200
+                            );
+                          }
+                          else if (msg == 'Invalid Email') {
+                            setState(() => load = false);
+                            ft.showToast(
+                              child: Activity.showToast(
+                                'Email is invalid',
+                                const Color(0xFFFF0000)
+                              ),
+                              toastDuration: const Duration(seconds: 1),
+                              fadeDuration: 200
+                            );
+                          }
+                          else if (msg == 'Error') {
+                            setState(() => load = false);
+                            ft.showToast(
+                              child: Activity.showToast(
+                                'Unknown error occurred',
+                                const Color(0xFFFF0000)
+                              ),
+                              toastDuration: const Duration(seconds: 1),
+                              fadeDuration: 200
+                            );
+                          }
                         }
                         else {
                           setState(() => load = false);
