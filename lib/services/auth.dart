@@ -130,6 +130,9 @@ class Auth {
     }
     return msg;
   }
+  static Future<bool> forgot() async {
+    return true;
+  }
   static Future<bool> signOut() async {
     await Firebase.initializeApp();
     final String dateNow = Activity.dateNow();
