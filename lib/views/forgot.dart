@@ -126,7 +126,9 @@ class _ForgotState extends State<Forgot> {
                             fadeDuration: 200
                           );
                         }
-                        else if (sub) {}
+                        else if (sub) {
+                          await Auth.forgot(ctrlEmail.text);
+                        }
                         else {
                           setState(() => load = false);
                           ft.showToast(

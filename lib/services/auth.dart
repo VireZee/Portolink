@@ -130,14 +130,23 @@ class Auth {
     }
     return msg;
   }
-  static Future<bool> forgot(Users users) async {
+  static Future<String> forgot(String email) async {
     await Firebase.initializeApp();
+    String msg = '';
     try {
-      await auth.sendPasswordResetEmail(email: users.email.replaceAll(' ', '').toLowerCase());
+      await auth.sendPasswordResetEmail(email: email.replaceAll(' ', '').toLowerCase());
     } on FirebaseAuthException catch (e) {
-      debugPrint(e.code);
+      if (e.code == 'user-not-found') {
+        msg = 'None';
+      }
+     else if (e.code == 'invalid-email') {
+        msg = 'Invalid Email';
+      }
+      else {
+        msg = 'Unknown';
+      }
     }
-    return true;
+    return msg;
   }
   static Future<bool> signOut() async {
     await Firebase.initializeApp();
