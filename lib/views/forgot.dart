@@ -51,7 +51,8 @@ class _ForgotState extends State<Forgot> {
               backgroundColor: Colors.transparent,
               body: Column(
                 children: <Widget>[
-                  const Flexible(
+                  const SizedBox(
+                    height: 300,
                     child: Center(
                       child: Text(
                         'EMAIL',
@@ -63,7 +64,7 @@ class _ForgotState extends State<Forgot> {
                     )
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Container(
                       height: 60,
                       decoration: BoxDecoration(
