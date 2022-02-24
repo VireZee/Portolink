@@ -143,7 +143,7 @@ class Auth {
         msg = 'Invalid Email';
       }
       else {
-        msg = 'Unknown';
+        msg = 'Error';
       }
     }
     return msg;
