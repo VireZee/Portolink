@@ -83,7 +83,7 @@ class _ForgotState extends State<Forgot> {
                                 size: 28
                               )
                             ),
-                            hintText: 'Enter your Email'
+                            hintText: 'Email'
                           ),
                           controller: ctrlEmail,
                           keyboardType: TextInputType.emailAddress,
@@ -95,7 +95,7 @@ class _ForgotState extends State<Forgot> {
                   const SizedBox(height: 20),
                   SizedBox(
                     height: 40,
-                    width: 150,
+                    width: 230,
                     child: ElevatedButton.icon(
                       onPressed: isEmpty()
                       ? () async {
