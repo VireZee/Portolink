@@ -134,7 +134,7 @@ class Auth {
     await Firebase.initializeApp();
     String msg = '';
     try {
-      await auth.sendPasswordResetEmail(email: email.replaceAll(' ', '').toLowerCase());
+      await auth.sendPasswordResetEmail(email: email.replaceAll(' ', '').toLowerCase()).then((value) => msg = 'Sent');
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         msg = 'None';
