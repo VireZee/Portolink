@@ -124,9 +124,9 @@ class _SignInState extends State<SignIn> {
                         child: TextField(
                           onChanged: (value) => isEmpty(),
                           style: const TextStyle(fontSize: 25),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             border: InputBorder.none,
-                            prefixIcon: const Padding(
+                            prefixIcon: Padding(
                               padding: EdgeInsets.symmetric(horizontal: 25),
                               child: Icon(
                                 FontAwesomeIcons.lock,
