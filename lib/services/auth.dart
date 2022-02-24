@@ -130,8 +130,13 @@ class Auth {
     }
     return msg;
   }
-  static Future<bool> forgot() async {
+  static Future<bool> forgot(Users users) async {
     await Firebase.initializeApp();
+    try {
+      await auth.sendPasswordResetEmail(email: users.email.replaceAll(' ', '').toLowerCase());
+    } on FirebaseAuthException catch (e) {
+      debugPrint(e.code);
+    }
     return true;
   }
   static Future<bool> signOut() async {
