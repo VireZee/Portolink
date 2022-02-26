@@ -8,6 +8,7 @@ class Shop extends StatefulWidget {
 class _ShopState extends State<Shop> {
   String trigger = '';
   Stream<QuerySnapshot> sort() {
+    final CollectionReference tColl
     Stream<QuerySnapshot> s = TemplatesAuth.tCollection.orderBy('Name').snapshots();
     setState(() {
       if (trigger == 'nd') {
