@@ -153,9 +153,9 @@ class _ShopState extends State<Shop> {
                     doc['Description'],
                     doc['Price']
                   );
-                  return HomeView(templates: templates);
+                  return ShopView(templates: templates);
                 }).toList()
-              ),
+              )
             )
           )
         );
