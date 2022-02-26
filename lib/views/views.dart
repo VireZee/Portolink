@@ -21,6 +21,7 @@ part 'history.dart';
 part 'home.dart';
 part 'mainmenu.dart';
 part 'profile.dart';
+part 'shop.dart';
 part 'signin.dart';
 part 'signup.dart';
 part 'splash.dart';
