@@ -11,3 +11,4 @@ import 'package:portolink/shared/shared.dart';
 import 'package:portolink/views/views.dart';
 
 part 'profileview.dart';
+part 'shopview.dart';

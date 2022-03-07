@@ -11,7 +11,6 @@ class _SignInState extends State<SignIn> {
   final TextEditingController ctrlEmail = TextEditingController();
   final ObscuringTextEditingController ctrlPass = ObscuringTextEditingController();
   final FToast ft = FToast();
-  bool vis = true;
   bool load = false;
   bool btn = true;
   bool isEmpty() {
@@ -125,9 +124,9 @@ class _SignInState extends State<SignIn> {
                         child: TextField(
                           onChanged: (value) => isEmpty(),
                           style: const TextStyle(fontSize: 25),
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             border: InputBorder.none,
-                            prefixIcon: const Padding(
+                            prefixIcon: Padding(
                               padding: EdgeInsets.symmetric(horizontal: 25),
                               child: Icon(
                                 FontAwesomeIcons.lock,
@@ -135,16 +134,7 @@ class _SignInState extends State<SignIn> {
                               )
                             ),
                             hintText: 'Password',
-                            suffixIcon: GestureDetector(
-                              onTap: () => setState(() => vis = !vis),
-                              child: Icon(
-                                vis
-                                ? Icons.visibility
-                                : Icons.visibility_off
-                              )
-                            )
                           ),
-                          obscureText: vis,
                           controller: ctrlPass,
                           keyboardType: TextInputType.text,
                           textInputAction: TextInputAction.done
@@ -153,16 +143,19 @@ class _SignInState extends State<SignIn> {
                     )
                   ),
                   Row(
-                    children: const [
-                      Spacer(flex: 10),
-                      Text(
-                        'Forgot Password',
-                        style: TextStyle(
-                          fontFamily: 'Roboto',
-                          fontSize: 15
+                    children: [
+                      const Spacer(flex: 10),
+                      GestureDetector(
+                        onTap: () => Navigator.pushReplacementNamed(context, '/for'),
+                        child: const Text(
+                          'Forgot Password',
+                          style: TextStyle(
+                            fontFamily: 'Roboto',
+                            fontSize: 15
+                          )
                         )
                       ),
-                      Spacer()
+                      const Spacer()
                     ]
                   ),
                   const SizedBox(height: 20),

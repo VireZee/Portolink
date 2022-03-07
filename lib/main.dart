@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
             '/': (context) => const Splash(),
             '/in' : (context) => const SignIn(),
             '/up': (context) => const SignUp(),
+            '/for': (context) => const Forgot(),
             '/main': (context) => const MainMenu()
           }
         );
