@@ -9,7 +9,7 @@ class MainMenu extends StatefulWidget {
 class _MainMenuState extends State<MainMenu> {
   static int _selectedIntex = 0;
   final List<Widget> _widgetOptions = <Widget>[
-    const Home(),
+    const Shop(),
     const Chat(),
     const History(),
     const Profile()
@@ -36,15 +36,6 @@ class _MainMenuState extends State<MainMenu> {
                     size: Size(size.width, 80),
                     painter: Custom()
                   ),
-                  Center(
-                    heightFactor: 0.6,
-                    child: FloatingActionButton(
-                      backgroundColor: Colors.blue,
-                      child: const Icon(Icons.shopping_bag, size: 40),
-                      elevation: 0,
-                      onPressed: () =>  Navigator.pushNamed(context, '/shop')
-                    )
-                  ),
                   SizedBox(
                     width: size.width,
                     height: 80,
@@ -53,7 +44,7 @@ class _MainMenuState extends State<MainMenu> {
                       children: <Widget>[
                         IconButton(
                           icon: Icon(
-                            Icons.home,
+                            Icons.shopping_bag,
                             color: _selectedIntex == 0 ? Colors.blue : null
                           ),
                           onPressed: () =>_onItemTapped(0)
