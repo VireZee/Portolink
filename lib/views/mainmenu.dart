@@ -42,7 +42,7 @@ class _MainMenuState extends State<MainMenu> {
                       backgroundColor: Colors.blue,
                       child: const Icon(Icons.shopping_bag, size: 40),
                       elevation: 0,
-                      onPressed: () {}
+                      onPressed: () =>  Navigator.pushNamed(context, '/shop')
                     )
                   ),
                   SizedBox(
