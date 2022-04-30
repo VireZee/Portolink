@@ -2,7 +2,6 @@ part of 'views.dart';
 
 class Shop extends StatefulWidget {
   const Shop({Key? key}) : super(key: key);
-  static const String routeName = '/shop';
   @override
   _ShopState createState() => _ShopState();
 }
@@ -57,7 +56,7 @@ class _ShopState extends State<Shop> {
         return Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/images/home_bg.jpg'),
+              image: AssetImage('assets/images/shop_bg.jpg'),
               fit: BoxFit.fill
             )
           ),
