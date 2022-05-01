@@ -15,7 +15,6 @@ import 'package:portolink/services/services.dart';
 import 'package:portolink/shared/shared.dart';
 import 'package:portolink/widgets/widgets.dart';
 
-part 'chat.dart';
 part 'details.dart';
 part 'forgot.dart';
 part 'help.dart';
@@ -28,4 +27,5 @@ part 'shop.dart';
 part 'signin.dart';
 part 'signup.dart';
 part 'splash.dart';
+part 'transaction.dart';
 part 'update.dart';
