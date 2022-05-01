@@ -101,7 +101,7 @@ class _DetailsState extends State<Details> {
                         RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
                       )
                     ),
-                    icon: const Icon(Icons.edit),
+                    icon: const Icon(Icons.shopping_cart),
                     label: Row(
                       children: const [
                         Spacer(),
@@ -143,7 +143,7 @@ class _DetailsState extends State<Details> {
                         RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
                       )
                     ),
-                    icon: const Icon(Icons.edit),
+                    icon: const Icon(Icons.dashboard_customize),
                     label: Row(
                       children: const [
                         Spacer(),
