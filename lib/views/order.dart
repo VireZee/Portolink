@@ -14,7 +14,6 @@ class _OrderState extends State<Order> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController ctrlColor = TextEditingController();
   final TextEditingController ctrlContact = TextEditingController();
-  XFile? imgFile;
   final FToast ft = FToast();
   bool load = false;
   bool btn = true;
