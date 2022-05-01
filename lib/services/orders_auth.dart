@@ -7,20 +7,41 @@ class OrdersAuth {
   static Reference? ref;
   static UploadTask? uploadTask;
   static String? imgUrl;
-  static Future<bool> addOrder(Orders orders, Pendings pendings, XFile imgFile) async {
+  static Future<bool> addOrder(Orders orders, Pendings pendings) async {
     await Firebase.initializeApp();
     final String dateNow = Activity.dateNow();
     oDocument = await oCollection.add({
       'OID': '-',
       'Name': orders.name,
       'Color': orders.color,
+      'Contact': orders.contact,
+      'Added By': auth.currentUser!.displayName,
+      'UID': auth.currentUser!.uid,
+      'Pending Status': {
+        'Status': pendings.status,
+        'Text': pendings.text
+      },
+      'Created': dateNow,
+      'Updated': '-'
+    });
+    await oCollection.doc(oDocument!.id).update({
+      'OID': oDocument!.id
+    });
+    return true;
+  }
+  static Future<bool> addRequest(Orders orders, Pendings pendings, XFile imgFile) async {
+    await Firebase.initializeApp();
+    final String dateNow = Activity.dateNow();
+    oDocument = await oCollection.add({
+      'OID': '-',
+      'Name': orders.name,
       'Description': orders.desc,
       'Photo Reference': orders.photo,
       'Contact': orders.contact,
       'Added By': auth.currentUser!.displayName,
       'UID': auth.currentUser!.uid,
       'Pending Status': {
-        'Status': 'Sent, Waiting for approval',
+        'Status': pendings.status,
         'Text': pendings.text
       },
       'Created': dateNow,

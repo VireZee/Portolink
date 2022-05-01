@@ -217,7 +217,7 @@ class _SignUpState extends State<SignUp> {
                             prefixIcon: Padding(
                               padding: EdgeInsets.symmetric(horizontal: 25),
                               child: Icon(
-                                FontAwesomeIcons.checkCircle,
+                                FontAwesomeIcons.circleCheck,
                                 size: 28
                               )
                             ),
