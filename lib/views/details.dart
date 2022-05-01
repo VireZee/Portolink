@@ -11,7 +11,6 @@ class _DetailsState extends State<Details> {
   @override
   Widget build(BuildContext context) {
     final Templates templates = widget.templates;
-    final Brightness brightness = ThemeModelInheritedNotifier.of(context).theme.brightness;
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
@@ -69,7 +68,93 @@ class _DetailsState extends State<Details> {
               )
             ),
             const SizedBox(height: 100),
-            Column()
+            Column(
+              children: <SizedBox>[
+                SizedBox(
+                  height: 60,
+                  width: 300,
+                  child: ElevatedButton.icon(
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Order(
+                          tid: templates.tid,
+                          photo: templates.photo,
+                          name: templates.name,
+                          desc: templates.desc,
+                          price: templates.price.toString()
+                        )
+                      )
+                    ),
+                    style: ButtonStyle(
+                      overlayColor: MaterialStateProperty.resolveWith((states) {
+                        return states.contains(MaterialState.pressed)
+                        ? Colors.blue
+                        : null;
+                      }),
+                      foregroundColor: MaterialStateProperty.resolveWith((states) {
+                        return states.contains(MaterialState.pressed)
+                        ? const Color(0xFF00FF00)
+                        : null;
+                      }),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
+                      )
+                    ),
+                    icon: const Icon(Icons.edit),
+                    label: Row(
+                      children: const [
+                        Spacer(),
+                        Text('Order Template', style: TextStyle(fontFamily: 'Prompt', fontSize: 25)),
+                        Spacer(flex: 1)
+                      ]
+                    )
+                  )
+                ),
+                const SizedBox(height: 12),
+                SizedBox(
+                  height: 60,
+                  width: 300,
+                  child: ElevatedButton.icon(
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Request(
+                          tid: templates.tid,
+                          photo: templates.photo,
+                          name: templates.name,
+                          desc: templates.desc,
+                          price: templates.price.toString()
+                        )
+                      )
+                    ),
+                    style: ButtonStyle(
+                      overlayColor: MaterialStateProperty.resolveWith((states) {
+                        return states.contains(MaterialState.pressed)
+                        ? Colors.blue
+                        : null;
+                      }),
+                      foregroundColor: MaterialStateProperty.resolveWith((states) {
+                        return states.contains(MaterialState.pressed)
+                        ? const Color(0xFF00FF00)
+                        : null;
+                      }),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
+                      )
+                    ),
+                    icon: const Icon(Icons.edit),
+                    label: Row(
+                      children: const [
+                        Spacer(),
+                        Text('Request Template', style: TextStyle(fontFamily: 'Prompt', fontSize: 25)),
+                        Spacer(flex: 1)
+                      ]
+                    )
+                  )
+                )
+              ]
+            )
           ]
         )
       )
