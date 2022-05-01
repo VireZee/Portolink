@@ -10,7 +10,7 @@ class _MainMenuState extends State<MainMenu> {
   static int _selectedIntex = 0;
   final List<Widget> _widgetOptions = <Widget>[
     const Shop(),
-    const Chat(),
+    const Transaction(),
     const History(),
     const Profile()
   ];
@@ -51,7 +51,7 @@ class _MainMenuState extends State<MainMenu> {
                         ),
                         IconButton(
                           icon: Icon(
-                            Icons.chat,
+                            Icons.attach_money,
                             color: _selectedIntex == 1 ? Colors.blue : null
                           ),
                           onPressed: () => _onItemTapped(1)
