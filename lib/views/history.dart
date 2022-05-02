@@ -128,9 +128,8 @@ class _HistoryState extends State<History> {
                 primary: false,
                 childAspectRatio: 0.6,
                 children: snapshot.data!.docs.map((DocumentSnapshot doc) {
-                  final Orders orders;
                   if (doc['UID'] == FirebaseAuth.instance.currentUser!.uid) {
-                    orders = Orders(
+                    final Orders orders = Orders(
                       doc['Name'],
                       doc['Color'],
                       doc['Description'],
@@ -139,7 +138,14 @@ class _HistoryState extends State<History> {
                     );
                     return HistoryView(orders: orders);
                   }
-                  return HistoryView(orders: orders);
+                  else {
+                    return Center(
+                      child: Text(
+                        'No Data',
+                        style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black)
+                      )
+                    );
+                  }
                 }).toList()
               )
             )
