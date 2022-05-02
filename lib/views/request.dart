@@ -242,7 +242,14 @@ class _RequestState extends State<Request> {
                                         'Sent, Waiting for approval',
                                         ''
                                       );
-                                      await OrdersAuth.addRequest(orders, pendings, imgFile!).then((value) {
+                                      final Templates templates = Templates(
+                                        widget.tid,
+                                        widget.photo,
+                                        widget.name,
+                                        widget.desc,
+                                        int.parse(widget.price)
+                                      );
+                                      await OrdersAuth.addRequest(orders, pendings, templates, imgFile!).then((value) {
                                         if (value == true) {
                                           setState(() => load = false);
                                           ft.showToast(
