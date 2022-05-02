@@ -7,7 +7,7 @@ class Details extends StatefulWidget {
   _DetailsState createState() => _DetailsState();
 }
 class _DetailsState extends State<Details> {
-  final CollectionReference tCollection = FirebaseFirestore.instance.collection('Templates');
+  final CollectionReference tCollection = OrdersAuth.tCollection;
   @override
   Widget build(BuildContext context) {
     final Templates templates = widget.templates;
