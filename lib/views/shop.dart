@@ -8,7 +8,7 @@ class Shop extends StatefulWidget {
 class _ShopState extends State<Shop> {
   String trigger = '';
   Stream<QuerySnapshot> sort() {
-    final CollectionReference tCollection = FirebaseFirestore.instance.collection('Templates');
+    final CollectionReference tCollection = OrdersAuth.tCollection;
     Stream<QuerySnapshot> s = tCollection.orderBy('Name').snapshots();
     setState(() {
       if (trigger == 'nd') {
