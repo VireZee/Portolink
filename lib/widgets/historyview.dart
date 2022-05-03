@@ -22,7 +22,7 @@ class _HistoryViewState extends State<HistoryView> {
           onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => UpdateOrder(orders: orders)
+              builder: (context) => UpdateOrder(orders: orders, templates: templates)
             )
           ),
           child: Container(
