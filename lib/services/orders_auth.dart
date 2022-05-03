@@ -79,10 +79,8 @@ class OrdersAuth {
       'Description': orders.desc,
       'Photo Reference': imgUrl,
       'Contact': orders.contact,
-      'Pending Status': {
-        'Status': pendings.status,
-        'Text': pendings.text
-      },
+      'Status': pendings.status,
+      'Text': pendings.text,
       'Updated': dateNow
     });
     return true;
