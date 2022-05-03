@@ -90,7 +90,6 @@ class _UpdateOrderState extends State<UpdateOrder> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => EditOrder(
-                          name: orders.name,
                           color: orders.color,
                           desc: orders.desc,
                           photo: orders.photo,
