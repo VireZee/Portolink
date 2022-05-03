@@ -51,7 +51,7 @@ class _MainMenuState extends State<MainMenu> {
                         ),
                         IconButton(
                           icon: Icon(
-                            Icons.attach_money,
+                            Icons.check,
                             color: _selectedIntex == 1 ? Colors.blue : null
                           ),
                           onPressed: () => _onItemTapped(1)
