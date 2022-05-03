@@ -200,7 +200,7 @@ class _RequestState extends State<Request> {
                                     setState(() => load = false);
                                     ft.showToast(
                                       child: Activity.showToast(
-                                        'Color can\'t be empty',
+                                        'Description can\'t be empty',
                                         const Color(0xFFFF0000)
                                       ),
                                       toastDuration: const Duration(seconds: 1),
