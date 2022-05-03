@@ -89,12 +89,12 @@ class _UpdateOrderState extends State<UpdateOrder> {
                     onPressed: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Order(
-                          tid: templates.tid,
-                          photo: templates.photo,
-                          name: templates.name,
-                          desc: templates.desc,
-                          price: templates.price.toString()
+                        builder: (context) => EditOrder(
+                          name: orders.name,
+                          color: orders.color,
+                          desc: orders.desc,
+                          photo: orders.photo,
+                          contact: orders.contact
                         )
                       )
                     ),
