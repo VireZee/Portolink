@@ -98,7 +98,7 @@ class _EditOrderState extends State<EditOrder> {
                           const SizedBox(height: 8),
                           TextField(
                             onChanged: (value) => isEmpty(),
-                            controller: ctrlDesc,
+                            controller: ctrlColor,
                             keyboardType: TextInputType.text,
                             style: const TextStyle(fontSize: 20),
                             decoration: InputDecoration(
@@ -115,7 +115,7 @@ class _EditOrderState extends State<EditOrder> {
                           const SizedBox(height: 8),
                           TextField(
                             onChanged: (value) => isEmpty(),
-                            controller: ctrlContact,
+                            controller: ctrlDesc,
                             keyboardType: TextInputType.text,
                             style: const TextStyle(fontSize: 20),
                             decoration: InputDecoration(
@@ -132,7 +132,7 @@ class _EditOrderState extends State<EditOrder> {
                           const SizedBox(height: 8),
                           TextField(
                             onChanged: (value) => isEmpty(),
-                            controller: ctrlDesc,
+                            controller: ctrlContact,
                             keyboardType: TextInputType.text,
                             style: const TextStyle(fontSize: 20),
                             decoration: InputDecoration(
@@ -342,7 +342,10 @@ class _EditOrderState extends State<EditOrder> {
               ]
             )
           )
-        )
+        ),
+        load == true
+        ? Activity.sent()
+        : Container()
       ]
     );
   }
