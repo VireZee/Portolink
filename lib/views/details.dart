@@ -47,7 +47,7 @@ class _DetailsState extends State<Details> {
                 image: NetworkImage(templates.photo)
               )
             ),
-            const SizedBox(height: 20.0),
+            const SizedBox(height: 20),
             Text(
               Activity.toIDR(templates.price.toString()),
               textAlign: TextAlign.center,
@@ -57,7 +57,7 @@ class _DetailsState extends State<Details> {
                 color: Colors.blue
               )
             ),
-            const SizedBox(height: 20.0),
+            const SizedBox(height: 20),
             Text(
               templates.desc,
               textAlign: TextAlign.center,
