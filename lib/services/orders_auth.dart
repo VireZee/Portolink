@@ -34,7 +34,7 @@ class OrdersAuth {
     await oCollection.doc(oDocument!.id).update({
       'OID': oDocument!.id
     });
-    oDocument = await ooCollection.add({
+    await ooCollection.doc(oDocument!.id).set({
       'OID': '-',
       'Name': orders.name,
       'Color': orders.color,
@@ -87,7 +87,7 @@ class OrdersAuth {
       'OID': oDocument!.id,
       'Photo Reference': imgUrl
     });
-    oDocument = await ooCollection.add({
+    await ooCollection.doc(oDocument!.id).set({
       'OID': '-',
       'Name': orders.name,
       'Color': orders.color,
@@ -132,14 +132,22 @@ class OrdersAuth {
       'Text': pendings.text,
       'Updated': dateNow
     });
+    await ooCollection.doc(oDocument!.id).update({
+      'Name': orders.name,
+      'Color': orders.color,
+      'Description': orders.desc,
+      'Photo Reference': imgUrl,
+      'Contact': orders.contact,
+      'Status': pendings.status,
+      'Text': pendings.text,
+      'Updated': dateNow
+    });
     return true;
   }
-  static Future<bool> deleteOrder(Orders orders) async {
+  static Future<bool> deleteOrder(String oid) async {
     await Firebase.initializeApp();
-    await oCollection.doc(oDocument!.id).delete();
-    await FirebaseStorage.instance.ref().child('Design Request Photos').child(oDocument!.id + '.jpg').delete();
-    await ooCollection.doc(oDocument!.id).delete();
-    await FirebaseStorage.instance.ref().child('User\'s Photos').child(oDocument!.id + '.jpg').delete();
+    await oCollection.doc(oid).delete();
+    await ooCollection.doc(oid).delete();
     return true;
   }
 }
