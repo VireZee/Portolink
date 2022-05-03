@@ -129,6 +129,7 @@ class _HistoryState extends State<History> {
                 childAspectRatio: 0.6,
                 children: snapshot.data!.docs.map((DocumentSnapshot doc) {
                   final Orders orders = Orders(
+                    doc['OID'],
                     doc['Name'],
                     doc['Color'],
                     doc['Description'],
