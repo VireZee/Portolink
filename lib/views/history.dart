@@ -8,20 +8,20 @@ class History extends StatefulWidget {
 class _HistoryState extends State<History> {
   String trigger = '';
   Stream<QuerySnapshot> sort() {
-    final CollectionReference oCollection = OrdersAuth.oCollection;
-    Stream<QuerySnapshot> s = oCollection.orderBy('Name').snapshots();
+    final CollectionReference ooCollection = OrdersAuth.ooCollection;
+    Stream<QuerySnapshot> s = ooCollection.orderBy('Name').snapshots();
     setState(() {
       if (trigger == 'nd') {
-        s = oCollection.orderBy('Name').snapshots();
+        s = ooCollection.orderBy('Name').snapshots();
       }
       else if (trigger == 'nu') {
-        s = oCollection.orderBy('Name', descending: true).snapshots();
+        s = ooCollection.orderBy('Name', descending: true).snapshots();
       }
       else if (trigger == 'pd') {
-        s = oCollection.orderBy('Price').snapshots();
+        s = ooCollection.orderBy('Price').snapshots();
       }
       else if (trigger == 'pu') {
-        s = oCollection.orderBy('Price', descending: true).snapshots();
+        s = ooCollection.orderBy('Price', descending: true).snapshots();
       }
     });
     return s;
@@ -128,30 +128,25 @@ class _HistoryState extends State<History> {
                 primary: false,
                 childAspectRatio: 0.6,
                 children: snapshot.data!.docs.map((DocumentSnapshot doc) {
-                  if (doc['UID'] == FirebaseAuth.instance.currentUser!.uid) {
-                    final Orders orders = Orders(
-                      doc['Name'],
-                      doc['Color'],
-                      doc['Description'],
-                      doc['Photo Reference'],
-                      doc['Contact']
-                    );
-                    final Pendings pendings = Pendings(
-                      doc['Status'],
-                      doc['Text']
-                    );
-                    final Templates templates = Templates(
-                      doc['TID'],
-                      doc['Photo'],
-                      doc['Name'],
-                      doc['Description'],
-                      doc['Price']
-                    );
-                    return HistoryView(orders: orders, pendings: pendings, templates: templates);
-                  }
-                  else {
-                    return Container();
-                  }
+                  final Orders orders = Orders(
+                    doc['Name'],
+                    doc['Color'],
+                    doc['Description'],
+                    doc['Photo Reference'],
+                    doc['Contact']
+                  );
+                  final Pendings pendings = Pendings(
+                    doc['Status'],
+                    doc['Text']
+                  );
+                  final Templates templates = Templates(
+                    doc['TID'],
+                    doc['Photo'],
+                    doc['Name'],
+                    doc['Description'],
+                    doc['Price']
+                  );
+                  return HistoryView(orders: orders, pendings: pendings, templates: templates);
                 }).toList()
               )
             )
