@@ -69,7 +69,6 @@ class OrdersAuth {
   static Future<bool> updateOrder(Orders orders, Pendings pendings, XFile imgFile) async {
     await Firebase.initializeApp();
     final String dateNow = Activity.dateNow();
-    await FirebaseStorage.instance.ref().child('Design Request Photos').child(oDocument!.id + '.jpg').delete();
     ref = FirebaseStorage.instance.ref().child('Design Request Photos').child(oDocument!.id + '.jpg');
     uploadTask = ref!.putFile(File(imgFile.path));
     await uploadTask!.whenComplete(() => ref!.getDownloadURL().then((value) => imgUrl = value));
