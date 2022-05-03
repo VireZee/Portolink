@@ -8,20 +8,20 @@ class History extends StatefulWidget {
 class _HistoryState extends State<History> {
   String trigger = '';
   Stream<QuerySnapshot> sort() {
-    final CollectionReference ooCollection = OrdersAuth.ooCollection;
-    Stream<QuerySnapshot> s = ooCollection.orderBy('Name').snapshots();
+    final CollectionReference oCollection = OrdersAuth.oCollection;
+    Stream<QuerySnapshot> s = oCollection.orderBy('Name').snapshots();
     setState(() {
       if (trigger == 'nd') {
-        s = ooCollection.orderBy('Name').snapshots();
+        s = oCollection.orderBy('Name').snapshots();
       }
       else if (trigger == 'nu') {
-        s = ooCollection.orderBy('Name', descending: true).snapshots();
+        s = oCollection.orderBy('Name', descending: true).snapshots();
       }
       else if (trigger == 'pd') {
-        s = ooCollection.orderBy('Price').snapshots();
+        s = oCollection.orderBy('Price').snapshots();
       }
       else if (trigger == 'pu') {
-        s = ooCollection.orderBy('Price', descending: true).snapshots();
+        s = oCollection.orderBy('Price', descending: true).snapshots();
       }
     });
     return s;
