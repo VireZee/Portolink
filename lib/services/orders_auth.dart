@@ -2,7 +2,7 @@ part of 'services.dart';
 
 class OrdersAuth {
   static final FirebaseAuth auth = FirebaseAuth.instance;
-  static final CollectionReference oCollection = FirebaseFirestore.instance.collection('Orders');
+  static final CollectionReference oCollection = FirebaseFirestore.instance.collection('Orders').doc(auth.currentUser!.uid).collection('List');
   static final CollectionReference tCollection = FirebaseFirestore.instance.collection('Templates');
   static DocumentReference? oDocument;
   static Reference? ref;
