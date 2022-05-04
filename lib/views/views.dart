@@ -17,7 +17,6 @@ import 'package:portolink/widgets/widgets.dart';
 
 part 'details.dart';
 part 'done.dart';
-part 'editorder.dart';
 part 'forgot.dart';
 part 'help.dart';
 part 'history.dart';

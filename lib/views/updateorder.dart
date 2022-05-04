@@ -86,48 +86,6 @@ class _UpdateOrderState extends State<UpdateOrder> {
                   height: 60,
                   width: 300,
                   child: ElevatedButton.icon(
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => EditOrder(
-                          name: orders.name,
-                          color: orders.color,
-                          desc: orders.desc,
-                          photo: orders.photo,
-                          contact: orders.contact
-                        )
-                      )
-                    ),
-                    style: ButtonStyle(
-                      overlayColor: MaterialStateProperty.resolveWith((states) {
-                        return states.contains(MaterialState.pressed)
-                        ? Colors.blue
-                        : null;
-                      }),
-                      foregroundColor: MaterialStateProperty.resolveWith((states) {
-                        return states.contains(MaterialState.pressed)
-                        ? const Color(0xFF00FF00)
-                        : null;
-                      }),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
-                      )
-                    ),
-                    icon: const Icon(Icons.edit),
-                    label: Row(
-                      children: const [
-                        Spacer(),
-                        Text('Edit Order', style: TextStyle(fontFamily: 'Prompt', fontSize: 25)),
-                        Spacer(flex: 1)
-                      ]
-                    )
-                  )
-                ),
-                const SizedBox(height: 12),
-                SizedBox(
-                  height: 60,
-                  width: 300,
-                  child: ElevatedButton.icon(
                     onPressed: () {
                       showDialog(
                         context: context,

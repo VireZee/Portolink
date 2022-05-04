@@ -66,24 +66,6 @@ class OrdersAuth {
     });
     return true;
   }
-  static Future<bool> updateOrder(Orders orders, Pendings pendings, XFile imgFile) async {
-    await Firebase.initializeApp();
-    final String dateNow = Activity.dateNow();
-    ref = FirebaseStorage.instance.ref().child('Design Request Photos').child(oDocument!.id + '.jpg');
-    uploadTask = ref!.putFile(File(imgFile.path));
-    await uploadTask!.whenComplete(() => ref!.getDownloadURL().then((value) => imgUrl = value));
-    await oCollection.doc(oDocument!.id).update({
-      'Name': orders.name,
-      'Color': orders.color,
-      'Description': orders.desc,
-      'Photo Reference': imgUrl,
-      'Contact': orders.contact,
-      'Status': pendings.status,
-      'Text': pendings.text,
-      'Updated': dateNow
-    });
-    return true;
-  }
   static Future<bool> deleteOrder(String oid) async {
     await Firebase.initializeApp();
     await oCollection.doc(oid).delete();
