@@ -101,7 +101,7 @@ class Auth {
       );
       return users;
     });
-  } 
+  }
   static Future<String> updateAccount(Users users) async {
     await Firebase.initializeApp();
     final String dateNow = Activity.dateNow();

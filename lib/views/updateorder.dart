@@ -1,16 +1,18 @@
 part of 'views.dart';
 
-class Details extends StatefulWidget {
-  const Details({Key? key, required this.templates}) : super(key: key);
+class UpdateOrder extends StatefulWidget {
+  const UpdateOrder({Key? key, required this.orders, required this.templates}) : super(key: key);
+  final Orders orders;
   final Templates templates;
   @override
-  _DetailsState createState() => _DetailsState();
+  State<UpdateOrder> createState() => _UpdateOrderState();
 }
-class _DetailsState extends State<Details> {
-  final CollectionReference tCollection = OrdersAuth.tCollection;
+class _UpdateOrderState extends State<UpdateOrder> {
   @override
   Widget build(BuildContext context) {
+    final Orders orders = widget.orders;
     final Templates templates = widget.templates;
+    final Brightness brightness = ThemeModelInheritedNotifier.of(context).theme.brightness;
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
@@ -49,7 +51,7 @@ class _DetailsState extends State<Details> {
             ),
             const SizedBox(height: 20),
             Text(
-              Activity.toIDR(templates.price.toString()),
+              orders.color,
               textAlign: TextAlign.center,
               style: const TextStyle(
                 fontFamily: 'Dancing Script',
@@ -57,12 +59,22 @@ class _DetailsState extends State<Details> {
                 color: Colors.blue
               )
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 5),
             Text(
-              templates.desc,
+              orders.desc,
               textAlign: TextAlign.center,
               style: const TextStyle(
-                fontFamily: 'Flamenco',
+                fontFamily: 'Dancing Script',
+                fontSize: 25,
+                color: Colors.blue
+              )
+            ),
+            const SizedBox(height: 5),
+            Text(
+              orders.contact,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontFamily: 'Dancing Script',
                 fontSize: 25,
                 color: Colors.blue
               )
@@ -74,18 +86,43 @@ class _DetailsState extends State<Details> {
                   height: 60,
                   width: 300,
                   child: ElevatedButton.icon(
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Order(
-                          tid: templates.tid,
-                          photo: templates.photo,
-                          name: templates.name,
-                          desc: templates.desc,
-                          price: templates.price.toString()
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          backgroundColor: brightness == Brightness.dark ? Colors.black : Colors.white,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                          title: Text(
+                            'Confirmation',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black)
+                          ),
+                          content: Text(
+                            'Are you sure you want to delete this order?',
+                            style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black)
+                          ),
+                          actions: [
+                            TextButton(
+                              child: Text(
+                                'Cancel',
+                                style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black)
+                              ),
+                              onPressed: () => Navigator.of(context).pop()
+                            ),
+                            TextButton(
+                              child: Text(
+                                'Delete',
+                                style: TextStyle(color: brightness == Brightness.dark ? Colors.white : Colors.black)
+                              ),
+                              onPressed: () {
+                                OrdersAuth.deleteOrder(orders.oid);
+                                Navigator.pushNamedAndRemoveUntil(context, '/main', (Route<dynamic> route) => false);
+                              }
+                            )
+                          ]
                         )
-                      )
-                    ),
+                      );
+                    },
                     style: ButtonStyle(
                       overlayColor: MaterialStateProperty.resolveWith((states) {
                         return states.contains(MaterialState.pressed)
@@ -94,60 +131,18 @@ class _DetailsState extends State<Details> {
                       }),
                       foregroundColor: MaterialStateProperty.resolveWith((states) {
                         return states.contains(MaterialState.pressed)
-                        ? const Color(0xFF00FF00)
+                        ? const Color(0xFFFF0000)
                         : null;
                       }),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
                       )
                     ),
-                    icon: const Icon(Icons.shopping_cart),
+                    icon: const Icon(Icons.clear),
                     label: Row(
                       children: const [
                         Spacer(),
-                        Text('Order Template', style: TextStyle(fontFamily: 'Prompt', fontSize: 25)),
-                        Spacer(flex: 1)
-                      ]
-                    )
-                  )
-                ),
-                const SizedBox(height: 12),
-                SizedBox(
-                  height: 60,
-                  width: 300,
-                  child: ElevatedButton.icon(
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Request(
-                          tid: templates.tid,
-                          photo: templates.photo,
-                          name: templates.name,
-                          desc: templates.desc,
-                          price: templates.price.toString()
-                        )
-                      )
-                    ),
-                    style: ButtonStyle(
-                      overlayColor: MaterialStateProperty.resolveWith((states) {
-                        return states.contains(MaterialState.pressed)
-                        ? Colors.blue
-                        : null;
-                      }),
-                      foregroundColor: MaterialStateProperty.resolveWith((states) {
-                        return states.contains(MaterialState.pressed)
-                        ? const Color(0xFF00FF00)
-                        : null;
-                      }),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
-                      )
-                    ),
-                    icon: const Icon(Icons.dashboard_customize),
-                    label: Row(
-                      children: const [
-                        Spacer(),
-                        Text('Request Template', style: TextStyle(fontFamily: 'Prompt', fontSize: 25)),
+                        Text('Delete Order', style: TextStyle(fontFamily: 'Prompt', fontSize: 25)),
                         Spacer(flex: 1)
                       ]
                     )

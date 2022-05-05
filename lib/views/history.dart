@@ -8,7 +8,7 @@ class History extends StatefulWidget {
 class _HistoryState extends State<History> {
   String trigger = '';
   Stream<QuerySnapshot> sort() {
-    final CollectionReference oCollection = FirebaseFirestore.instance.collection('Orders');
+    final CollectionReference oCollection = OrdersAuth.oCollection;
     Stream<QuerySnapshot> s = oCollection.orderBy('Name').snapshots();
     setState(() {
       if (trigger == 'nd') {
@@ -128,18 +128,26 @@ class _HistoryState extends State<History> {
                 primary: false,
                 childAspectRatio: 0.6,
                 children: snapshot.data!.docs.map((DocumentSnapshot doc) {
-                  final Orders orders;
-                  if (doc['UID'] == FirebaseAuth.instance.currentUser!.uid) {
-                    orders = Orders(
-                      doc['Name'],
-                      doc['Color'],
-                      doc['Description'],
-                      doc['Photo Reference'],
-                      doc['Contact']
-                    );
-                    return HistoryView(orders: orders);
-                  }
-                  return HistoryView(orders: orders);
+                  final Orders orders = Orders(
+                    doc['OID'],
+                    doc['Name'],
+                    doc['Color'],
+                    doc['Description'],
+                    doc['Photo Reference'],
+                    doc['Contact']
+                  );
+                  final Pendings pendings = Pendings(
+                    doc['Status'],
+                    doc['Text']
+                  );
+                  final Templates templates = Templates(
+                    doc['TID'],
+                    doc['Photo'],
+                    doc['Name'],
+                    doc['Description'],
+                    doc['Price']
+                  );
+                  return HistoryView(orders: orders, pendings: pendings, templates: templates);
                 }).toList()
               )
             )

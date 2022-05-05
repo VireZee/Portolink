@@ -156,6 +156,7 @@ class _OrderState extends State<Order> {
                                   else if (sub) {
                                     if (_formKey.currentState!.validate()) {
                                       final Orders orders = Orders(
+                                        '',
                                         widget.name,
                                         ctrlColor.text,
                                         '',
@@ -166,7 +167,14 @@ class _OrderState extends State<Order> {
                                         'Sent, Waiting for approval',
                                         ''
                                       );
-                                      await OrdersAuth.addOrder(orders, pendings).then((value) {
+                                      final Templates templates = Templates(
+                                        widget.tid,
+                                        widget.photo,
+                                        widget.name,
+                                        widget.desc,
+                                        int.parse(widget.price)
+                                      );
+                                      await OrdersAuth.addOrder(orders, pendings, templates).then((value) {
                                         if (value == true) {
                                           setState(() => load = false);
                                           ft.showToast(

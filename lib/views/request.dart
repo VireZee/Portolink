@@ -200,7 +200,7 @@ class _RequestState extends State<Request> {
                                     setState(() => load = false);
                                     ft.showToast(
                                       child: Activity.showToast(
-                                        'Color can\'t be empty',
+                                        'Description can\'t be empty',
                                         const Color(0xFFFF0000)
                                       ),
                                       toastDuration: const Duration(seconds: 1),
@@ -232,6 +232,7 @@ class _RequestState extends State<Request> {
                                   else if (sub) {
                                     if (_formKey.currentState!.validate()) {
                                       final Orders orders = Orders(
+                                        '',
                                         widget.name,
                                         '',
                                         ctrlDesc.text,
@@ -242,7 +243,14 @@ class _RequestState extends State<Request> {
                                         'Sent, Waiting for approval',
                                         ''
                                       );
-                                      await OrdersAuth.addRequest(orders, pendings, imgFile!).then((value) {
+                                      final Templates templates = Templates(
+                                        widget.tid,
+                                        widget.photo,
+                                        widget.name,
+                                        widget.desc,
+                                        int.parse(widget.price)
+                                      );
+                                      await OrdersAuth.addRequest(orders, pendings, templates, imgFile!).then((value) {
                                         if (value == true) {
                                           setState(() => load = false);
                                           ft.showToast(
